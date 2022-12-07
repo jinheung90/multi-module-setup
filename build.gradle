@@ -1,0 +1,51 @@
+buildscript {
+    ext {
+        springBootVersion = '2.7.6'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "io.spring.gradle:dependency-management-plugin:1.1.0"
+    }
+}
+
+subprojects {
+    group 'com.example'
+    version '1.0'
+
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 11
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile 'org.springframework.boot:spring-boot-starter-web'
+        implementation 'org.springframework.boot:spring-boot-devtools'
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.7.0'
+        // junit4 의존성 제거
+        implementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude module: 'junit'
+        }
+        implementation 'org.projectlombok:lombok:1.18.22'
+        annotationProcessor 'org.projectlombok:lombok'
+    }
+}
+
+project(':stylebot-api') {
+    dependencies {
+        compile project(':stylebot-mybatis')
+    }
+}
+
+//project(':module-web') {
+//    dependencies {
+//        compile project(':module-common')
+//    }
+//}

@@ -1,0 +1,28 @@
+plugins {
+
+
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.2.2'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+bootJar {
+	enabled = false
+}
+
+jar {
+	enabled = true
+}
