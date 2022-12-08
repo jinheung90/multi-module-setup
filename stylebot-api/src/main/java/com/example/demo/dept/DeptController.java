@@ -17,24 +17,16 @@ public class DeptController {
     private final DeptService deptService;
     @GetMapping(value = "/dept")
     public ResponseEntity<List<Dept>> findAll() {
-
-
         return ResponseEntity.ok(deptService.findAll());
     }
     @PostMapping(value = "/dept")
-    public String post(@RequestBody DeptDTO deptDTO) {
+    public  ResponseEntity<String> post(@RequestBody DeptDTO deptDTO) {
 
         deptService.insert(
                 deptDTO
         );
 
-        return "test3";
+        return ResponseEntity.ok("success");
     }
-    @RequestMapping(value = "/dept/test")
-    public String get(Model model) {
-        model.addAttribute("deptDto",new DeptDTO()); //빈 오브젝트를 뷰에 넘겨준다.
-        return "test4";
-    }
-
 
 }
