@@ -9,8 +9,14 @@
         LOC
     </sql>
 
+    <select id="findAll" resultType="com.example.demo.dept.Dept">
+        SELECT <include refid="deptColumns"/>
+        FROM DEPT
+
+    </select>
+
     <insert id="insert" parameterType="com.example.demo.dept.Dept">
-        INSERT INTO tb_board(
+        INSERT INTO DEPT(
         <include refid="deptColumns"/>
         )VALUES (
         #{deptNo},

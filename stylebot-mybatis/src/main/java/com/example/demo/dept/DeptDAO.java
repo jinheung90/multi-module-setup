@@ -10,19 +10,19 @@ import java.util.List;
 @Repository
 public interface DeptDAO {
 
-    public List<Dept> findAll();
+    List<Dept> findAll();
 
 
-    public void insert(
+    void insert(
             @Param(value = "deptNo") Long deptNo,
             @Param(value = "dName") String dName,
             @Param(value = "locate") String locate);
 
-    @Update("UPDATE DEPT SET DNAME = #{dName}, LOC = #{locate} WHERE DEPTNO = #{deptNo}")
-    public void update(@Param(value = "deptNo") Long deptNo, @Param(value = "dName") String dName, @Param(value = "locate") String locate);
 
-    @Delete("DELETE FROM DEPT WHERE DEPTNO = #{deptNo}")
-    public void deleteById(@Param(value = "deptNo") Long deptNo);
+    void update(@Param(value = "deptNo") Long deptNo, @Param(value = "dName") String dName, @Param(value = "locate") String locate);
+
+
+    void deleteById(@Param(value = "deptNo") Long deptNo);
 
 
 }

@@ -38,7 +38,7 @@ subprojects {
     }
 }
 
-project(':stylebot-api') {
+project(':stylebot-web') {
     dependencies {
         compile project(':stylebot-mybatis')
     }

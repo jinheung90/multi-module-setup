@@ -37,4 +37,6 @@ public class DeptController {
         model.addAttribute("deptDto",new DeptDTO()); //빈 오브젝트를 뷰에 넘겨준다.
         return "test4";
     }
+
+
 }
