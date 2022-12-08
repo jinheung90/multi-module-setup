@@ -1,4 +1,4 @@
 rootProject.name = 'stylebot'
 include 'stylebot-mybatis'
 include 'stylebot-web'
-
+include 'stylebot-api'

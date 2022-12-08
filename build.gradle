@@ -44,8 +44,8 @@ project(':stylebot-web') {
     }
 }
 
-//project(':module-web') {
-//    dependencies {
-//        compile project(':module-common')
-//    }
-//}
+project(':stylebot-api') {
+    dependencies {
+        compile project(':stylebot-mybatis')
+    }
+}

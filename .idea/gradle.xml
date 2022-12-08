@@ -9,6 +9,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/stylebot-api" />
             <option value="$PROJECT_DIR$/stylebot-mybatis" />
             <option value="$PROJECT_DIR$/stylebot-web" />
           </set>

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stylebot-api/stylebot.stylebot-api.main.iml" filepath="$PROJECT_DIR$/.idea/modules/stylebot-api/stylebot.stylebot-api.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/stylebot-mybatis/stylebot.stylebot-mybatis.main.iml" filepath="$PROJECT_DIR$/.idea/modules/stylebot-mybatis/stylebot.stylebot-mybatis.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/stylebot-web/stylebot.stylebot-web.main.iml" filepath="$PROJECT_DIR$/.idea/modules/stylebot-web/stylebot.stylebot-web.main.iml" />
     </modules>

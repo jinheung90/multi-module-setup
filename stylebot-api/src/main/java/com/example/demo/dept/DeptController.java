@@ -2,30 +2,30 @@ package com.example.demo.dept;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Random;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class DeptController {
 
     private final DeptService deptService;
-    @RequestMapping(value = "/dept")
-    public String findAll(Model model) {
-        model.addAttribute("test", "test");
-        model.addAttribute("test2", deptService.findAll());
-        return "test3";
+    @GetMapping(value = "/dept")
+    public ResponseEntity<List<Dept>> findAll() {
+
+
+        return ResponseEntity.ok(deptService.findAll());
     }
     @PostMapping(value = "/dept")
-    public String post(@ModelAttribute("deptDto") DeptDTO deptDto) {
+    public String post(@RequestBody DeptDTO deptDTO) {
 
         deptService.insert(
-                deptDto
+                deptDTO
         );
 
         return "test3";
