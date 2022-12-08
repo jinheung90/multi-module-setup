@@ -47,5 +47,6 @@ project(':stylebot-web') {
 project(':stylebot-api') {
     dependencies {
         compile project(':stylebot-mybatis')
+        compile project(':stylebot-JPA')
     }
 }

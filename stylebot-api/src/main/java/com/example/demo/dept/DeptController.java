@@ -20,7 +20,7 @@ public class DeptController {
         return ResponseEntity.ok(deptService.findAll());
     }
     @PostMapping(value = "/dept")
-    public  ResponseEntity<String> post(@RequestBody DeptDTO deptDTO) {
+    public  ResponseEntity<String> save(@RequestBody DeptDTO deptDTO) {
 
         deptService.insert(
                 deptDTO
