@@ -1,5 +1,7 @@
 rootProject.name = 'stylebot'
-include 'stylebot-mybatis'
+
 include 'stylebot-web'
 include 'stylebot-api'
-include 'stylebot-JPA'
+include 'user-jpa'
+include 'user-mybatis'
+include 'shop-jpa'

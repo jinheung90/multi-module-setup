@@ -9,10 +9,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/stylebot-JPA" />
+            <option value="$PROJECT_DIR$/shop-jpa" />
             <option value="$PROJECT_DIR$/stylebot-api" />
-            <option value="$PROJECT_DIR$/stylebot-mybatis" />
             <option value="$PROJECT_DIR$/stylebot-web" />
+            <option value="$PROJECT_DIR$/user-jpa" />
+            <option value="$PROJECT_DIR$/user-mybatis" />
           </set>
         </option>
       </GradleProjectSettings>

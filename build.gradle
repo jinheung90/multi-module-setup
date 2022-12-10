@@ -40,13 +40,14 @@ subprojects {
 
 project(':stylebot-web') {
     dependencies {
-        compile project(':stylebot-mybatis')
+        compile project(':user-mybatis')
     }
 }
 
 project(':stylebot-api') {
     dependencies {
-        compile project(':stylebot-mybatis')
-        compile project(':stylebot-JPA')
+        compile project(':user-mybatis')
+        compile project(':user-jpa')
+        compile project(':shop-jpa')
     }
 }
