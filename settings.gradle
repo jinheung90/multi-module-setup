@@ -1,7 +1,9 @@
-rootProject.name = 'stylebot'
+rootProject.name = 'collie'
 
-include 'stylebot-web'
-include 'stylebot-api'
-include 'user-jpa'
-include 'user-mybatis'
-include 'shop-jpa'
+include 'collie_web_usr'
+include 'collie_web_xdm'
+include 'collie_api_b2c'
+include 'collie_api_b2r'
+include 'collie_api_b2b'
+include 'collie_core'
+

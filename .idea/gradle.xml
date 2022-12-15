@@ -9,11 +9,12 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/shop-jpa" />
-            <option value="$PROJECT_DIR$/stylebot-api" />
-            <option value="$PROJECT_DIR$/stylebot-web" />
-            <option value="$PROJECT_DIR$/user-jpa" />
-            <option value="$PROJECT_DIR$/user-mybatis" />
+            <option value="$PROJECT_DIR$/collie_api_b2b" />
+            <option value="$PROJECT_DIR$/collie_api_b2c" />
+            <option value="$PROJECT_DIR$/collie_api_b2r" />
+            <option value="$PROJECT_DIR$/collie_core" />
+            <option value="$PROJECT_DIR$/collie_web_usr" />
+            <option value="$PROJECT_DIR$/collie_web_xdm" />
           </set>
         </option>
       </GradleProjectSettings>

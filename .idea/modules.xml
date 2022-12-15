@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stylebot-JPA/stylebot.stylebot-JPA.main.iml" filepath="$PROJECT_DIR$/.idea/modules/stylebot-JPA/stylebot.stylebot-JPA.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stylebot-web/stylebot.stylebot-web.main.iml" filepath="$PROJECT_DIR$/.idea/modules/stylebot-web/stylebot.stylebot-web.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/collie_api_b2b/collie.collie_api_b2b.main.iml" filepath="$PROJECT_DIR$/.idea/modules/collie_api_b2b/collie.collie_api_b2b.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/collie_api_b2c/collie.collie_api_b2c.main.iml" filepath="$PROJECT_DIR$/.idea/modules/collie_api_b2c/collie.collie_api_b2c.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/collie_api_b2r/collie.collie_api_b2r.main.iml" filepath="$PROJECT_DIR$/.idea/modules/collie_api_b2r/collie.collie_api_b2r.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/collie_core/collie.collie_core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/collie_core/collie.collie_core.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/collie_web_usr/collie.collie_web_usr.main.iml" filepath="$PROJECT_DIR$/.idea/modules/collie_web_usr/collie.collie_web_usr.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/collie_web_xdm/collie.collie_web_xdm.main.iml" filepath="$PROJECT_DIR$/.idea/modules/collie_web_xdm/collie.collie_web_xdm.main.iml" />
     </modules>
   </component>
 </project>

@@ -12,7 +12,7 @@ buildscript {
 }
 
 subprojects {
-    group 'com.example'
+    group 'kr.co.stylebot.collie'
     version '1.0'
 
     apply plugin: 'java'
@@ -38,16 +38,30 @@ subprojects {
     }
 }
 
-project(':stylebot-web') {
+project(':collie_web_usr') {
     dependencies {
-        compile project(':user-mybatis')
+        compile project(':collie_core')
     }
 }
 
-project(':stylebot-api') {
+project(':collie_web_xdm') {
     dependencies {
-        compile project(':user-mybatis')
-        compile project(':user-jpa')
-        compile project(':shop-jpa')
+        compile project(':collie_core')
+    }
+}
+//
+project(':collie_api_b2c') {
+    dependencies {
+        compile project(':collie_core')
+    }
+}
+project(':collie_api_b2r') {
+    dependencies {
+        compile project(':collie_core')
+    }
+}
+project(':collie_api_b2b') {
+    dependencies {
+        compile project(':collie_core')
     }
 }
