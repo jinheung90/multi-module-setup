@@ -4,8 +4,11 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="delegatedBuild" value="true" />
+        <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="11" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -13,6 +16,7 @@
             <option value="$PROJECT_DIR$/collie_api_b2c" />
             <option value="$PROJECT_DIR$/collie_api_b2r" />
             <option value="$PROJECT_DIR$/collie_core" />
+            <option value="$PROJECT_DIR$/collie_redis_session" />
             <option value="$PROJECT_DIR$/collie_web_usr" />
             <option value="$PROJECT_DIR$/collie_web_xdm" />
           </set>

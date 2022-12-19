@@ -6,4 +6,5 @@ include 'collie_api_b2c'
 include 'collie_api_b2r'
 include 'collie_api_b2b'
 include 'collie_core'
+include 'collie_redis_session'
 

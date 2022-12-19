@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/collie_api_b2c/collie.collie_api_b2c.main.iml" filepath="$PROJECT_DIR$/.idea/modules/collie_api_b2c/collie.collie_api_b2c.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/collie_api_b2r/collie.collie_api_b2r.main.iml" filepath="$PROJECT_DIR$/.idea/modules/collie_api_b2r/collie.collie_api_b2r.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/collie_core/collie.collie_core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/collie_core/collie.collie_core.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/collie_redis_session/collie.collie_redis_session.main.iml" filepath="$PROJECT_DIR$/.idea/modules/collie_redis_session/collie.collie_redis_session.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/collie_web_usr/collie.collie_web_usr.main.iml" filepath="$PROJECT_DIR$/.idea/modules/collie_web_usr/collie.collie_web_usr.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/collie_web_xdm/collie.collie_web_xdm.main.iml" filepath="$PROJECT_DIR$/.idea/modules/collie_web_xdm/collie.collie_web_xdm.main.iml" />
     </modules>

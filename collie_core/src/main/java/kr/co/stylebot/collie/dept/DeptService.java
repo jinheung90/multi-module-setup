@@ -10,11 +10,7 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class DeptService {
     private final DeptDAO deptDAO;
-
-
     public List<DeptDTO> findAll() {
         return deptDAO.findAll();
     }
-
-
 }
