@@ -38,6 +38,7 @@ public class DeptController {
         httpServletResponse.addCookie(cookie);
         HttpSession session = request.getSession();
         session.setAttribute("b", "c");
+        session.setAttribute("c", "d");
         System.out.println("testasdf");
         return ResponseEntity.ok("b");
     }

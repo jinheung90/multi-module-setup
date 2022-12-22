@@ -7,7 +7,6 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 
 
 @SpringBootApplication
-
 public class CollieRedisApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CollieRedisApplication.class, args);

@@ -49,7 +49,7 @@ project(':collie_web_xdm') {
         compile project(':collie_core')
     }
 }
-//
+
 project(':collie_api_b2c') {
     dependencies {
         compile project(':collie_core')
