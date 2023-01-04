@@ -7,7 +7,8 @@ RUN sudo fuser -k $BASE_PORT/tcp
 ENV STDOUT=/home/ec2-user/stdout.log
 ENV STDERR=/home/ec2-user/stderr.log
 ENV BASE_PATH = /home/ec2-user
-ENV HEALTH_CHECK_URL = http://loocalhost:$BASE_PORT/actuator/health
+
+RUN sudo nohup java -jar /home/ec2-user/deploy.jar 1>>$STDOUT 2>> $STDERR &
 
 
 
