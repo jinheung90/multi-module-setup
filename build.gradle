@@ -26,9 +26,11 @@ subprojects {
     }
 
     dependencies {
+
         compile 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.boot:spring-boot-devtools'
         testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.7.0'
+
         // junit4 의존성 제거
         implementation('org.springframework.boot:spring-boot-starter-test') {
             exclude module: 'junit'
@@ -58,6 +60,7 @@ project(':collie_api_b2c') {
 project(':collie_api_b2r') {
     dependencies {
         compile project(':collie_core')
+//        compile project(':collie_redis_session')
     }
 }
 project(':collie_api_b2b') {

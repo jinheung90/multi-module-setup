@@ -14,7 +14,7 @@ import java.util.List;
 public interface DeptDAO {
 
     List<DeptDTO> findAll();
-
+    int insert(Dept dept);
 
 
 
