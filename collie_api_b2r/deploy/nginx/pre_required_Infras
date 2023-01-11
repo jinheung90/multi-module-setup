@@ -1,8 +1,0 @@
-ENV NGINX_CONF_DIR /etc/nginx
-ENV DEPLOYED_NGINX_CONF /home/ec2-user/deploy/nginx/nginx.conf
-
-CMD
-
-
-CMD sudo mkdir /etc/nginx
-CMD sudo cp $DEPLOYED_NGINX_CONF_DIR $NGINX_CONF_DIR

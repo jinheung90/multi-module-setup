@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'com.jinheung'
+version '1.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+
+}
+
+test {
+    useJUnitPlatform()
+}
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}

@@ -1,0 +1,5 @@
+spring:
+  r2dbc:
+    username: root
+    password: admin
+    name: gateway
