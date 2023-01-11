@@ -11,5 +11,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Long countByDeleted(Integer deleted);
     Optional<User> findByUsername(String username);
 
+    int countBy();
+
 
 }

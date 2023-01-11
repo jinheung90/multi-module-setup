@@ -49,6 +49,11 @@ public class DeptController {
         deptService.save2();
         return ResponseEntity.ok("a");
     }
+    @GetMapping(value = "/d")
+    public ResponseEntity<?> aseryh() {
+
+        return ResponseEntity.ok("a");
+    }
 }
 
 

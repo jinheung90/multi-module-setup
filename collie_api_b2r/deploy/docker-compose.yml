@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+
+  redis:
+    image: library/redis:6.2
+    ports:
+    - "6379:6379"
+  spring_boot:
+    container_name: spring_boot_deploy
+    build:
+      context: ./springboot
+      dockerfile: springboot_start
+      args:
+        buildno: 1

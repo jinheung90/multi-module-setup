@@ -65,7 +65,7 @@ project(':collie_api_b2r') {
 }
 project(':collie_api_b2b') {
     dependencies {
-        compile project(':collie_core')
+//        compile project(':collie_core')
         compile project(':collie_redis_session')
     }
 }

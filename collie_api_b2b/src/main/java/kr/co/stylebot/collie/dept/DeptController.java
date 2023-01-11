@@ -1,7 +1,8 @@
 package kr.co.stylebot.collie.dept;
 
 import kr.co.stylebot.collie.base.service.TestService;
-import kr.co.stylebot.collie.dept.DeptService;
+
+import kr.co.stylebot.collie.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.ResponseEntity;
@@ -16,12 +17,13 @@ import javax.websocket.Session;
 @RestController
 @RequiredArgsConstructor
 public class DeptController {
-    private final DeptService deptService;
+//    private final DeptService deptService;
     private final TestService testService;
-    @GetMapping(value = "/dept")
-    public ResponseEntity<?> findAll() {
-        return ResponseEntity.ok(deptService.findAll());
-    }
+    private final UserService userService;
+//    @GetMapping(value = "/dept")
+//    public ResponseEntity<?> findAll() {
+//        return ResponseEntity.ok(deptService.findAll());
+//    }
 
     @GetMapping(value = "/test")
     public ResponseEntity<?> test() {
@@ -41,5 +43,10 @@ public class DeptController {
         session.setAttribute("c", "d");
         System.out.println("testasdf");
         return ResponseEntity.ok("b");
+    }
+
+    @GetMapping("/asdf")
+    public ResponseEntity<?> test3() {
+        return ResponseEntity.ok(userService.test1234());
     }
 }

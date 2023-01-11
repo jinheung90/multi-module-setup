@@ -37,6 +37,7 @@ public class UserService {
 
     @Transactional
     public SessionUserDetail toSessionUserDetail(User user) {
+
         return new SessionUserDetail(
                 user.getId(),
                 " ",
@@ -57,6 +58,10 @@ public class UserService {
         return securityContext;
     }
 
+
+    public int test1234() {
+        return  userRepository.countBy();
+    }
 //
 
 
