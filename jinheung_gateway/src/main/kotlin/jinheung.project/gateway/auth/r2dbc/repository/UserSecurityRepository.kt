@@ -1,7 +1,7 @@
 package jinheung.project.gateway.auth.r2dbc.repository;
 
-import com.example.jinheunggateway.auth.r2dbc.entity.UserSecurity
 
+import jinheung.project.gateway.auth.r2dbc.entity.UserSecurity
 
 
 import org.springframework.data.repository.kotlin.CoroutineCrudRepository

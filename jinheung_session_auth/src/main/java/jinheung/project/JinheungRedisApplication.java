@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class CollieRedisApplication {
+public class JinheungRedisApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(CollieRedisApplication.class, args);
+		SpringApplication.run(JinheungRedisApplication.class, args);
 	}
 }

@@ -5,3 +5,5 @@ include(':jinheung_user_mysql')
 include(':jinheung_gateway')
 include(':jinheung_common')
 include(':jinheung_eureka')
+include 'JInheung_kafka'
+

@@ -1,9 +1,11 @@
 package jinheung.project.gateway.auth.r2dbc.service
 
-import com.example.jinheunggateway.auth.dto.UserAuthDto
-import com.example.jinheunggateway.auth.r2dbc.entity.User
-import com.example.jinheunggateway.auth.r2dbc.entity.UserAuthority
-import com.example.jinheunggateway.auth.r2dbc.entity.UserSecurity
+
+import jinheung.project.gateway.auth.dto.UserAuthDto
+import jinheung.project.gateway.auth.r2dbc.entity.User
+import jinheung.project.gateway.auth.r2dbc.entity.UserAuthority
+import jinheung.project.gateway.auth.r2dbc.entity.UserSecurity
+
 import jinheung.project.gateway.auth.r2dbc.repository.AuthorityRepository
 import jinheung.project.gateway.auth.r2dbc.repository.UserAuthorityRepository
 import jinheung.project.gateway.auth.r2dbc.repository.UserRepository
@@ -27,8 +29,10 @@ class UserAuthService(
 
     @Transactional
     suspend fun signup(email : String, password : String) : UserAuthDto {
+        println(email)
+        println(password)
+        val user = userRepository.save(User.of())
 
-        val user = userRepository.save(User())
         val authorities = authorityRepository.findAllByNameIn(commonUserAuthorities)
 
         userAuthorityRepository.saveAll(

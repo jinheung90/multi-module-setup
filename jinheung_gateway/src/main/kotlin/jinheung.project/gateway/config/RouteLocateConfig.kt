@@ -1,33 +1,27 @@
 package jinheung.project.gateway.config
 
-//import org.springframework.cloud.gateway.route.RouteLocator
-//import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder
+
+
+import org.springframework.cloud.gateway.route.RouteLocator
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.cloud.gateway.route.builder.routes
+import org.springframework.web.reactive.function.server.router
 
 @Configuration
 class RouteLocateConfig {
-
-//    @Bean
-//    fun customRouteLocator(builder : RouteLocatorBuilder): RouteLocator {
-//        return builder.routes()
-//                .route("path_route", r -> r.path("/get")
-//        .uri("http://httpbin.org"))
-//        .route("host_route", r -> r.host("*.myhost.org")
-//        .uri("http://httpbin.org"))
-//        .route("rewrite_route", r -> r.host("*.rewrite.org")
-//        .filters(f -> f.rewritePath("/foo/(?<segment>.*)", "/${segment}"))
-//        .uri("http://httpbin.org"))
-//        .route("hystrix_route", r -> r.host("*.hystrix.org")
-//        .filters(f -> f.hystrix(c -> c.setName("slowcmd")))
-//        .uri("http://httpbin.org"))
-//        .route("hystrix_fallback_route", r -> r.host("*.hystrixfallback.org")
-//        .filters(f -> f.hystrix(c -> c.setName("slowcmd").setFallbackUri("forward:/hystrixfallback")))
-//        .uri("http://httpbin.org"))
-//        .route("limit_route", r -> r
-//        .host("*.limited.org").and().path("/anything/**")
-//                .filters(f -> f.requestRateLimiter(c -> c.setRateLimiter(redisRateLimiter())))
-//        .uri("http://httpbin.org"))
-//        .build();
-//    }
+    @Bean
+    fun customRouteLocator(builder : RouteLocatorBuilder): RouteLocator {
+        return builder.routes {
+            route(id = "auth") {
+                path("/user/auth/**")
+                uri("http://localhost:8080")
+            }
+            route(id = "user-profile") {
+                path("/user/profile/**")
+                uri("http://localhost:8081")
+            }
+        }
+    }
 }

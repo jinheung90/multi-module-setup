@@ -2,5 +2,7 @@ spring:
   r2dbc:
     username: root
     password: admin
-    name: gateway
-    url: http://localhost:3307
+    url: r2dbc:mariadb://127.0.0.1:3307/auth
+    pool:
+      max-size: 100
+    name: auth

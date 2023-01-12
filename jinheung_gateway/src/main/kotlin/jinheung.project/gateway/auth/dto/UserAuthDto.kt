@@ -1,9 +1,7 @@
-package com.example.jinheunggateway.auth.dto
+package jinheung.project.gateway.auth.dto
 
-import com.example.jinheunggateway.auth.r2dbc.entity.Authority
-import com.example.jinheunggateway.auth.r2dbc.entity.User
-import com.example.jinheunggateway.auth.r2dbc.entity.UserAuthority
-import com.example.jinheunggateway.auth.r2dbc.entity.UserSecurity
+import jinheung.project.gateway.auth.r2dbc.entity.Authority
+import jinheung.project.gateway.auth.r2dbc.entity.UserSecurity
 
 class UserAuthDto(userId: Long, userAuthorities: List<String>, email: String) {
 

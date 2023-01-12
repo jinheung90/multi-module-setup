@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CollieApiB2cApplication {
+public class jinheungUserApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CollieApiB2cApplication.class, args);
+		SpringApplication.run(jinheungUserApiApplication.class, args);
 	}
 
 }
