@@ -3,3 +3,4 @@ spring:
     username: root
     password: admin
     name: gateway
+    url: http://localhost:3307
