@@ -37,14 +37,14 @@ class TokenProvider : InitializingBean {
                 .setSigningKey(key)
                 .build()
                 .parseClaimsJws(token)
-                .getBody()
+                .body
 //            val authorities = Arrays.stream<String>(
 //                claims.get(AUTHORITIES_KEY).toString().split(",".toRegex()).dropLastWhile { it.isEmpty() }
 //                    .toTypedArray())
 //                .collect(Collectors.toList())
             JwtInfo(
                 java.lang.Long.valueOf(claims.getSubject()),
-                claims.get(AUTHORITIES_KEY).toString(),
+                claims[AUTHORITIES_KEY].toString(),
                 claims.expiration
             )
         } catch (e: SecurityException) {

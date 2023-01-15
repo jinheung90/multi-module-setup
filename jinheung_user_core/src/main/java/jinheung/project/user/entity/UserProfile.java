@@ -1,4 +1,4 @@
-package jinheung.project.user;
+package jinheung.project.user.entity;
 
 import lombok.*;
 import javax.persistence.*;

@@ -10,6 +10,7 @@ repositories {
 
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
+    implementation group: 'org.springframework.kafka', name: 'spring-kafka'
 }
 
 test {

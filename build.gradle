@@ -2,9 +2,6 @@ buildscript {
     ext {
         springBootVersion = '2.7.6'
     }
-    repositories {
-        mavenCentral()
-    }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath "io.spring.gradle:dependency-management-plugin:1.1.0"
@@ -68,8 +65,10 @@ project(":jinheung_gateway") {
     }
 }
 
+
 project(":jinheung_user_api") {
     dependencies {
         compile project(':jinheung_common')
+        compile project(';jinheung_user_core')
     }
 }

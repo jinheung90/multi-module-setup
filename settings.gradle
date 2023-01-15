@@ -1,9 +1,9 @@
 rootProject.name = 'jinheung'
 include(':jinheung_session_auth')
 include(':jinheung_user_api')
-include(':jinheung_user_mysql')
+include(':jinheung_user_core')
 include(':jinheung_gateway')
 include(':jinheung_common')
 include(':jinheung_eureka')
-include(':jinheung_user_kafka')
+include(':jinheung_kafka')
 

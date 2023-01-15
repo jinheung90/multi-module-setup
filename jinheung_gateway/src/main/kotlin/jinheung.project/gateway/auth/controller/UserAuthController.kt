@@ -18,9 +18,10 @@ class UserAuthController(private val userAuthService: UserAuthService) {
 
 
     @PostMapping("/signup/email")
-    suspend fun signupFromEmail(@RequestBody signupRequest: SignupRequest) : UserAuthDto =
-        userAuthService.signup(signupRequest.email,signupRequest.password)
+    suspend fun signupFromEmail(@RequestBody signupRequest: SignupRequest) : UserAuthDto {
 
+        return userAuthService.signup(signupRequest.email,signupRequest.password)
+    }
     @PostMapping("/login/email")
     suspend fun loginFromEmail(@RequestBody loginDto: LoginDto) : HashMap<String,String> {
         return userAuthService.loginWithPassword(loginDto.email,loginDto.password)

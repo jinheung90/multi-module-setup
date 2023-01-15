@@ -1,0 +1,14 @@
+spring:
+  hosts: http://localhost
+  receiver:
+    uri:
+      name:
+      topic:
+      groupId:
+    message:
+      name:
+      topic:
+      groupId:
+server:
+  port: 8081
+
