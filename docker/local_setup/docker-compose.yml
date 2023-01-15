@@ -1,10 +1,6 @@
 version: "3.9"
 
 services:
-  mariadb:
-    image: mariadb:latest
-    ports:
-      - 3307:3307
   redis:
     image: redis:latest
     ports:
@@ -105,7 +101,7 @@ services:
       - kafka1
       - kafka2
       - kafka3
-# nori flugin 설치 이슈로 따로 설치해서 가져오세요
+# nori plugin 설치 이슈로 따로 설치해서 가져오세요
 #  es01:
 #    image: docker.elastic.co/elasticsearch/elasticsearch:8.1.2
 #    container_name: elasticsearch

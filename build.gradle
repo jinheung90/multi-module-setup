@@ -2,6 +2,15 @@ buildscript {
     ext {
         springBootVersion = '2.7.6'
     }
+    repositories {
+        mavenCentral()
+        maven { url 'https://repo.spring.io/release/' }
+        maven { url "https://repo.spring.io/libs-snapshot-local" }
+        maven { url "https://repo.spring.io/libs-milestone-local" }
+        maven { url "https://repo.spring.io/libs-release-local" }
+        maven { url 'https://jitpack.io' }
+    }
+
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath "io.spring.gradle:dependency-management-plugin:1.1.0"
@@ -28,14 +37,6 @@ subprojects {
 
     sourceCompatibility = 11
 
-    repositories {
-        mavenCentral()
-        maven { url 'https://repo.spring.io/release/' }
-        maven { url "https://repo.spring.io/libs-snapshot-local" }
-        maven { url "https://repo.spring.io/libs-milestone-local" }
-        maven { url "https://repo.spring.io/libs-release-local" }
-        maven { url 'https://jitpack.io' }
-    }
 
     dependencies {
 
@@ -59,6 +60,8 @@ subprojects {
 
 }
 
+
+
 project(":jinheung_gateway") {
     dependencies {
         compile project(':jinheung_common')
@@ -69,6 +72,6 @@ project(":jinheung_gateway") {
 project(":jinheung_user_api") {
     dependencies {
         compile project(':jinheung_common')
-        compile project(';jinheung_user_core')
+        compile project(':jinheung_user_core')
     }
 }
