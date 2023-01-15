@@ -75,3 +75,11 @@ project(":jinheung_user_api") {
         compile project(':jinheung_user_core')
     }
 }
+
+
+project(":jinheung_kafka") {
+    dependencies {
+        compile project(':jinheung_common')
+        compile project(':jinheung_user_core')
+    }
+}

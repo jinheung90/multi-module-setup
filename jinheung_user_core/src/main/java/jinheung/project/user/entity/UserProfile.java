@@ -20,4 +20,11 @@ public class UserProfile {
 
     @Column(unique = true)
     private String nickname;
+
+    public static UserProfile of(Long userId, String nickname) {
+        return UserProfile.builder()
+                .userId(userId)
+                .nickname(nickname)
+                .build();
+    }
 }
