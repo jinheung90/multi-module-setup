@@ -5,13 +5,11 @@ plugins {
 group = "jinheung.project"
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.mapstruct:mapstruct:1.4.2.Final'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    annotationProcessor "org.mapstruct:mapstruct-processor:1.4.2.Final"
+
 }
 
 configurations {

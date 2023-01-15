@@ -26,6 +26,7 @@ data class UserAuthority(
     ) {
     companion object {
         fun of(authorityId : Long, userId : Long) : UserAuthority {
+            print(authorityId.toString() + userId.toString())
             return UserAuthority(authorityId, userId)
         }
     }

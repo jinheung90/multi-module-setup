@@ -14,6 +14,7 @@ class RouteLocateConfig {
     @Bean
     fun customRouteLocator(builder : RouteLocatorBuilder): RouteLocator {
         return builder.routes {
+
             route(id = "auth") {
                 path("/user/auth/**")
                 uri("http://localhost:8080")

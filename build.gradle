@@ -16,11 +16,14 @@ ext {
 
 }
 
-
-subprojects {
-
+allprojects {
     group 'jinheung.project'
     version '1.0'
+}
+
+
+
+subprojects {
 
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
@@ -61,12 +64,12 @@ subprojects {
 
 project(":jinheung_gateway") {
     dependencies {
-
+        compile project(':jinheung_common')
     }
 }
 
 project(":jinheung_user_api") {
     dependencies {
-
+        compile project(':jinheung_common')
     }
 }

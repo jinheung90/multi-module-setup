@@ -6,3 +6,12 @@ spring:
     pool:
       max-size: 100
     name: auth
+  cloud:
+    gateway:
+      default-filters:
+      - AuthFilterFactory
+
+token:
+  access-token-secret: awey34634561235GWSDGVdsgvdsfhyfasdzehgysurhrt232t6347yetseryesrytasrgdasdrgvbasdfgbaedsfrghaewrgaewrghaerghaerha34qw67yy45
+  refresh-token-expired: 1209600
+  access-token-expired: 1209600
