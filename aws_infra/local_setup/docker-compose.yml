@@ -85,7 +85,6 @@ services:
       - ./usr/kafka/kafka3/data
     depends_on:
       - zoo1
-
   cmak:
     image: hlebalbau/kafka-manager:stable
     hostname: cmak

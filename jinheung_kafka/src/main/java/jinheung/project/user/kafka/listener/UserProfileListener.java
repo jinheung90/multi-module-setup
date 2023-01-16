@@ -15,14 +15,8 @@ public class UserProfileListener {
     private final UserProfileService userProfileService;
     private final KafkaTemplate<String, UserProfileDto> kafkaTemplate;
 
-
-
-
     @KafkaListener(topics = "topic")
     public void userProfileSaveListener(@Payload UserProfileDto userProfileDto) {
         userProfileService.saveUserProfileWhenSignup(userProfileDto.getUserId(), userProfileDto.getNickname());
     }
-
-
-
 }

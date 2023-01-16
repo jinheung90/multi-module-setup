@@ -29,7 +29,7 @@ CMD sudo fuser -k $BASE_PORT/tcp
 
 CMD sudo nohup java -jar $BASE_PATH/$CURRENT_DEPLOY_JAR 1>>$STDOUT 2>> $STDERR &
 
-exit 0
+exit 1
 
 
 
