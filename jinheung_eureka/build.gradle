@@ -39,7 +39,3 @@ task integrationTest(type: Test, group: 'verification') {
         showStandardStreams = false  // Set true, when you debug failed test
     }
 }
-
-jar {
-    enabled = true
-}

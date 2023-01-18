@@ -11,7 +11,7 @@ env:
   ECS_CLUSTER: test-b
   ECR_IMAGE_TAG: ${{inputs.tags}}
   MODULE_ROOT_PATH: ./jinheung_eureka # 해당 모듈의 루트
-  MODULE_JAR: ./jinheung_eureka/build/libs/jinheung-eureka.jar # 해당 모듈의 jar
+  MODULE_JAR: ./jinheung_eureka/build/libs/jinheung_eureka-1.0.jar # 해당 모듈의 jar
   MODULE_DEPLOY_PATH: ./jinheung_eureka/deploy # 해당 모듈의 deploy 디렉토리
 
   AWS_REGION: ap-northeast-2 # aws 리전

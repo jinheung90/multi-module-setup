@@ -6,3 +6,4 @@
 /aws_infra/tf/.terraform/providers/registry.terraform.io/
 /usr/
 /aws_infra/local_setup/
+/jinheung_eureka/build/resources/main/application.yml
