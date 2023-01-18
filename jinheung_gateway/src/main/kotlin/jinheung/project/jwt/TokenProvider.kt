@@ -7,12 +7,14 @@ import io.jsonwebtoken.security.Keys
 import io.jsonwebtoken.security.SecurityException
 
 
+import lombok.extern.slf4j.Slf4j
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.security.Key
 import java.time.Instant
 import java.util.*
+import java.util.stream.Collectors
 
 
 @Component
@@ -61,11 +63,11 @@ class TokenProvider : InitializingBean {
     }
 
     fun createJwtAccessTokenByUser(userId : Long, authorities: List<String>): String {
-        val authorities: String = authorities.joinToString(separator = ",")
+        val strAuthorities: String = authorities.joinToString(separator = ",")
         val validity = Date(Date().time + mAccessTokenExpiration!! * 1000)
         return Jwts.builder()
             .setSubject(userId.toString())
-            .claim(AUTHORITIES_KEY, authorities)
+            .claim(AUTHORITIES_KEY, strAuthorities)
             .signWith(key, SignatureAlgorithm.HS512)
             .setExpiration(validity)
             .compact()
