@@ -81,7 +81,7 @@ project(":jinheung_user_api") {
 project(":jinheung_event_handler") {
     dependencies {
         compile project(':jinheung_common')
-        compile project(':jinheung_user_core')
+//        compile project(':jinheung_user_core')
         compile project(':jinheung_auth_core')
     }
 }
