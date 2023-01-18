@@ -1,15 +1,16 @@
 plugins {
-//    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
-
+    id 'java'
 }
-group = "jinheung.project"
+
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
-
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
-
 }
 
 configurations {

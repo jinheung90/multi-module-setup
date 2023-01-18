@@ -2,3 +2,7 @@
 /.gradle/
 /.idea/
 /aws_infra/tf/provider.tf
+/aws_infra/tf/.terraform.lock.hcl
+/aws_infra/tf/.terraform/providers/registry.terraform.io/
+/usr/
+/aws_infra/local_setup/

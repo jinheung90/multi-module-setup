@@ -16,8 +16,9 @@ services:
       ZOO_PORT: 2181
       ZOO_SERVERS: server.1=0.0.0.0:2888:3888;2181
     volumes:
-      - ./Users/beni/kafka/zoo1/data
-      - ./Users/beni/kafka/zoo1/datalog
+      - type: bind
+        source: ./data/kafka/zoo
+        target: /data/kafka/zoo
   kafka1:
     image: confluentinc/cp-kafka:6.1.1
     hostname: kafka1
@@ -37,7 +38,9 @@ services:
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
       KAFKA_LOG_RETENTION_HOURS: 24
     volumes:
-      - ./usr/kafka/kafka1/data
+      - type: bind
+        source: ./data/kafka/kafka1
+        target: /data/kafka/kafka1
     depends_on:
       - zoo1
   kafka2:
@@ -59,7 +62,9 @@ services:
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
       KAFKA_LOG_RETENTION_HOURS: 24
     volumes:
-      - ./usr/kafka/kafka2/data
+      - type: bind
+        source: ./data/kafka/kafka2
+        target: /data/kafka/kafka2
     depends_on:
       - zoo1
 
@@ -82,7 +87,9 @@ services:
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
       KAFKA_LOG_RETENTION_HOURS: 24
     volumes:
-      - ./usr/kafka/kafka3/data
+      - type: bind
+        source: ./data/kafka/kafka3
+        target: /data/kafka/kafka3
     depends_on:
       - zoo1
   cmak:
@@ -130,3 +137,7 @@ services:
         target: /data/db
     ports:
       - "27017:27017"
+  axon:
+    image: axoniq/axonserver:latest
+    ports:
+      - 8124:8124

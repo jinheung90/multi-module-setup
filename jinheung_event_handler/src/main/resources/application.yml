@@ -1,0 +1,7 @@
+spring:
+  data:
+    mongodb:
+      database: event_store
+      host: localhost
+      port: 27017
+

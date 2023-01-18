@@ -11,6 +11,8 @@ resource "aws_vpc" "jhc_vpc" {
   }
 }
 
+
+
 # for 문으로 변경
 resource "aws_subnet" "public" {
   vpc_id                  = aws_vpc.jhc_vpc.id
@@ -23,82 +25,35 @@ resource "aws_subnet" "public" {
     Name        = "${var.app_name}-subnet-public-${count.index + 1}"
     Environment = var.app_environment
   }
+
+
 }
 
-#resource "aws_route_table" "public" {
-#  vpc_id = aws_vpc.aws-vpc.id
-#
-#  tags = {
-#    Name        = "${var.app_name}-routing-table-public"
-#    Environment = var.app_environment
-#  }
-#}
 
-#resource "aws_route" "public" {
-#  route_table_id         = aws_route_table.public.id
-#  destination_cidr_block = "0.0.0.0/0"
-#  gateway_id             = aws_internet_gateway.aws-igw.id
-#}
-#
-#resource "aws_route_table_association" "public" {
-#  count          = length(var.public_subnets)
-#  subnet_id      = element(aws_subnet.public.*.id, count.index)
-#  route_table_id = aws_route_table.public.id
-#}
 
-#resource "aws_subnet" "main-public-3" {
-#  vpc_id = aws_vpc.jhc_vpc.id
-#  cidr_block =  "172.18.3.0/24"
-#  availability_zone = "ap-northeast-2c"
-#  tags = {
-#    Name =  "main-public-3"
-#  }
-#}
-#resource "aws_subnet" "main-public-4" {
-#  vpc_id = aws_vpc.jhc_vpc.id
-#  cidr_block = "172.18.4.0/24"
-#  availability_zone = "ap-northeast-2d"
-#  tags = {
-#    Name =  "main-public-4"
-#  }
-#}
-#
-#resource "aws_internet_gateway" "main_public_gateway" {
-#  vpc_id = aws_vpc.jhc_vpc.id
-#  tags = {
-#    Name        = "${var.app_name}-igw"
-#    Environment = var.app_environment
-#  }
-#}
-#
-#resource "aws_route_table" "main_rt" {
-#  vpc_id = aws_vpc.jhc_vpc.id
-#  route {
-#    cidr_block = "0.0.0.0/0"
-#    gateway_id = aws_internet_gateway.main_public_gateway.id
-#  }
-#  tags = {
-#    Name = "main_rt"
-#  }
-#}
-#
-#resource "aws_route_table_association" "main_rt_association-1a" {
-#  route_table_id = aws_route_table.main_rt.id
-#  subnet_id = aws_subnet.main-public-1.id
-#}
-#
-#resource "aws_route_table_association" "main_rt_association-2b" {
-#  route_table_id = aws_route_table.main_rt.id
-#  subnet_id = aws_subnet.main-public-2.id
-#}
-#
-#resource "aws_route_table_association" "main_rt_association-3c" {
-#  route_table_id = aws_route_table.main_rt.id
-#  subnet_id = aws_subnet.main-public-3.id
-#}
-#
-#resource "aws_route_table_association" "main_rt_association-4d" {
-#  route_table_id = aws_route_table.main_rt.id
-#  subnet_id = aws_subnet.main-public-4.id
-#}
-#
+resource "aws_internet_gateway" "main_public_gateway" {
+  vpc_id = aws_vpc.jhc_vpc.id
+  tags = {
+    Name        = "${var.app_name}-igw"
+    Environment = var.app_environment
+  }
+}
+
+resource "aws_route_table" "main_rt" {
+  vpc_id = aws_vpc.jhc_vpc.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.main_public_gateway.id
+  }
+  tags = {
+    Name = "main_rt"
+  }
+}
+
+
+resource "aws_route_table_association" "aws_rta" {
+  route_table_id          = aws_route_table.main_rt.id
+  subnet_id               = element(aws_subnet.public.*.id, count.index)
+  count                   = length(aws_subnet.public.*.id)
+}
+
