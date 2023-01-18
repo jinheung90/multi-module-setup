@@ -11,9 +11,9 @@ env:
   ECS_CLUSTER: test-b
   ECR_IMAGE_TAG: ${{inputs.tags}}
   MODULE_ROOT_PATH: ./jinheung_eureka # 해당 모듈의 루트
-  MODULE_JAR: ./jinheung_eureka/build/libs/test_web_xdm-0.0.1-SNAPSHOT.jar # 해당 모듈의 jar
+  MODULE_JAR: ./jinheung_eureka/build/libs/jinheung-eureka.jar # 해당 모듈의 jar
   MODULE_DEPLOY_PATH: ./jinheung_eureka/deploy # 해당 모듈의 deploy 디렉토리
-  MODULE_DEPLOY_APPSPEC: ./jinheung_eureka/deploy/appspec-test_web_xdm.yml # 해당 모듈의 appspec 파일
+
   AWS_REGION: ap-northeast-2 # aws 리전
 
 #  ECR_ACCOUNT_ID:
@@ -40,6 +40,9 @@ jobs:
 
       - name: Copy Jar
         run: cp $MODULE_JAR deploy.jar
+
+      - name: Copy docker file
+        run: cp $MODULE_DEPLOY_PATH/Dockerfile Dockerfile
 
       - name: AWS configure credentials
         uses: aws-actions/configure-aws-credentials@v1
