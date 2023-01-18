@@ -1,10 +1,10 @@
-package jinheung.project.kafka
+package jinheug.project
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class JinheungGatewayApplicationTests {
+class JinheungAuthApplicationTests {
 
 	@Test
 	fun contextLoads() {
