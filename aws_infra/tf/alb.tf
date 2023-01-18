@@ -12,6 +12,10 @@ resource "aws_alb" "jhc_load_balancer" {
   }
 }
 
+resource "aws_alb_target_group" "jhc_alb_target_group" {
+  name = "${var.app_name}-${var.app_environment}-jhc_alb_target_group-target-group"
+}
+
 resource "aws_security_group" "load_balancer_security_group" {
   vpc_id = aws_vpc.jhc_vpc.id
 
