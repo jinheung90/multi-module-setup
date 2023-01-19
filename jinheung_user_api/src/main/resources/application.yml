@@ -1,6 +1,0 @@
-spring:
-  profiles:
-    active: local
-    include: > 
-      jinhueng_user_mysql
-      jinheung_user_

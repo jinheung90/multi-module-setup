@@ -1,8 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 // 1.7.22 버전에 문제가 있어서 다운그레이드함
 plugins {
-	id 'org.jetbrains.kotlin.jvm' version '1.7.10'
-	id 'org.jetbrains.kotlin.plugin.spring' version '1.7.10'
+
 }
 
 repositories {

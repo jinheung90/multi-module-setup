@@ -1,5 +1,7 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+// 1.7.22 버전에 문제가 있어서 다운그레이드함
 plugins {
-    id 'java'
+
 }
 
 repositories {
@@ -8,34 +10,25 @@ repositories {
 
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web'
+
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server'
+    implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 }
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
 
-test { // 통합 제외 (유닛)
-    useJUnitPlatform() {
-        excludeTags("integration")
-    }
-
-    testLogging {
-        showStandardStreams = false  // Set true, when you debug failed test
+tasks.withType(KotlinCompile).configureEach {
+    kotlinOptions {
+        freeCompilerArgs = ['-Xjsr305=strict']
+        jvmTarget = '11'
     }
 }
 
-task integrationTest(type: Test, group: 'verification') {
-    useJUnitPlatform() {
-        includeTags("integration")
-    }
-
-    testLogging {
-        showStandardStreams = false  // Set true, when you debug failed test
-    }
+tasks.named('test') {
+    useJUnitPlatform()
 }

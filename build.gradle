@@ -1,6 +1,7 @@
 buildscript {
     ext {
         springBootVersion = '2.7.6'
+        kotlinJvmVersion = '1.7.10'
     }
 
     repositories {
@@ -17,78 +18,77 @@ buildscript {
         classpath "io.spring.gradle:dependency-management-plugin:1.1.0"
     }
 }
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.7.10'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.7.10'
+}
+
+
+repositories {
+    mavenCentral()
+
+}
 
 ext {
     set('springCloudVersion', "2021.0.3") // 2.7.6 버젼 트레인
-
 }
 
-allprojects {
-    group 'jinheung.project'
-    version '1.0'
-}
 
 
 
 subprojects {
 
+    apply plugin: 'org.jetbrains.kotlin.jvm'
+    apply plugin: 'org.jetbrains.kotlin.plugin.spring'
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
-
+    group = "jinheung.project"
+    version = "1.0"
     sourceCompatibility = 11
 
-
     dependencies {
-
-        developmentOnly 'org.springframework.boot:spring-boot-devtools'
-        implementation 'org.springframework.boot:spring-boot-starter-validation'
-        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.7.0'
-        annotationProcessor 'org.projectlombok:lombok'
-        implementation 'org.projectlombok:lombok:1.18.18'
+        implementation 'org.springframework.boot:spring-boot-devtools'
+        implementation 'org.springframework.boot:spring-boot-starter'
+        implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
+        implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk8')
+        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.7.7'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 
     dependencyManagement {
         imports {
-            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-        }
-    }
-
-    configurations {
-        compileOnly {
-            extendsFrom annotationProcessor
+            mavenBom ("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
         }
     }
 }
 
-
-
 project(":jinheung_gateway") {
     dependencies {
-        compile project(':jinheung_common')
+//        compile project(':jinheung_common')
         compile project(':jinheung_auth_core')
     }
 }
 
 
-project(":jinheung_user_api") {
-    dependencies {
-        compile project(':jinheung_common')
-        compile project(':jinheung_user_core')
-    }
-}
+//project(":jinheung_user_api") {
+//    dependencies {
+//        compile project(':jinheung_common')
+//        compile project(':jinheung_user_core')
+//    }
+//}
 
 
 project(":jinheung_event_handler") {
     dependencies {
-        compile project(':jinheung_common')
+
 //        compile project(':jinheung_user_core')
         compile project(':jinheung_auth_core')
     }
 }
 
 project(":jinheung_eureka") {
-    dependencies {
-
-    }
+    dependencies { }
 }

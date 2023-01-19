@@ -1,24 +1,4 @@
 
-#variable "aws_access_key" {
-#  type        = string
-#  description = "AWS Access Key"
-#}
-#
-#variable "aws_secret_key" {
-#  type        = string
-#  description = "AWS Secret Key"
-#}
-
-#variable "aws_key_pair_name" {
-#  type        = string
-#  description = "AWS Key Pair Name"
-#}
-
-# variable "aws_key_pair_file" {
-#   type = string
-#   description = "AWS Key Pair File"
-# }
-
 # 얘 디폴트 서울로
 variable "aws_region" {
   type        = string
@@ -72,4 +52,8 @@ variable "jhc_gateway_ecr_repository" {
 
 variable "jhc_hosting_area" {
   description = "hosting_area_id"
+}
+
+variable "rds_password" {
+  type = string
 }
