@@ -3,7 +3,7 @@ FROM amazoncorretto:11
 # cloudwatch agent install
 FROM amazonlinux:2.0.20190508
 RUN yum -y install https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm
-COPY cloud_watch_log_config.json  /opt/aws/amazon-cloudwatch-agent/bin/agent_config.json
+COPY agent_config.json  /opt/aws/amazon-cloudwatch-agent/bin/agent_config.json
 ENV RUN_IN_CONTAINER=True
 ENTRYPOINT ["/opt/aws/amazon-cloudwatch-agent/bin/start-amazon-cloudwatch-agent"]
 CMD sleep 10
