@@ -45,9 +45,9 @@ variable "route53_domain_name" {
 }
 
 
-variable "jhc_gateway_ecr_repository" {
+variable "ecr_repo" {
   description = "ecr_repository name"
-  default = "jhc_app_ecr"
+  default = "spring_boot_ecr"
 }
 
 variable "jhc_hosting_area" {

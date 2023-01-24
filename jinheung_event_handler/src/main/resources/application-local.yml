@@ -1,0 +1,55 @@
+spring:
+  config:
+    import:
+      - application-mall-core-local.yml
+      - application-payment-core-local.yml
+      - application-auth-core-local.yml
+  data:
+    mongodb:
+      database: event_store
+      host: localhost
+      port: 27017
+#  rsocket:
+#    server:
+#      mapping-path: /rsocket
+#      transport: websocket
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+  endpoint:
+    metrics:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  # Axon
+product:
+  command:
+    snapshot-trigger-threshold-stock: 200
+    snapshot-trigger-threshold-pay: 200
+stock:
+  command:
+    snapshot-trigger-threshold-product: 200
+    snapshot-trigger-threshold-pay: 200
+pay:
+  command:
+    snapshot-trigger-threshold-stock: 200
+    snapshot-trigger-threshold-pay: 200
+axon:
+  serializer:
+    events: jackson
+    general: jackson
+    messages: jackson
+  metrics:
+    micrometer:
+      dimensional: true
+opentracing:
+  jaeger:
+    enabled: false
+server:
+  port: 8888

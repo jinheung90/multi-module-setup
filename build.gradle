@@ -4,15 +4,6 @@ buildscript {
         kotlinJvmVersion = '1.7.10'
     }
 
-    repositories {
-        mavenCentral()
-        maven { url 'https://repo.spring.io/release/' }
-        maven { url "https://repo.spring.io/libs-snapshot-local" }
-        maven { url "https://repo.spring.io/libs-milestone-local" }
-        maven { url "https://repo.spring.io/libs-release-local" }
-        maven { url 'https://jitpack.io' }
-    }
-
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath "io.spring.gradle:dependency-management-plugin:1.1.0"
@@ -33,9 +24,6 @@ ext {
     set('springCloudVersion', "2021.0.3") // 2.7.6 버젼 트레인
 }
 
-
-
-
 subprojects {
 
     apply plugin: 'org.jetbrains.kotlin.jvm'
@@ -47,9 +35,28 @@ subprojects {
     version = "1.0"
     sourceCompatibility = 11
 
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://repo.spring.io/release/' }
+        maven { url "https://repo.spring.io/libs-snapshot-local" }
+        maven { url "https://repo.spring.io/libs-milestone-local" }
+        maven { url "https://repo.spring.io/libs-release-local" }
+        maven { url 'https://jitpack.io' }
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom ("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
+            mavenBom "io.awspring.cloud:spring-cloud-aws-dependencies:2.3.3"
+        }
+    }
+
     dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
         implementation 'org.springframework.boot:spring-boot-devtools'
         implementation 'org.springframework.boot:spring-boot-starter'
+        implementation group: 'io.awspring.cloud', name: 'spring-cloud-starter-aws-parameter-store-config'
         implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -57,21 +64,20 @@ subprojects {
         implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.7.7'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
-
-    dependencyManagement {
-        imports {
-            mavenBom ("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
-        }
-    }
 }
 
 project(":jinheung_gateway") {
     dependencies {
-//        compile project(':jinheung_common')
-        compile project(':jinheung_auth_core')
+        api project(':jinheung_common')
+        api project(':jinheung_auth_core')
     }
 }
 
+project(":jinheung_web_common") {
+    dependencies {
+        api project(':jinheung_common')
+    }
+}
 
 //project(":jinheung_user_api") {
 //    dependencies {
@@ -83,12 +89,27 @@ project(":jinheung_gateway") {
 
 project(":jinheung_event_handler") {
     dependencies {
-
-//        compile project(':jinheung_user_core')
-        compile project(':jinheung_auth_core')
+        api project(':jinheung_auth_core')
+        api project(':jinheung_mall_core')
+        api project(':jinheung_payment_core')
     }
 }
 
 project(":jinheung_eureka") {
     dependencies { }
+}
+
+project(":jinheung_mall_api") {
+    dependencies {
+        api project(':jinheung_web_common')
+        api project(':jinheung_mall_core')
+
+    }
+}
+
+project(":jinheung_payment_api") {
+    dependencies {
+        api project(':jinheung_payment_core')
+        api project(':jinheung_web_common')
+    }
 }

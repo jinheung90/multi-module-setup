@@ -3,15 +3,12 @@ package jinheung.project.auth.dto
 import jinheung.project.auth.entity.Authority
 import jinheung.project.auth.entity.UserSecurity
 
-class UserAuthDto(userId: Long, userAuthorities: List<String>, email: String) {
+class UserAuthDto(val userId: Long, val userAuthorities: List<String>, email: String) {
 
 
-    val userId : Long = userId
-    val userAuthorities : List<String> = userAuthorities
     val userSecurity : UserSecurityDto = UserSecurityDto(email)
 
-    class UserSecurityDto(email: String) {
-        val email : String = email
+    class UserSecurityDto(val email: String) {
         companion object  {
             fun of(email : String) : UserSecurityDto {
                 return UserSecurityDto(email);

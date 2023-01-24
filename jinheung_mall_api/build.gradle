@@ -1,0 +1,26 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+// 1.7.22 버전에 문제가 있어서 다운그레이드함
+plugins {
+
+}
+group = 'jinheung.project'
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+}
+
+
+tasks.withType(KotlinCompile).configureEach {
+	kotlinOptions {
+		freeCompilerArgs = ['-Xjsr305=strict']
+		jvmTarget = '11'
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+

@@ -1,0 +1,26 @@
+aws:
+  paramstore:
+    enabled:
+    prefix:
+    name:
+    profileSeparator: _
+
+---
+spring:
+  config:
+    activate:
+      on-profile: develop
+aws:
+  paramstore:
+    enabled: true
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+aws:
+  paramstore:
+    enabled: true

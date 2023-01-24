@@ -1,17 +1,6 @@
 spring:
-  r2dbc:
-    username: root
-    password: admin
-    url: r2dbc:mariadb://127.0.0.1:3307/auth
-    pool:
-      max-size: 100
-    name: auth
-  cloud:
-    gateway:
-      default-filters:
-      - AuthFilterFactory
+  profiles:
+    active: local
 
-token:
-  access-token-secret: awey34634561235GWSDGVdsgvdsfhyfasdzehgysurhrt232t6347yetseryesrytasrgdasdrgvbasdfgbaedsfrghaewrgaewrghaerghaerha34qw67yy45
-  refresh-token-expired: 1209600
-  access-token-expired: 1209600
+
+

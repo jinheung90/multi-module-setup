@@ -2,7 +2,9 @@ package jinheung.project.auth.filter
 
 
 import jinheung.project.jwt.TokenProvider
-import lombok.Getter
+
+import jinheung.project.util.SecurityConst
+
 import org.springframework.cloud.gateway.filter.GatewayFilter
 import org.springframework.cloud.gateway.filter.GatewayFilterChain
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory
@@ -10,16 +12,13 @@ import org.springframework.http.HttpHeaders
 import org.springframework.stereotype.Component
 import org.springframework.util.StringUtils
 import org.springframework.web.server.ServerWebExchange
-import jinheung.project.util.SecurityHeaders
+
 
 @Component
 abstract class AuthFilterFactory(
     private val tokenProvider: TokenProvider
 ) : AbstractGatewayFilterFactory<AuthFilterFactory?>() {
 
-
-
-    @Getter
     class Config
 
     private fun resolveToken(headerVal: List<String>?): String? {
@@ -40,8 +39,8 @@ abstract class AuthFilterFactory(
             val token = resolveToken(headerVal)
             val tokenInfo = tokenProvider.getUserIdAndAuthorityByJwtAccessToken(token)
             if (tokenInfo.userId != 0L) {
-                request.mutate().header(SecurityHeaders.USER_AUTHORITIES_HEADER_NAME, tokenInfo.authorities).build()
-                request.mutate().header(SecurityHeaders.USER_ID_HEADER_NAME, tokenInfo.userId.toString()).build()
+                request.mutate().header(SecurityConst.getAuthoritiesHeaderName(), tokenInfo.authorities).build()
+                request.mutate().header(SecurityConst.getUserIdHeaderName(), tokenInfo.userId.toString()).build()
             }
             chain.filter(exchange.mutate().request(request).build())
         }

@@ -1,9 +1,10 @@
 export class ErrorCode {
 
-    private readonly customCode: String = ""
-    private readonly statusCode: Number = 0
-    private readonly isAlert : Boolean = false
-    private readonly message : String = ""
+    readonly customCode: String = ""
+    readonly statusCode: Number = 0
+    readonly isAlert : Boolean = false
+    readonly message : String = ""
+
     constructor(
         customCode: String,
         statusCode: Number,
@@ -15,21 +16,38 @@ export class ErrorCode {
         this.isAlert = isAlert
         this.message = message
     }
+
 }
 
 export class ErrorCodeMap {
 
-    protected readonly map = new Map<String, ErrorCode>()
+    protected static readonly map = new Map<String, ErrorCode>()
     constructor() {
 
     }
 
-    protected setErrorCode(
+    protected static setErrorCode(
         customCode : String,
         statusCode: Number,
         isAlert : Boolean,
         message : String = ""
-        ) {
-        this.map.set(customCode, new ErrorCode(customCode, statusCode, isAlert, message))
+        ) : ErrorCode {
+        let errorCode = new ErrorCode(customCode, statusCode, isAlert, message)
+        this.map.set(customCode, errorCode)
+        return errorCode
+    }
+
+    public static getErrorCode = (customCodeName : String) : ErrorCode => {
+        let errorCode = ErrorCodeMap.map.get(customCodeName);
+        if(!errorCode) {
+            console.log("error code not exists")
+            errorCode = this.map.get("0000")
+            if(!errorCode) {
+                errorCode = ErrorCodeMap.setErrorCode("0000", 400, false, "not exists code")
+            } else {
+                return errorCode
+            }
+        }
+        return errorCode
     }
 }
