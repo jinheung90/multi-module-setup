@@ -6,4 +6,5 @@ include(':jinheung_gateway')
 include(':jinheung_eureka')
 include(':jinheung_event_handler')
 include(':jinheung_auth_core')
+include(':jinheung_payment_core')
 

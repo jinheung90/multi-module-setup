@@ -1,4 +1,4 @@
-#resource "aws_db_subnet_group" "" {
+#resource "aws_db_subnet_group" "ㄴ" {
 #  subnet_ids = []
 #}
 #
@@ -21,3 +21,4 @@
 #  final_snapshot_identifier = "worker-final"
 #  publicly_accessible       = true
 #}
+#

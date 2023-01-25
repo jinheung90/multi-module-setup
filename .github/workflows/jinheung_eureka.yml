@@ -6,9 +6,9 @@ on:
         description: 'ecs image tag (version)'
         required: true
 env:
-  ECR_REPOSITORY: spring_app_repo
-  ECS_SERVICE: test
-  ECS_CLUSTER: test-b
+  ECR_REPOSITORY: jhc_app_ecr
+  ECS_SERVICE: test-dev-service
+  ECS_CLUSTER: test-dev-ecs-cluster
   ECR_IMAGE_TAG: ${{inputs.tags}}
   MODULE_ROOT_PATH: ./jinheung_eureka # 해당 모듈의 루트
   MODULE_JAR: ./jinheung_eureka/build/libs/jinheung_eureka-1.0.jar # 해당 모듈의 jar

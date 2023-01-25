@@ -4,7 +4,7 @@ resource "aws_route53_record" "jhc_record" {
   type    = "A"
   alias {
     evaluate_target_health = true
-    name                   = aws_alb.jhc_load_balancer.dns_name
-    zone_id                = aws_alb.jhc_load_balancer.zone_id
+    name                   = aws_lb.jhc_load_balancer.dns_name
+    zone_id                = aws_lb.jhc_load_balancer.zone_id
   }
 }

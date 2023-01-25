@@ -1,5 +1,5 @@
 
-resource "aws_alb" "jhc_load_balancer" {
+resource "aws_lb" "jhc_load_balancer" {
   name               = "${var.app_name}-${var.app_environment}-alb"
   internal           = false
   load_balancer_type = "application"
@@ -49,7 +49,7 @@ resource "aws_lb_target_group" "target_group" {
   name        = "${var.app_name}-${var.app_environment}-tg"
   port        = 8080
   protocol    = "HTTP"
-  target_type = "ip"
+  target_type = "instance"
   vpc_id      = aws_vpc.jhc_vpc.id
 
   health_check {
@@ -69,3 +69,15 @@ resource "aws_lb_target_group" "target_group" {
 }
 
 
+
+resource "aws_lb_listener" "jhc-ALB-Listener" {
+  //depends_on = ["aws_lb.CF2TF-ALB.id", "aws_lb_target_group.CF2TF-TargetGroup.id"]
+  load_balancer_arn = aws_lb.jhc_load_balancer.arn
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    target_group_arn = aws_lb_target_group.target_group.arn
+    type             = "forward"
+  }
+}
