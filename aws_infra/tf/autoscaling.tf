@@ -31,12 +31,22 @@ resource "aws_autoscaling_policy" "policy_up" {
   autoscaling_group_name = aws_autoscaling_group.asg.name
   name                   = "web_policy_up"
   adjustment_type = "changeInCapacity"
-  cooldown = 30
+  cooldown = 300
   scaling_adjustment = 1
 }
 
 resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_up" {
-  alarm_name          = ""
-  comparison_operator = ""
-  evaluation_periods  = 0
+  alarm_name          = "web_cpu_alarm_up"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  metric_name = "${var.app_name}-${var.app_environment}-cpu"
+  namespace = "AWS/EC2"
+  period = 120
+  statistic = "Average"
+  threshold = 70
+  dimensions = {
+    AutoScalingGroupName = aws_autoscaling_group.asg.name
+  }
+
+  alarm_actions = [aws_autoscaling_policy.policy_up.arn]
 }
