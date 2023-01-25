@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/payment?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1234
+iamport:
+  client-id: 5561921923220946
+  client-secret: f91239836f18f3704ca8adff9cf62de072e2c09981c1b26adb3a19697071cb75d2b21e7be5d853fb
+
