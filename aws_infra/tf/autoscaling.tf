@@ -26,3 +26,17 @@ resource "aws_autoscaling_group" "asg" {
   target_group_arns = [aws_lb_target_group.target_group.arn]
   launch_configuration = aws_launch_configuration.ecs_launch_config.name
 }
+
+resource "aws_autoscaling_policy" "policy_up" {
+  autoscaling_group_name = aws_autoscaling_group.asg.name
+  name                   = "web_policy_up"
+  adjustment_type = "changeInCapacity"
+  cooldown = 30
+  scaling_adjustment = 1
+}
+
+resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_up" {
+  alarm_name          = ""
+  comparison_operator = ""
+  evaluation_periods  = 0
+}
