@@ -6,7 +6,7 @@ import org.springframework.boot.runApplication
 
 
 @SpringBootApplication
-class JinheungAuthApplication
+class JinheungPaymentApplication
 fun main(args: Array<String>) {
-	runApplication<JinheungAuthApplication>(*args)
+	runApplication<JinheungPaymentApplication>(*args)
 }
