@@ -26,5 +26,4 @@ resource "aws_ecs_cluster" "jhc_cluster" {
       }
     }
   }
-
 }

@@ -16,7 +16,7 @@ resource "aws_launch_configuration" "ecs_launch_config" {
 
 resource "aws_autoscaling_group" "asg" {
   vpc_zone_identifier       = aws_subnet.public.*.id
-  name                      = "foobar3-terraform-test"
+  name                      = "${var.app_name}-${var.app_environment}-asg"
   max_size                  = 2
   min_size                  = 1
   health_check_grace_period = 300
@@ -30,7 +30,7 @@ resource "aws_autoscaling_group" "asg" {
 resource "aws_autoscaling_policy" "policy_up" {
   autoscaling_group_name = aws_autoscaling_group.asg.name
   name                   = "web_policy_up"
-  adjustment_type = "changeInCapacity"
+  adjustment_type = "ChangeInCapacity"
   cooldown = 300
   scaling_adjustment = 1
 }

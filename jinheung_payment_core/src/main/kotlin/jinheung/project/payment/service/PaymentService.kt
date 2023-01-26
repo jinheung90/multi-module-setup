@@ -18,7 +18,6 @@ import javax.annotation.PostConstruct
 import javax.transaction.Transactional
 
 @Service
-
 class PaymentService(
     private val iamportLogRepository: IamportLogRepository,
     private val canceledLogRepository: CanceledLogRepository

@@ -86,6 +86,12 @@ project(":jinheung_event_handler") {
     }
 }
 
+//project(":jinheung_payment_api") {
+//    dependencies {
+//        compile project(':jinheung_payment_core')
+//    }
+//}
+
 project(":jinheung_eureka") {
     dependencies { }
 }
