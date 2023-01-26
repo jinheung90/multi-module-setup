@@ -1,29 +1,64 @@
 {
-  "name": "${var.app_name}-${var.app_environment}-container",
-  "image": "aws_ecr_repository.jhc_gateway_ecr_repository.repository_url",
-  "cpu": 10,
-  "memory": 512,
-  "logConfiguration": {
-    "logDriver": "awslogs",
-    "options" : {
-      "awslogs-group": "jhc",
-      "awslogs-region" : "ap-northeast-2",
-      "awslogs-stream-prefix" : "ecs"
-    }
-  },
-  "links": [],
-  "portMappings" : [
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:333972965329:task-definition/test-dev-task-fam:3",
+  "containerDefinitions": [
     {
-      "hostPort": 8080,
-      "containerPort": 8080,
-      "protocol": "tcp"
+      "name": "test-dev-container",
+      "image": "333972965329.dkr.ecr.ap-northeast-2.amazonaws.com/jhc_app_ecr",
+      "cpu": 10,
+      "memory": 512,
+      "links": [],
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "entryPoint": [],
+      "command": [],
+      "environment": [],
+      "mountPoints": [],
+      "volumesFrom": [],
+      "secrets": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "jhc",
+          "awslogs-region": "ap-northeast-2",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
     }
   ],
-  "secrets": [],
-  "essential": true,
-  "entryPoint": [],
-  "command": [],
-  "environment": [],
-  "mountPoints": [],
-  "volumesFrom": []
+  "family": "test-dev-task-fam",
+  "revision": 3,
+  "volumes": [
+    {
+      "name": "service-storage",
+      "host": {
+        "sourcePath": "/ecs/test/dev/service"
+      }
+    }
+  ],
+  "status": "ACTIVE",
+  "requiresAttributes": [
+    {
+      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    },
+    {
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+    }
+  ],
+  "placementConstraints": [],
+  "compatibilities": [
+    "EXTERNAL",
+    "EC2"
+  ],
+  "registeredAt": "2023-01-26T04:26:32.075Z",
+  "registeredBy": "arn:aws:iam::333972965329:user/terraform_for_admin",
+  "tags": []
 }
