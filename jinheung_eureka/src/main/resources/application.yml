@@ -9,8 +9,7 @@ spring:
     template-loader-path: classpath:/templates/
     prefer-file-system-access: false
 server:
-  port: 8761
-
+  port: 8080
 eureka:
   client:
     register-with-eureka: false
