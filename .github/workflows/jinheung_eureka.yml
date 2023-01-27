@@ -6,14 +6,15 @@ on:
         description: 'ecs image tag (version)'
         required: true
 env:
-  ECR_REPOSITORY: spring_app_repo
-  ECS_SERVICE: test
-  ECS_CLUSTER: test-b
+  ECR_REPOSITORY: jhc_app_ecr
+  ECS_SERVICE: test-dev-service
+  ECS_CLUSTER: test-dev-ecs-cluster
   ECR_IMAGE_TAG: ${{inputs.tags}}
   MODULE_ROOT_PATH: ./jinheung_eureka # 해당 모듈의 루트
   MODULE_JAR: ./jinheung_eureka/build/libs/jinheung_eureka-1.0.jar # 해당 모듈의 jar
   MODULE_DEPLOY_PATH: ./jinheung_eureka/deploy # 해당 모듈의 deploy 디렉토리
-
+  ECS_TASK_DEFINITION: task_definition.json
+  CONTAINER_NAME: test-dev-container
   AWS_REGION: ap-northeast-2 # aws 리전
 
 #  ECR_ACCOUNT_ID:
@@ -41,7 +42,7 @@ jobs:
       - name: Copy Jar
         run: cp $MODULE_JAR deploy.jar
 
-      - name: agent install
+      - name: Copy agent json
         run: cp $MODULE_DEPLOY_PATH/cloud_watch_log_config.json agent_config.json
 
       - name: Copy docker file
@@ -75,12 +76,12 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@97587c9d45a4930bf0e3da8dd2feb2a463cf4a3a
         with:
-          task-definition: ${{ env.ECS_TASK_DEFINITION }}
+          task-definition: ./jinheung_eureka/deploy/task_definition.json
           container-name: ${{ env.CONTAINER_NAME }}
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@de0132cf8cdedb79975c6d42b77eb7ea193cf28e
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1.4.10 # issue https://github.com/aws-actions/amazon-ecs-deploy-task-definition/issues/384
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: ${{ env.ECS_SERVICE }}

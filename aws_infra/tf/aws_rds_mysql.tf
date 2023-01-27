@@ -1,4 +1,4 @@
-#resource "aws_db_subnet_group" "db" {
+#resource "aws_db_subnet_group" "ㄴ" {
 #  subnet_ids = []
 #}
 #
@@ -21,15 +21,4 @@
 #  final_snapshot_identifier = "worker-final"
 #  publicly_accessible       = true
 #}
-
-resource "aws_ssm_parameter" "spring_rds_connection" {
-  name  = "/${var.app_name}/${var.app_environment}/spring.datasource.url"
-  type  = "String"
-  value = var.rds_password
-}
-
-resource "aws_ssm_parameter" "spring_rds_connection_url" {
-  name  = "/${var.app_name}/${var.app_environment}/spring.datasource.password"
-  type  = "String"
-  value = var.rds_password
-}
+#

@@ -1,9 +1,9 @@
 resource "aws_ecs_task_definition" "task_service" {
-  family = "service"
+  family = "${var.app_name}-${var.app_environment}-task-fam"
   container_definitions = jsonencode([
     {
-      name: var.container_name,
-      image: aws_ecr_repository.ecr_repo.repository_url
+      name: "${var.app_name}-${var.app_environment}-container",
+      image: aws_ecr_repository.jhc_gateway_ecr_repository.repository_url
       cpu: 10,
       memory: 512,
       logConfiguration: {
@@ -17,11 +17,12 @@ resource "aws_ecs_task_definition" "task_service" {
        links: [],
       portMappings : [
         {
-          "hostPort": 8081,
-          "containerPort": 8081,
+          "hostPort": 8080,
+          "containerPort": 8080,
           "protocol": "tcp"
         }
       ],
+      secrets: []
       essential: true,
       entryPoint: [],
       command: [],
@@ -35,4 +36,6 @@ resource "aws_ecs_task_definition" "task_service" {
     name      = "service-storage"
     host_path = "/ecs/${var.app_name}/${var.app_environment}/service"
   }
+
+
 }

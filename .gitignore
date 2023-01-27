@@ -8,3 +8,5 @@
 /aws_infra/local_setup/
 /jinheung_eureka/build/
 
+/aws_infra/tf/paramenter_store.tf
+/aws_infra/tf/terraform.tfstate

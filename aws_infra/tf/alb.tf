@@ -1,3 +1,4 @@
+
 resource "aws_lb" "jhc_load_balancer" {
   name               = "${var.app_name}-${var.app_environment}-alb"
   internal           = false
@@ -9,7 +10,6 @@ resource "aws_lb" "jhc_load_balancer" {
     Name        = "${var.app_name}-alb"
     Environment = var.app_environment
   }
-
 }
 
 
@@ -45,7 +45,6 @@ resource "aws_security_group" "load_balancer_security_group" {
   }
 }
 
-
 resource "aws_lb_target_group" "target_group" {
   name        = "${var.app_name}-${var.app_environment}-tg"
   port        = 8080
@@ -70,7 +69,9 @@ resource "aws_lb_target_group" "target_group" {
 }
 
 
-resource "aws_lb_listener" "alb_listener" {
+
+resource "aws_lb_listener" "jhc-ALB-Listener" {
+  //depends_on = ["aws_lb.CF2TF-ALB.id", "aws_lb_target_group.CF2TF-TargetGroup.id"]
   load_balancer_arn = aws_lb.jhc_load_balancer.arn
   port              = "80"
   protocol          = "HTTP"

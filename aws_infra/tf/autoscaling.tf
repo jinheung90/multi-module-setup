@@ -1,61 +1,52 @@
+
 resource "aws_iam_instance_profile" "ecs_agent" {
   name = "ecs-agent"
-  role = aws_iam_role.ecs-service-role.name
-}
-
-resource "aws_security_group" "ec2-security-group" {
-  vpc_id = aws_vpc.jhc_vpc.id
-
-  ingress {
-    from_port        = 8081
-    to_port          = 8081
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-  egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-  tags = {
-    Name        = "${var.app_name}-spring-sg"
-    Environment = var.app_environment
-  }
+  role = aws_iam_role.ecs_agent.name
 }
 
 resource "aws_launch_configuration" "ecs_launch_config" {
-  image_id             = "ami-035233c9da2fabf52"
+  image_id      = "ami-035233c9da2fabf52" #amazon ec2
   iam_instance_profile = aws_iam_instance_profile.ecs_agent.name
+  security_groups      = [aws_security_group.load_balancer_security_group.id]
+  user_data            = "#!/bin/bash\necho ECS_CLUSTER=${aws_ecs_cluster.jhc_cluster.name} >> /etc/ecs/ecs.config"
   instance_type        = "t3.small"
-
-  security_groups = [aws_security_group.load_balancer_security_group.id]
-  name = "launch-config"
+  name_prefix = "${var.app_name}-${var.app_environment}"
+  key_name = "test_key_pair"
 }
 
-#resource "aws_placement_group" "cluster-place-group" {
-#  name     = "${var.app_name}-pg"
-#  strategy = "cluster"
-#}
-
-
 resource "aws_autoscaling_group" "asg" {
+  vpc_zone_identifier       = aws_subnet.public.*.id
   name                      = "${var.app_name}-${var.app_environment}-asg"
   max_size                  = 2
   min_size                  = 1
   health_check_grace_period = 300
-  health_check_type         = "ELB"
-  desired_capacity          = 1
+  health_check_type         = "EC2"
+  desired_capacity          = 2
   force_delete              = true
   target_group_arns = [aws_lb_target_group.target_group.arn]
-  vpc_zone_identifier = aws_subnet.public.*.id
-
   launch_configuration = aws_launch_configuration.ecs_launch_config.name
-#  launch_template {
-#    id      = aws_launch_template.l-template.id
-#    version = "$Latest"
-#  }
+}
+
+resource "aws_autoscaling_policy" "policy_up" {
+  autoscaling_group_name = aws_autoscaling_group.asg.name
+  name                   = "web_policy_up"
+  adjustment_type = "ChangeInCapacity"
+  cooldown = 300
+  scaling_adjustment = 1
+}
+
+resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_up" {
+  alarm_name          = "web_cpu_alarm_up"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "2"
+  metric_name = "${var.app_name}-${var.app_environment}-cpu"
+  namespace = "AWS/EC2"
+  period = 120
+  statistic = "Average"
+  threshold = 60
+  dimensions = {
+    AutoScalingGroupName = aws_autoscaling_group.asg.name
+  }
+
+  alarm_actions = [aws_autoscaling_policy.policy_up.arn]
 }
