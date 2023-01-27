@@ -1,5 +1,4 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:333972965329:task-definition/test-dev-task-fam:3",
   "containerDefinitions": [
     {
       "name": "test-dev-container",
@@ -9,8 +8,8 @@
       "links": [],
       "portMappings": [
         {
-          "containerPort": 8080,
-          "hostPort": 8080,
+          "containerPort": 80,
+          "hostPort": 80,
           "protocol": "tcp"
         }
       ],
@@ -54,10 +53,7 @@
     }
   ],
   "placementConstraints": [],
-  "compatibilities": [
-    "EXTERNAL",
-    "EC2"
-  ],
+
   "registeredAt": "2023-01-26T04:26:32.075Z",
   "registeredBy": "arn:aws:iam::333972965329:user/terraform_for_admin",
   "tags": []
