@@ -30,6 +30,8 @@
       }
     }
   ],
+  "requiresCompatibilities" : ["EC2"],
+
   "family": "test-dev-task-fam",
   "revision": 3,
   "volumes": [

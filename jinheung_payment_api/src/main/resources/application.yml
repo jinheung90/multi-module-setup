@@ -1,0 +1,8 @@
+spring:
+  config:
+    import:
+      - application-pay-local.yml
+iamport:
+  client-id: 5561921923220946
+  client-secret: f91239836f18f3704ca8adff9cf62de072e2c09981c1b26adb3a19697071cb75d2b21e7be5d853fb
+

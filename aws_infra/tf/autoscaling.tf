@@ -11,8 +11,8 @@ resource "aws_launch_configuration" "ecs_launch_config" {
   user_data            = "#!/bin/bash\necho ECS_CLUSTER=${aws_ecs_cluster.jhc_cluster.name} >> /etc/ecs/ecs.config"
   instance_type        = "t3.small"
   name_prefix = "${var.app_name}-${var.app_environment}"
+  key_name = "test_key_pair"
 }
-
 
 resource "aws_autoscaling_group" "asg" {
   vpc_zone_identifier       = aws_subnet.public.*.id
@@ -43,7 +43,7 @@ resource "aws_cloudwatch_metric_alarm" "web_cpu_alarm_up" {
   namespace = "AWS/EC2"
   period = 120
   statistic = "Average"
-  threshold = 70
+  threshold = 60
   dimensions = {
     AutoScalingGroupName = aws_autoscaling_group.asg.name
   }
