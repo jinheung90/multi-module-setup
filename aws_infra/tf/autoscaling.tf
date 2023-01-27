@@ -8,7 +8,7 @@ resource "aws_launch_configuration" "ecs_launch_config" {
   image_id      = "ami-035233c9da2fabf52" #amazon ec2
   iam_instance_profile = aws_iam_instance_profile.ecs_agent.name
   security_groups      = [aws_security_group.load_balancer_security_group.id]
-  user_data            = "#!/bin/bash\necho ECS_CLUSTER=my-cluster >> /etc/ecs/ecs.config"
+  user_data            = "#!/bin/bash\necho ECS_CLUSTER=${aws_ecs_cluster.jhc_cluster.name} >> /etc/ecs/ecs.config"
   instance_type        = "t3.small"
   name_prefix = "${var.app_name}-${var.app_environment}"
 }
