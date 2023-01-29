@@ -21,7 +21,7 @@ resource "aws_ecs_cluster_capacity_providers" "aws_ecs_cluster_cps" {
 }
 
 resource "aws_ecs_capacity_provider" "jhc-ecs-cp" {
-  name = "${var.app_name}-${var.app_environment}-cp"
+  name = "${var.app_name}-${var.app_environment}-ecs-cp"
 
   auto_scaling_group_provider {
     auto_scaling_group_arn = aws_autoscaling_group.asg.arn

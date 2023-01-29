@@ -6,11 +6,13 @@ import java.math.BigDecimal
 import javax.persistence.*
 
 
-@Entity
+
 @Table(name = "products")
 data class Product(
     @Column
     val price : BigDecimal = BigDecimal.valueOf(0L),
+    @Column
+    val quantity : Long = 0,
     @Column
     val name: String = "",
     @Column
@@ -28,7 +30,7 @@ data class Product(
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
         other as Product
 
-        return id != null && id == other.id
+        return id == other.id
     }
 
     override fun hashCode(): Int = javaClass.hashCode()

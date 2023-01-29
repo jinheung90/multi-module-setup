@@ -15,16 +15,7 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.spring' version '1.7.10'
 }
 
-
-ext {
-    set('springCloudVersion', "2021.0.3") // 2.7.6 버젼 트레인
-}
-
-
-
-
-subprojects {
-
+allprojects {
     repositories {
         mavenCentral()
         maven { url 'https://repo.spring.io/release/' }
@@ -33,7 +24,13 @@ subprojects {
         maven { url "https://repo.spring.io/libs-release-local" }
         maven { url 'https://jitpack.io' }
     }
+}
 
+ext {
+    set('springCloudVersion', "2021.0.3") // 2.7.6 버젼 트레인
+}
+
+subprojects {
 
     apply plugin: 'org.jetbrains.kotlin.jvm'
     apply plugin: 'org.jetbrains.kotlin.plugin.spring'
@@ -50,7 +47,7 @@ subprojects {
         implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
-        implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk8')
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
         implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.7.7'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
@@ -64,33 +61,37 @@ subprojects {
 
 project(":jinheung_gateway") {
     dependencies {
-//        compile project(':jinheung_common')
+        compile project(':jinheung_common')
         compile project(':jinheung_auth_core')
     }
 }
 
 
-//project(":jinheung_user_api") {
-//    dependencies {
-//        compile project(':jinheung_common')
-//        compile project(':jinheung_user_core')
-//    }
-//}
-
-
-project(":jinheung_event_handler") {
+project(":jinheung_web_common") {
     dependencies {
-
-//        compile project(':jinheung_user_core')
-        compile project(':jinheung_auth_core')
+        compile project(':jinheung_common')
     }
 }
 
-//project(":jinheung_payment_api") {
-//    dependencies {
-//        compile project(':jinheung_payment_core')
-//    }
-//}
+
+
+
+project(":jinheung_payment_api") {
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation project(':jinheung_payment_core')
+        api project(':jinheung_web_common')
+    }
+}
+
+
+project(":jinheung_mall_api") {
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        implementation project(':jinheung_mall_core')
+        api project(':jinheung_web_common')
+    }
+}
 
 project(":jinheung_eureka") {
     dependencies { }

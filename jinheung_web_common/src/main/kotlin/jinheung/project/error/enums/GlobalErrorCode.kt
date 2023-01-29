@@ -1,4 +1,4 @@
-package jinheung.project.error.errorEnums
+package jinheung.project.error.enums
 
 enum class GlobalErrorCode(
     private val message: String,

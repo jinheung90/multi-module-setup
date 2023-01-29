@@ -4,7 +4,7 @@ import org.hibernate.Hibernate
 import javax.persistence.*
 
 
-@Entity
+
 @Table(name = "malls")
 data class Mall (
     @OneToMany

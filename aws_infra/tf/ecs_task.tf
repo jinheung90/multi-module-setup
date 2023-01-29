@@ -3,7 +3,7 @@ resource "aws_ecs_task_definition" "task_service" {
   container_definitions = jsonencode([
     {
       name: "${var.app_name}-${var.app_environment}-container",
-      image: aws_ecr_repository.jhc_gateway_ecr_repository.repository_url
+      image: aws_ecr_repository.ecr_repo.repository_url
       cpu: 10,
       memory: 512,
       logConfiguration: {

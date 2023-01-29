@@ -12,7 +12,6 @@ resource "aws_lb" "jhc_load_balancer" {
   }
 }
 
-
 resource "aws_security_group" "load_balancer_security_group" {
   vpc_id = aws_vpc.jhc_vpc.id
 

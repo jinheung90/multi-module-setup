@@ -3,7 +3,6 @@ package jinheung.project.mall.entity
 import org.hibernate.Hibernate
 import javax.persistence.*
 
-@Entity
 @Table(name = "malls_has_users")
 //    uniqueConstraints = [
 //        UniqueConstraint(

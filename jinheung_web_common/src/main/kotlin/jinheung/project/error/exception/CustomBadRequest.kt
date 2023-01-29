@@ -1,7 +1,6 @@
 package jinheung.project.error.exception
 
-import jinheung.project.error.errorEnums.GlobalErrorCode
-import jinheung.project.error.errorEnums.IErrorCode
+import jinheung.project.error.enums.GlobalErrorCode
 
 class CustomBadRequest : RuntimeException {
 

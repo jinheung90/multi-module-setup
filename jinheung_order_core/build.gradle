@@ -3,13 +3,15 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
 
 }
-
+group = 'jinheung.project'
+repositories {
+	mavenCentral()
+}
 
 dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.30'
-	implementation 'com.github.iamport:iamport-rest-client-java:0.2.21'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	compile 'mysql:mysql-connector-java'
 }
 
 
@@ -24,10 +26,10 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-//bootJar {
-//	enabled = false
-//}
-//
-//jar {
-//	enabled = true
-//}
+bootJar {
+	enabled = false
+}
+
+jar {
+	enabled = true
+}
