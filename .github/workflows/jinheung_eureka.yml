@@ -9,14 +9,14 @@ env:
   ECR_REPOSITORY: spring_boot_ecr
   ECS_SERVICE: test-dev-service
   ECS_CLUSTER: test-dev-ecs-cluster
-  ECR_IMAGE_TAG: ${{inputs.tags}}
+
   MODULE_ROOT_PATH: ./jinheung_eureka # 해당 모듈의 루트
   MODULE_JAR: ./jinheung_eureka/build/libs/jinheung_eureka-1.0.jar # 해당 모듈의 jar
   MODULE_DEPLOY_PATH: ./jinheung_eureka/deploy # 해당 모듈의 deploy 디렉토리
   ECS_TASK_DEFINITION: task_definition.json
   CONTAINER_NAME: test-dev-container
   AWS_REGION: ap-northeast-2 # aws 리전
-
+  ECR_IMAGE_TAG: latest
 #  ECR_ACCOUNT_ID:
 jobs:
   build:
