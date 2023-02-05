@@ -6,7 +6,7 @@ on:
         description: 'ecs image tag (version)'
         required: true
 env:
-  ECR_REPOSITORY: jhc_app_ecr
+  ECR_REPOSITORY: spring_boot_ecr
   ECS_SERVICE: test-dev-service
   ECS_CLUSTER: test-dev-ecs-cluster
   ECR_IMAGE_TAG: ${{inputs.tags}}
