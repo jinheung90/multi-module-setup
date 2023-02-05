@@ -55,8 +55,5 @@
     }
   ],
   "placementConstraints": [],
-
-  "registeredAt": "2023-01-26T04:26:32.075Z",
-  "registeredBy": "arn:aws:iam::333972965329:user/terraform_for_admin",
   "tags": []
 }
