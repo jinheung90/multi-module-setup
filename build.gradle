@@ -83,7 +83,11 @@ project(":jinheung_payment_api") {
         api project(':jinheung_web_common')
     }
 }
-
+project(":jinheung_mall_core") {
+    dependencies {
+        api project(':jinheung_web_common')
+    }
+}
 
 project(":jinheung_mall_api") {
     dependencies {

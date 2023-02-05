@@ -5,7 +5,7 @@ resource "aws_iam_instance_profile" "ecs_agent" {
 }
 
 resource "aws_launch_configuration" "ecs_launch_config" {
-  image_id      = "ami-035233c9da2fabf52" #amazon ec2
+  image_id      = "ami-0b6d6fc5fe3f750f1" #amazon ec2
   iam_instance_profile = aws_iam_instance_profile.ecs_agent.name
   security_groups      = [aws_security_group.load_balancer_security_group.id]
   user_data = <<EOF

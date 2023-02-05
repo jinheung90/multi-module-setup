@@ -17,9 +17,6 @@ abstract class AuthFilterFactory(
     private val tokenProvider: TokenProvider
 ) : AbstractGatewayFilterFactory<AuthFilterFactory?>() {
 
-
-
-
     class Config
 
     private fun resolveToken(headerVal: List<String>?): String? {

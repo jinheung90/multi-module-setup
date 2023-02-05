@@ -17,11 +17,22 @@ class MallService(
     private val mallHasUserRepository: MallHasUserRepository,
     private val productRepository : ProductRepository
 ) {
+
     @Transactional
     fun registerMall(userId : Long, name: String) : MallDTO {
-        val mall = mallRepository.save(Mall.of(name))
-        val mallHasUser = mallHasUserRepository.save(MallHasUser.of(mall,userId))
+        val mall = this.saveMall(name = name)
+        val mallHasUser = this.saveMallHasUser(mall, userId);
         return MallDTO.toDto(mall)
+    }
+
+    @Transactional
+    fun saveMall(name: String) : Mall {
+        return mallRepository.save(Mall.of(name))
+    }
+
+    @Transactional
+    fun saveMallHasUser(mall: Mall, userId: Long) : MallHasUser {
+        return mallHasUserRepository.save(MallHasUser.of(mall,userId))
     }
 
     @Transactional

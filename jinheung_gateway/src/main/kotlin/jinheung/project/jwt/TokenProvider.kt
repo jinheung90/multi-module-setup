@@ -19,12 +19,14 @@ import java.util.stream.Collectors
 
 @Component
 class TokenProvider : InitializingBean {
+
     @Value("\${token.access-token-secret}")
     private val secret: String? = null
 
     @Value("\${token.access-token-expired}")
     private val mAccessTokenExpiration: Long? = null
     private var key: Key? = null
+
     override fun afterPropertiesSet() {
         val keyBytes: ByteArray = Decoders.BASE64.decode(secret)
         key = Keys.hmacShaKeyFor(keyBytes)

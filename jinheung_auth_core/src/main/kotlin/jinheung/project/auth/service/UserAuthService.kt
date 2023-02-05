@@ -52,5 +52,4 @@ class UserAuthService(
     suspend fun findUserSecurityByEmail(email: String) : UserSecurity {
         return userSecurityRepository.findByEmail(email).last()
     }
-
 }

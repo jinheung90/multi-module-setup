@@ -27,7 +27,7 @@ class MallController(
     }
 
     @GetMapping("/{id}/products")
-    fun getProductsByMallIdAndCagetory(
+    fun getProductsByMallIdAndCategory(
         @RequestParam(name = "category") category: String,
         @PathVariable(name = "id") id : Long
     ) : ResponseEntity<List<Product>> {
