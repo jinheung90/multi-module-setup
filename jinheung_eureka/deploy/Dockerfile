@@ -1,6 +1,6 @@
 FROM amazoncorretto:11
 
-ENV BASE_PORT 8081
+ENV BASE_PORT 8080
 ENV STDOUT /home/ec2-user/stdout.log
 ENV STDERR /home/ec2-user/stderr.log
 ENV BASE_PATH /home/ec2-user
