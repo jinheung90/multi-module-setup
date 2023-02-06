@@ -23,9 +23,9 @@
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "jhc",
+          "awslogs-group": "ecs_cluster_log",
           "awslogs-region": "ap-northeast-2",
-          "awslogs-stream-prefix": "ecs"
+          "awslogs-stream-prefix": "log-stream-"
         }
       }
     }

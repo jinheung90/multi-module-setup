@@ -6,7 +6,16 @@ resource "aws_ecs_task_definition" "task_service" {
       image: aws_ecr_repository.ecr_repo.repository_url
       cpu: 10,
       memory: 512,
-      links: [],
+      logConfiguration: {
+        logDriver: "awslogs",
+        options : {
+           awslogs-group : "ecs_cluster_log",
+           awslogs-region : "ap-northeast-2",
+          "awslogs-create-group": "true",
+           awslogs-stream-prefix : "log-stream-"
+        }
+      },
+       links: [],
       portMappings : [
         {
           "hostPort": 8080,
