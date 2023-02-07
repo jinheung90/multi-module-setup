@@ -15,7 +15,7 @@ resource "aws_ecs_task_definition" "task_service" {
            awslogs-stream-prefix : "log-stream-"
         }
       },
-       links: [],
+      links: [],
       portMappings : [
         {
           "hostPort": 8080,
@@ -37,6 +37,4 @@ resource "aws_ecs_task_definition" "task_service" {
     name      = "service-storage"
     host_path = "/ecs/${var.app_name}/${var.app_environment}/service"
   }
-
-
 }
