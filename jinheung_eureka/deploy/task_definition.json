@@ -2,7 +2,7 @@
   "containerDefinitions": [
     {
       "name": "test-dev-container",
-      "image": "333972965329.dkr.ecr.ap-northeast-2.amazonaws.com/spring_boot_ecr:latest",
+      "image": "333972965329.dkr.ecr.ap-northeast-2.amazonaws.com/spring_boot_ecr",
       "cpu": 10,
       "memory": 512,
       "links": [],
@@ -55,5 +55,8 @@
     }
   ],
   "placementConstraints": [],
+
+  "registeredAt": "2023-01-26T04:26:32.075Z",
+  "registeredBy": "arn:aws:iam::333972965329:user/terraform_for_admin",
   "tags": []
 }
