@@ -43,17 +43,7 @@
     }
   ],
   "status": "ACTIVE",
-  "requiresAttributes": [
-    {
-      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.ecr-auth"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-    }
-  ],
+
   "placementConstraints": [],
 
   "registeredAt": "2023-01-26T04:26:32.075Z",
