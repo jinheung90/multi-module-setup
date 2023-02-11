@@ -25,7 +25,7 @@
         "options": {
           "awslogs-group": "ecs_cluster_log",
           "awslogs-region": "ap-northeast-2",
-          "awslogs-stream-prefix": "log-stream-"
+          "awslogs-stream-prefix": "ecs_cluster"
         }
       }
     }
@@ -38,7 +38,7 @@
     {
       "name": "service-storage",
       "host": {
-        "sourcePath": "/ecs/test/dev/service"
+        "sourcePath": "/ecs/service"
       }
     }
   ],
