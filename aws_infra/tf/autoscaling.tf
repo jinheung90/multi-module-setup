@@ -4,10 +4,52 @@ resource "aws_iam_instance_profile" "ecs_agent" {
   role = aws_iam_role.ecs_agent.name
 }
 
+
+resource "aws_security_group" "ec2-sg" {
+  vpc_id = aws_vpc.jhc_vpc.id
+
+  ingress {
+    from_port        = 443
+    to_port          = 443
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  ingress {
+    from_port        = 8080
+    to_port          = 8080
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  ingress {
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+  tags = {
+    Name        = "${var.app_name}-sg"
+    Environment = var.app_environment
+  }
+}
+
+
 resource "aws_launch_configuration" "ecs_launch_config" {
   image_id      = "ami-0b6d6fc5fe3f750f1" #amazon ec2
   iam_instance_profile = aws_iam_instance_profile.ecs_agent.name
-  security_groups      = [aws_security_group.load_balancer_security_group.id]
+  security_groups      = [aws_security_group.ec2-sg.id]
   user_data = <<EOF
         #!/bin/bash
         echo ECS_CLUSTER=${aws_ecs_cluster.jhc_cluster.name} >> /etc/ecs/ecs.config
