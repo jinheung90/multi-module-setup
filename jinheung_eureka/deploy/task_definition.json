@@ -38,7 +38,7 @@
     {
       "name": "service-storage",
       "host": {
-        "sourcePath": "/ecs/service"
+        "sourcePath": "/ecs"
       }
     }
   ],

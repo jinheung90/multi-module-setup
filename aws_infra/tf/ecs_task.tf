@@ -12,7 +12,7 @@ resource "aws_ecs_task_definition" "task_service" {
            awslogs-group : "ecs_cluster_log",
            awslogs-region : "ap-northeast-2",
           "awslogs-create-group": "true",
-           awslogs-stream-prefix : "log-stream-"
+           awslogs-stream-prefix : "log-stream"
         }
       },
       links: [],
@@ -35,6 +35,6 @@ resource "aws_ecs_task_definition" "task_service" {
 
   volume {
     name      = "service-storage"
-    host_path = "/ecs/${var.app_name}/${var.app_environment}/service"
+    host_path = "/ecs/service"
   }
 }

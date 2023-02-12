@@ -11,6 +11,7 @@ resource "aws_launch_configuration" "ecs_launch_config" {
   user_data = <<EOF
         #!/bin/bash
         echo ECS_CLUSTER=${aws_ecs_cluster.jhc_cluster.name} >> /etc/ecs/ecs.config
+        sudo mkdir /etc/ecs/service
         EOF
   instance_type        = "t3.small"
   name_prefix = "${var.app_name}-${var.app_environment}"
@@ -25,7 +26,7 @@ resource "aws_autoscaling_group" "asg" {
   health_check_grace_period = 300
   health_check_type         = "EC2"
   desired_capacity          = 2
-  force_delete              = true
+  force_delete              = true #운영단에서는 false 취급한다
   target_group_arns = [aws_lb_target_group.target_group.arn]
   launch_configuration = aws_launch_configuration.ecs_launch_config.name
 }
