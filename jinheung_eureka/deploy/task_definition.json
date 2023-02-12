@@ -27,8 +27,14 @@
       "entryPoint": [],
       "command": [],
       "environment": [],
-      "mountPoints": [],
       "volumesFrom": [],
+      "mountPoints": [
+        {
+          "sourceVolume": "sourceVol",
+          "containerPath": "/ecs/service",
+          "readOnly": false
+        }
+      ],
       "secrets": [],
       "logConfiguration": {
         "logDriver": "awslogs",
@@ -44,13 +50,7 @@
 
   "family": "test-dev-task-fam",
   "revision": 3,
-  "mountPoints": [
-    {
-      "sourceVolume": "sourceVol",
-      "containerPath": "/ecs/service",
-      "readOnly": false
-    }
-  ],
+
   "status": "ACTIVE",
 
   "placementConstraints": [],
