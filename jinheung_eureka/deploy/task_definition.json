@@ -21,8 +21,8 @@
         ],
         "timeout": 5,
         "interval": 30,
-        "startPeriod": null,
-        "FailingStreak": 0
+        "startPeriod": null
+
       },
       "essential": true,
       "entryPoint": [],
