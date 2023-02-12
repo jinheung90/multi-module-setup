@@ -28,15 +28,7 @@
       "command": [],
       "environment": [],
       "volumesFrom": [],
-      "volumes": [
-        {
-          "name" : "service-storage",
-          "host" : {
-            "sourcePath": "/home/ec2-user"
-          }
-       }
 
-      ],
       "secrets": [],
       "logConfiguration": {
         "logDriver": "awslogs",
@@ -52,7 +44,15 @@
 
   "family": "test-dev-task-fam",
   "revision": 3,
+  "volumes": [
+    {
+      "name" : "service-storage",
+      "host" : {
+        "sourcePath": "/home/ec2-user"
+      }
+    }
 
+  ],
   "status": "ACTIVE",
 
   "placementConstraints": [],
