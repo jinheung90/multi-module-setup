@@ -44,12 +44,11 @@
 
   "family": "test-dev-task-fam",
   "revision": 3,
-  "volumes": [
+  "mountPoints": [
     {
-      "name": "service-storage",
-      "host": {
-        "sourcePath": "/ecs"
-      }
+      "sourceVolume": "sourceVol",
+      "containerPath": "/ecs/service",
+      "readOnly": false
     }
   ],
   "status": "ACTIVE",
