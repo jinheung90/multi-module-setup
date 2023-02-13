@@ -1,4 +1,4 @@
-#FROM amazoncorretto:11
+FROM amazoncorretto:11
 #
 ## cloudwatch agent install
 #FROM amazonlinux:2.0.20190508
