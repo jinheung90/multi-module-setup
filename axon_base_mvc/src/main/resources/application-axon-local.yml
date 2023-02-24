@@ -1,0 +1,19 @@
+spring:
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+  endpoint:
+    metrics:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+axon:
+  axonserver:
+    servers: localhost:8124
+
+

@@ -4,7 +4,6 @@ buildscript {
         kotlinJvmVersion = '1.7.10'
     }
 
-
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath "io.spring.gradle:dependency-management-plugin:1.1.0"
@@ -61,24 +60,19 @@ subprojects {
 
 project(":jinheung_gateway") {
     dependencies {
-        compile project(':jinheung_common')
-        compile project(':jinheung_auth_core')
+        implementation project(':jinheung_common')
+        implementation project(':jinheung_auth_core')
     }
 }
-
 
 project(":jinheung_web_common") {
     dependencies {
-        compile project(':jinheung_common')
+        implementation project(':jinheung_common')
     }
 }
 
-
-
-
 project(":jinheung_payment_api") {
     dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation project(':jinheung_payment_core')
         api project(':jinheung_web_common')
     }
@@ -91,9 +85,9 @@ project(":jinheung_mall_core") {
 
 project(":jinheung_mall_api") {
     dependencies {
-        implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation project(':jinheung_mall_core')
-        api project(':jinheung_web_common')
+//        implementation project(':jinheung_web_common')
+//        implementation project(':axon_base_mvc')
     }
 }
 

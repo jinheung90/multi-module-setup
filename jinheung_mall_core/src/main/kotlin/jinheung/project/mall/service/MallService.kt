@@ -35,7 +35,7 @@ class MallService(
         return mallHasUserRepository.save(MallHasUser.of(mall,userId))
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     fun findAllProductsByMall(mallId: Long, category: Category) : List<Product> {
         return productRepository.findAllByMallIdAndCategory(mallId,category)
     }

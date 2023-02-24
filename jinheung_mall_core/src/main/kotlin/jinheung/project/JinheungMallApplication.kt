@@ -6,7 +6,7 @@ import org.springframework.boot.runApplication
 
 
 @SpringBootApplication
-class JinheungEventHandlerApplication
+class JinheungMallApplication
 fun main(args: Array<String>) {
-	runApplication<JinheungEventHandlerApplication>(*args)
+	runApplication<JinheungMallApplication>(*args)
 }

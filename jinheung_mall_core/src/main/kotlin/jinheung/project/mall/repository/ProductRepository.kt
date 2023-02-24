@@ -5,5 +5,5 @@ import jinheung.project.mall.enums.Category
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface ProductRepository : JpaRepository<Product, Long> {
-    fun findAllByMallIdAndCategory(mall_id: Long, category: Category) : List<Product>
+    fun findAllByMallIdAndCategory(mallId: Long, category: Category) : List<Product>
 }

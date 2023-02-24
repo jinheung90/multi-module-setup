@@ -23,15 +23,6 @@ resource "aws_security_group" "load_balancer_security_group" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-  ingress {
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-
   egress {
     from_port        = 0
     to_port          = 0
@@ -44,6 +35,17 @@ resource "aws_security_group" "load_balancer_security_group" {
     Environment = var.app_environment
   }
 }
+resource "aws_acm_certificate" "cert" {
+  domain_name = var.route53_domain_name
+  subject_alternative_names = ["*.${var.route53_domain_name}"]
+  validation_method = "DNS"
+}
+
+resource "aws_acm_certificate_validation" "cert" {
+  certificate_arn = aws_acm_certificate.cert.arn
+  validation_record_fqdns = [aws_route53_record.jhc_record.fqdn]
+}
+
 
 resource "aws_lb_target_group" "target_group" {
   name        = "${var.app_name}-${var.app_environment}-tg"
@@ -69,15 +71,16 @@ resource "aws_lb_target_group" "target_group" {
 }
 
 
-
 resource "aws_lb_listener" "jhc-ALB-Listener" {
   //depends_on = ["aws_lb.CF2TF-ALB.id", "aws_lb_target_group.CF2TF-TargetGroup.id"]
   load_balancer_arn = aws_lb.jhc_load_balancer.arn
-  port              = "80"
-  protocol          = "HTTP"
-
+  port              = "443"
+  protocol          = "HTTPS"
+  ssl_policy = "ELBSecurityPolicy-2016-08"
+  certificate_arn = aws_acm_certificate.cert.arn
   default_action {
     target_group_arn = aws_lb_target_group.target_group.arn
     type             = "forward"
   }
 }
+

@@ -140,4 +140,4 @@ services:
   axon:
     image: axoniq/axonserver:latest
     ports:
-      - 8124:8124
+      - 8024:8024

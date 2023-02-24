@@ -1,4 +1,28 @@
 spring:
   profiles:
     active: local
-
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+    import:
+      - application-mall-core-local.yml
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+    import: 'aws-parameterstore:'
+      - application-mall-core-local.yml
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${jdbc.url}
+    username: ${jdbc.username}
+    password: ${jdbc.password}
+aws:
+  paramstore:
+    enabled: true
+    prefix: /config
+    profile-separator: _
+    name: kimjonghyun

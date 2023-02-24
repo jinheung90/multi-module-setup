@@ -5,6 +5,7 @@ import jinheung.project.mall.entity.Product
 import jinheung.project.mall.enums.Category
 import jinheung.project.mall.service.MallService
 import jinheung.project.util.CustomSecuritySupport
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.actuate.endpoint.web.annotation.RestControllerEndpoint
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -19,11 +20,15 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/mall")
 class MallController(
-    private val mallService: MallService
+    private val mallService: MallService,
+
 ) {
+    @Value(value =  "\${profile}")
+    private val profile : String = "null"
     @PostMapping
     fun registerMall(@RequestBody @Valid mallDTO: MallDTO) : ResponseEntity<MallDTO> {
-        return ResponseEntity.ok(mallService.registerMall(CustomSecuritySupport.getUserId(), mallDTO.name))
+        val result = mallService.registerMall(1L, mallDTO.name)
+        return ResponseEntity.ok(result)
     }
 
     @GetMapping("/{id}/products")
@@ -32,6 +37,12 @@ class MallController(
         @PathVariable(name = "id") id : Long
     ) : ResponseEntity<List<Product>> {
         val eCategory = Category.findCategory(category)
-        return ResponseEntity.ok().body(mallService.findAllProductsByMall(mallId = id, eCategory))
+        val results = mallService.findAllProductsByMall(mallId = id, eCategory)
+        return ResponseEntity.ok().body(results)
+    }
+
+    @GetMapping("/test")
+    fun test() : ResponseEntity<String> {
+        return ResponseEntity.ok(profile)
     }
 }

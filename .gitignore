@@ -1,12 +1,14 @@
 # 프로젝트 제외 경로
 /.gradle/
 /.idea/
-/aws_infra/tf/provider.tf
-/aws_infra/tf/.terraform.lock.hcl
-/aws_infra/tf/.terraform/providers/registry.terraform.io/
+/aws_infra/ecs/provider.tf
+/aws_infra/ecs/.terraform.lock.hcl
+/aws_infra/ecs/.terraform/providers/registry.terraform.io/
 /usr/
 /aws_infra/local_setup/
 /jinheung_eureka/build/
 
-/aws_infra/tf/paramenter_store.tf
-/aws_infra/tf/terraform.tfstate
+/aws_infra/ecs/paramenter_store.tf
+/aws_infra/ecs/terraform.tfstate
+/aws_infra/eks/provider.tf
+/aws_infra/network/provider.tf

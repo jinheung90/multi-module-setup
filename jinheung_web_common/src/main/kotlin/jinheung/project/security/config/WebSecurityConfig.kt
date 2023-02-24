@@ -66,27 +66,29 @@ class WebSecurityConfig  {
             .and()
             .authorizeRequests()
             .antMatchers(HttpMethod.OPTIONS).permitAll()
-            .antMatchers("/v1/auth/**").permitAll()
-            .antMatchers("/v1/verify/**").permitAll()
-            .antMatchers("/v1/user/**").permitAll()
-            .antMatchers("/v1/todo/**").permitAll()
+            .antMatchers("/auth/**").permitAll()
+            .antMatchers("/verify/**").permitAll()
+            .antMatchers("/user/**").permitAll()
+            .antMatchers("/todo/**").permitAll()
+            .antMatchers("/mall/**").permitAll()
             .and().cors().configurationSource(corsConfigurationSource())
             .and().build()
     }
 
-    // 이 부분은 끝에 막을겁니다 cors
+
     @Bean
     fun corsConfigurationSource(): CorsConfigurationSource {
         val configuration = CorsConfiguration()
         configuration.allowedOrigins = object : ArrayList<String?>() {
             init {
-                add("http://localhost:3000")
+//                add("http://localhost:3000")
+                add("*")
             }
         }
         configuration.addAllowedHeader("*")
         configuration.addAllowedMethod("*")
-
-        configuration.allowCredentials = true;
+        //configuration.allowCredentials = true;
+        configuration.allowCredentials = false;
         val source = UrlBasedCorsConfigurationSource()
         source.registerCorsConfiguration("/**", configuration)
         return source

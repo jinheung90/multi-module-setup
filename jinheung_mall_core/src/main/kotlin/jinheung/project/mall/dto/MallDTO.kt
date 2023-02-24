@@ -3,6 +3,7 @@ package jinheung.project.mall.dto
 import jinheung.project.mall.entity.Mall
 
 
+
 data class MallDTO(
     val name: String = ""
 ) {

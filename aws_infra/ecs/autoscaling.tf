@@ -53,7 +53,6 @@ resource "aws_launch_configuration" "ecs_launch_config" {
   user_data = <<EOF
         #!/bin/bash
         echo ECS_CLUSTER=${aws_ecs_cluster.jhc_cluster.name} >> /etc/ecs/ecs.config
-        sudo mkdir /etc/ecs/service
         EOF
   instance_type        = "t3.small"
   name_prefix = "${var.app_name}-${var.app_environment}"

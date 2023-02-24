@@ -6,6 +6,7 @@ import javax.persistence.*
 
 
 @Table(name = "malls")
+@Entity
 data class Mall (
     @OneToMany
     val products : List<Product> = ArrayList(),
@@ -22,7 +23,7 @@ data class Mall (
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
         other as Mall
 
-        return id != null && id == other.id
+        return id == other.id
     }
 
     override fun hashCode(): Int = javaClass.hashCode()

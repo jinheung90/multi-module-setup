@@ -9,6 +9,7 @@ import javax.persistence.*
 //            name = "mall_user_unique",
 //            columnNames = [ "mall_id",  "user_id" ])
 //    ])
+@Entity
 data class MallHasUser(
     @Column(name = "user_id", nullable = false)
     val userId: Long = 0L,
@@ -24,7 +25,7 @@ data class MallHasUser(
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
         other as MallHasUser
 
-        return id != null && id == other.id
+        return id == other.id
     }
 
     override fun hashCode(): Int = javaClass.hashCode()

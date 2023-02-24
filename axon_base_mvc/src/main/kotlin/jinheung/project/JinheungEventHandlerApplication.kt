@@ -6,7 +6,10 @@ import org.springframework.boot.runApplication
 
 
 @SpringBootApplication
-class JinheungAuthApplication
+class JinheungEventHandlerApplication
 fun main(args: Array<String>) {
-	runApplication<JinheungAuthApplication>(*args)
+	runApplication<JinheungEventHandlerApplication>(*args)
 }
+
+
+

@@ -8,6 +8,7 @@ import javax.persistence.*
 
 
 @Table(name = "products")
+@Entity
 data class Product(
     @Column
     val price : BigDecimal = BigDecimal.valueOf(0L),

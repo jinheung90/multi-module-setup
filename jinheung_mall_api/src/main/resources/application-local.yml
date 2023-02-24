@@ -2,7 +2,9 @@ spring:
   config:
     import:
       - application-mall-core-local.yml
+
+profile: local
 server:
-  port: 8084
+  port: 8080
 
 
