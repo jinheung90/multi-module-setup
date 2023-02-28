@@ -9,7 +9,10 @@ import jinheung.project.auth.service.UserAuthService
 
 
 import jinheung.project.jwt.TokenProvider
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.toList
+import org.springframework.http.ResponseEntity
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -17,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/user/auth")
+@RequestMapping("/user/auth")
 class UserAuthController(
     private val userAuthService: UserAuthService,
     private val passwordEncoder: PasswordEncoder,
@@ -25,13 +28,19 @@ class UserAuthController(
 
     ) {
 
+
     @PostMapping("/signup/email")
     suspend fun signupFromEmail(@RequestBody signupRequest: SignupRequest) : UserAuthDto {
         val newPassword = passwordEncoder.encode(signupRequest.password)
-        return userAuthService.signup(signupRequest.email, newPassword)
+        val dto = userAuthService.signup(signupRequest.email, newPassword)
+        return dto
     }
+
+
+
     @PostMapping("/login/email")
     suspend fun loginFromEmail(@RequestBody loginDto: LoginDto) : Map<String,String> {
+
         val userSecurity = userAuthService.findUserSecurityByEmail(loginDto.email)
         if(!passwordEncoder.matches(loginDto.password, userSecurity.password)) {
             throw RuntimeException()

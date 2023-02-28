@@ -53,6 +53,7 @@ subprojects {
 
     dependencyManagement {
         imports {
+            mavenBom "io.awspring.cloud:spring-cloud-aws-dependencies:2.3.0"
             mavenBom ("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
         }
     }
@@ -88,6 +89,15 @@ project(":jinheung_mall_api") {
         implementation project(':jinheung_mall_core')
 //        implementation project(':jinheung_web_common')
 //        implementation project(':axon_base_mvc')
+    }
+}
+
+
+project(":jinheung_order_api") {
+    dependencies {
+        implementation project(':jinheung_order_core')
+        implementation project(':jinheung_web_common')
+//        api project(':axon_base_mvc')
     }
 }
 

@@ -1,4 +1,37 @@
 spring:
   profiles:
     active: local
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  r2dbc:
+    username: root
+    password: admin
+    url: r2dbc:mariadb://127.0.0.1:3307/auth
+    pool:
+      max-size: 100
+    initialization-mode: always
 
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+    import: 'aws-parameterstore:'
+  r2dbc:
+    url: ${r2dbc.url}
+    username: ${r2dbc.username}
+    password: ${r2dbc.password}
+token:
+  access-token-secret: ${jwt.secret}
+  refresh-token-expired: 1209600
+  access-token-expired: 1209600
+
+aws:
+  paramstore:
+    enabled: true
+    prefix: /
+    profile-separator: _
+    name: gateway

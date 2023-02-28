@@ -34,9 +34,8 @@ class UserAuthService(
 
         val userAuthorities = authorities
             .map { a ->  UserAuthority.of(authorityId = a.id, userId = user.id) }
-            .toList()
 
-        userAuthorityRepository.saveAll(userAuthorities)
+        userAuthorityRepository.saveAll(userAuthorities).toList()
 
         val userSecurity = userSecurityRepository
                 .save(UserSecurity.of(user.id, email, password))

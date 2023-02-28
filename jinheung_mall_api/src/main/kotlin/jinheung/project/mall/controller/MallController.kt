@@ -27,18 +27,9 @@ class MallController(
     private val profile : String = "null"
     @PostMapping
     fun registerMall(@RequestBody @Valid mallDTO: MallDTO) : ResponseEntity<MallDTO> {
+        val userId = CustomSecuritySupport.getUserId()
         val result = mallService.registerMall(1L, mallDTO.name)
         return ResponseEntity.ok(result)
-    }
-
-    @GetMapping("/{id}/products")
-    fun getProductsByMallIdAndCategory(
-        @RequestParam(name = "category") category: String,
-        @PathVariable(name = "id") id : Long
-    ) : ResponseEntity<List<Product>> {
-        val eCategory = Category.findCategory(category)
-        val results = mallService.findAllProductsByMall(mallId = id, eCategory)
-        return ResponseEntity.ok().body(results)
     }
 
     @GetMapping("/test")

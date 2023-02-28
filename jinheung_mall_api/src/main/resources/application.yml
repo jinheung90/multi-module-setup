@@ -12,17 +12,21 @@ spring:
 spring:
   config:
     activate:
-      on-profile: production
-    import: 'aws-parameterstore:'
-      - application-mall-core-local.yml
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${jdbc.url}
-    username: ${jdbc.username}
-    password: ${jdbc.password}
+      on-profile: dev
+    import:
+      - 'aws-parameterstore:'
+      - application-mall-core-dev.yml
+    name: mall
 aws:
   paramstore:
     enabled: true
     prefix: /config
     profile-separator: _
-    name: kimjonghyun
+    name: mall
+    region: ap-northeast-2
+    default-context:
+cloud:
+  aws:
+    credentials:
+      access-key:
+      secret-key:

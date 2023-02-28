@@ -40,4 +40,10 @@ data class Product(
     override fun toString(): String {
         return this::class.simpleName + "(id = $id )"
     }
+
+    companion object {
+        fun of(mall: Mall, price: BigDecimal, quantity: Long, name : String, category: Category) : Product {
+            return Product(mall = mall, price = price, name = name, category = category, quantity = quantity)
+        }
+    }
 }

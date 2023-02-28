@@ -69,7 +69,6 @@ class WebSecurityConfig  {
             .antMatchers("/auth/**").permitAll()
             .antMatchers("/verify/**").permitAll()
             .antMatchers("/user/**").permitAll()
-            .antMatchers("/todo/**").permitAll()
             .antMatchers("/mall/**").permitAll()
             .and().cors().configurationSource(corsConfigurationSource())
             .and().build()

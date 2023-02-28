@@ -14,8 +14,7 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class MallService(
     private val mallRepository: MallRepository,
-    private val mallHasUserRepository: MallHasUserRepository,
-    private val productRepository : ProductRepository
+    private val mallHasUserRepository: MallHasUserRepository
 ) {
 
     @Transactional
@@ -32,11 +31,6 @@ class MallService(
 
     @Transactional
     fun saveMallHasUser(mall: Mall, userId: Long) : MallHasUser {
-        return mallHasUserRepository.save(MallHasUser.of(mall,userId))
-    }
-
-    @Transactional(readOnly = true)
-    fun findAllProductsByMall(mallId: Long, category: Category) : List<Product> {
-        return productRepository.findAllByMallIdAndCategory(mallId,category)
+        return mallHasUserRepository.save(MallHasUser.of(mall, userId))
     }
 }
