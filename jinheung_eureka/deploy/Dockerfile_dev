@@ -16,4 +16,4 @@ ENV BASE_PATH /home/ec2-user
 ENV CURRENT_DEPLOY_JAR deploy.jar
 COPY /deploy.jar /deploy.jar
 
-ENTRYPOINT ["java", " -Dspring.profiles.active=dev 1>> /home/ec2-user/stdout.log 2>> /home/ec2-user/stderr.log" , "-jar", "/deploy.jar"]
+ENTRYPOINT ["java", " -Dspring.profiles.active=dev" , "-jar", "/deploy.jar"]
