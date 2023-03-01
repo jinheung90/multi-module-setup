@@ -57,3 +57,7 @@ variable "jhc_hosting_area" {
 variable "rds_password" {
   type = string
 }
+
+variable "default_ssl_cert_arn" {
+  type = string
+}

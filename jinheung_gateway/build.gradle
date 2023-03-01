@@ -1,5 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-// 1.7.22 버전에 문제가 있어서 다운그레이드함
+
 plugins {
 
 }

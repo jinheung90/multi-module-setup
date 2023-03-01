@@ -35,16 +35,17 @@ resource "aws_security_group" "load_balancer_security_group" {
     Environment = var.app_environment
   }
 }
-resource "aws_acm_certificate" "cert" {
-  domain_name = var.route53_domain_name
-  subject_alternative_names = ["*.${var.route53_domain_name}"]
-  validation_method = "DNS"
-}
-
-resource "aws_acm_certificate_validation" "cert" {
-  certificate_arn = aws_acm_certificate.cert.arn
-  validation_record_fqdns = [aws_route53_record.jhc_record.fqdn]
-}
+# 기존에 만든것으로 대체 이건 인증서 생성용이다
+#resource "aws_acm_certificate" "cert" {
+#  domain_name = var.route53_domain_name
+#  subject_alternative_names = ["*.${var.route53_domain_name}"]
+#  validation_method = "DNS"
+#}
+#
+#resource "aws_acm_certificate_validation" "cert" {
+#  certificate_arn = aws_acm_certificate.cert.arn
+#  validation_record_fqdns = [aws_route53_record.jhc_record.fqdn]
+#}
 
 
 resource "aws_lb_target_group" "target_group" {
@@ -77,7 +78,7 @@ resource "aws_lb_listener" "jhc-ALB-Listener" {
   port              = "443"
   protocol          = "HTTPS"
   ssl_policy = "ELBSecurityPolicy-2016-08"
-  certificate_arn = aws_acm_certificate.cert.arn
+  certificate_arn = var.default_ssl_cert_arn
   default_action {
     target_group_arn = aws_lb_target_group.target_group.arn
     type             = "forward"

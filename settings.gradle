@@ -2,7 +2,7 @@ rootProject.name = 'jinheung'
 
 include(':jinheung_gateway')
 include(':jinheung_eureka')
-include(':jinheung_config')
+
 
 include(':jinheung_event_handler')
 include(':jinheung_auth_core')

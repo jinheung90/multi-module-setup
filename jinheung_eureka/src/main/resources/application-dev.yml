@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: eureka-service
+  security:
+    user:
+      name: admin
+      password: admin123
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
+
+server:
+  port: 8080
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    region: ap-northeast-2
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+

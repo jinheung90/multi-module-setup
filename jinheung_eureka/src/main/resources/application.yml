@@ -1,23 +1,28 @@
 spring:
-  application:
-    name: eureka-service
-  security:
-    user:
-      name: admin
-      password: admin123
-  freemarker:
-    template-loader-path: classpath:/templates/
-    prefer-file-system-access: false
-server:
-  port: 8080
-eureka:
-  client:
-    register-with-eureka: false
-    fetch-registry: false
+  profiles:
+    active: local
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+test: aaa
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+    import:
+      - 'aws-parameterstore:'
+test: ${test}
+aws:
+  paramstore:
+    enabled: true
+    prefix: /config
+    profile-separator: _
+    name: eureka
     region: ap-northeast-2
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-        exclude: "env,beans"
+    default-context:
+

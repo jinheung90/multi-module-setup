@@ -87,8 +87,7 @@ project(":jinheung_mall_core") {
 project(":jinheung_mall_api") {
     dependencies {
         implementation project(':jinheung_mall_core')
-//        implementation project(':jinheung_web_common')
-//        implementation project(':axon_base_mvc')
+        implementation project(':jinheung_web_common')
     }
 }
 
