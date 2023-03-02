@@ -16,4 +16,4 @@ ENV BASE_PATH /home/ec2-user
 ENV CURRENT_DEPLOY_JAR deploy.jar
 COPY /deploy.jar /deploy.jar
 
-CMD java -jar -Dspring.profiles.active=dev deploy.jar 1>> $STDOUT 2>> $STDERR
+CMD java -jar -Dspring.profiles.active=dev deploy.jar
