@@ -12,6 +12,4 @@ class AwsConfig {
     fun awsCredentialsProvider() : AWSCredentialsProvider {
         return DefaultAWSCredentialsProviderChain();
     }
-
-
 }
