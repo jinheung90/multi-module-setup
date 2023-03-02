@@ -21,7 +21,6 @@ aws:
     enabled: true
     prefix: config
     profile-separator: _
-    name: /eureka
+    name: eureka
     region: ap-northeast-2
-    default-context:
 
