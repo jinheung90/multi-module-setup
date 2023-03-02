@@ -14,13 +14,12 @@ spring:
   config:
     activate:
       on-profile: dev
-    import:
-      - 'aws-parameterstore:'
+    import: 'aws-parameterstore:'
 test: ${test}
 aws:
   paramstore:
     enabled: true
-    prefix: config
+    prefix: /config
     profile-separator: _
     name: eureka
     region: ap-northeast-2
