@@ -10,6 +10,6 @@ import org.springframework.context.annotation.Configuration
 class AwsConfig {
     @Bean
     fun awsCredentialsProvider() : AWSCredentialsProvider {
-        return DefaultAWSCredentialsProviderChain();
+        return DefaultAWSCredentialsProviderChain()
     }
 }
