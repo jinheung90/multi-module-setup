@@ -1,5 +1,3 @@
-
-
 data "aws_iam_policy_document" "ecs_agent" {
   statement {
     actions = ["sts:AssumeRole"]
@@ -15,7 +13,6 @@ resource "aws_iam_role" "ecs_agent" {
   name               = "ecs-agent_role"
   assume_role_policy = data.aws_iam_policy_document.ecs_agent.json
 }
-
 
 resource "aws_iam_role_policy_attachment" "ecs_agent" {
   role       = aws_iam_role.ecs_agent.name

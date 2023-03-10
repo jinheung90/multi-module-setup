@@ -2,6 +2,8 @@ package jinheung.project.auth.filter
 
 
 import jinheung.project.jwt.TokenProvider
+import jinheung.project.util.SecurityConst
+import org.springframework.beans.factory.annotation.Value
 
 import org.springframework.cloud.gateway.filter.GatewayFilter
 import org.springframework.cloud.gateway.filter.GatewayFilterChain
@@ -17,10 +19,13 @@ abstract class AuthFilterFactory(
     private val tokenProvider: TokenProvider
 ) : AbstractGatewayFilterFactory<AuthFilterFactory?>() {
 
+    @Value("secure-header-value")
+    private val secureHeaderValue : String = "";
+
     class Config
 
     private fun resolveToken(headerVal: List<String>?): String? {
-        if ((headerVal == null) || headerVal.isEmpty()) {
+        if (headerVal.isNullOrEmpty()) {
             return null
         }
         val strToken = headerVal[0]
@@ -37,8 +42,9 @@ abstract class AuthFilterFactory(
             val token = resolveToken(headerVal)
             val tokenInfo = tokenProvider.getUserIdAndAuthorityByJwtAccessToken(token)
             if (tokenInfo.userId != 0L) {
-//                request.mutate().header(SecurityHeaders.USER_AUTHORITIES_HEADER_NAME, tokenInfo.authorities).build()
-//                request.mutate().header(SecurityHeaders.USER_ID_HEADER_NAME, tokenInfo.userId.toString()).build()
+                request.mutate().header(SecurityConst.getAuthoritiesHeaderName(), tokenInfo.authorities).build()
+                request.mutate().header(SecurityConst.getUserIdHeaderName(), tokenInfo.userId.toString()).build()
+                request.mutate().header(SecurityConst.getSecureHeaderName(), secureHeaderValue)
             }
             chain.filter(exchange.mutate().request(request).build())
         }

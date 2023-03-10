@@ -16,7 +16,6 @@ class MallService(
     private val mallRepository: MallRepository,
     private val mallHasUserRepository: MallHasUserRepository
 ) {
-
     @Transactional
     fun registerMall(userId : Long, name: String) : MallDTO {
         val mall = this.saveMall(name = name)

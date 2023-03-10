@@ -4,6 +4,7 @@ import jinheung.project.mall.dto.MallDTO
 import jinheung.project.mall.entity.Product
 import jinheung.project.mall.enums.Category
 import jinheung.project.mall.service.MallService
+import jinheung.project.mall.service.ProductService
 import jinheung.project.util.CustomSecuritySupport
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.actuate.endpoint.web.annotation.RestControllerEndpoint
@@ -18,23 +19,17 @@ import org.springframework.web.bind.annotation.RestController
 import javax.validation.Valid
 
 @RestController
-@RequestMapping("/mall")
-class MallController(
-    private val mallService: MallService,
+@RequestMapping("/product")
+class ProductController(
+    private val productService: ProductService,
 
 ) {
-    @Value(value =  "\${profile}")
-    private val profile : String = "null"
-
-    @PostMapping
-    fun registerMall(@RequestBody @Valid mallDTO: MallDTO) : ResponseEntity<MallDTO> {
-        val userId = CustomSecuritySupport.getUserId()
-        val result = mallService.registerMall(1L, mallDTO.name)
-        return ResponseEntity.ok(result)
-    }
-
-    @GetMapping("/test")
-    fun test() : ResponseEntity<String> {
-        return ResponseEntity.ok(profile)
+    @GetMapping("/mall/{id}/products")
+    fun getProductsByMallIdAndCategory(
+        @RequestParam(name = "category") category: String,
+        @PathVariable(name = "id") id : Long
+    ) : ResponseEntity<List<Product>> {
+        val results = productService.findAllProductsByMall(id, Category.findCategory(category));
+        return ResponseEntity.ok().body(results)
     }
 }

@@ -12,3 +12,7 @@
 /aws_infra/ecs/terraform.tfstate
 /aws_infra/eks/provider.tf
 /aws_infra/network/provider.tf
+/aws_infra/.terraform/
+/aws_infra/ecs/.terraform/
+/aws_infra/eks/.terraform/
+/aws_infra/network/.terraform/

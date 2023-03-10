@@ -2,9 +2,6 @@ rootProject.name = 'jinheung'
 
 include(':jinheung_gateway')
 include(':jinheung_eureka')
-
-
-//include(':jinheung_event_handler')
 include(':jinheung_auth_core')
 include(':jinheung_payment_core')
 include(':jinheung_payment_api')
@@ -12,10 +9,10 @@ include(':jinheung_mall_api')
 include(':jinheung_mall_core')
 include(':jinheung_order_api')
 include(':jinheung_order_core')
-
+include(':jinheung_mall_test')
 include(':jinheung_web_common')
 include(':jinheung_common')
-//include(':axon_base_mvc')
+
 
 
 

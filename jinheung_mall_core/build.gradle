@@ -12,9 +12,10 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.30'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'io.awspring.cloud:spring-cloud-starter-aws'
-	implementation 'io.awspring.cloud:spring-cloud-starter-aws-parameter-store-config'
 	implementation 'mysql:mysql-connector-java'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.1.9'
+	implementation 'com.h2database:h2'
 }
 
 
@@ -22,6 +23,19 @@ tasks.withType(KotlinCompile).configureEach {
 	kotlinOptions {
 		freeCompilerArgs = ['-Xjsr305=strict']
 		jvmTarget = '11'
+	}
+}
+
+task integrationTest(type: Test, group : 'verification') {
+	useJUnitPlatform() {
+		includeTags 'integration'
+	}
+
+}
+
+task unitTest(type: Test, group: 'verification') {
+	useJUnitPlatform() {
+		includeTags 'unit'
 	}
 }
 

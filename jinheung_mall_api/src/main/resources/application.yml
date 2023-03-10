@@ -8,6 +8,9 @@ spring:
       on-profile: local
     import:
       - application-mall-core-local.yml
+aws:
+  paramstore:
+    enabled: false
 ---
 spring:
   config:
@@ -17,16 +20,13 @@ spring:
       - 'aws-parameterstore:'
       - application-mall-core-dev.yml
     name: mall
-aws:
-  paramstore:
-    enabled: true
-    prefix: /config
-    profile-separator: _
-    name: mall
-    region: ap-northeast-2
-    default-context:
-cloud:
-  aws:
-    credentials:
-      access-key:
-      secret-key:
+#aws:
+#  paramstore:
+#    enabled: true
+#    prefix: /config
+#    profile-separator: _
+#    name: mall
+#    region: ap-northeast-2
+#    default-context:
+#
+
