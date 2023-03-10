@@ -21,6 +21,6 @@ resource "aws_iam_role_policy_attachment" "ecs_agent" {
 
 resource "aws_iam_role_policy_attachment" "dev-resources-ssm-policy" {
   role       = aws_iam_role.ecs_agent.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-#  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
+
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMFullAccess"
 }
