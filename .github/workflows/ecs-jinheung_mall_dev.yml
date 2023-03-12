@@ -33,13 +33,13 @@ jobs:
 
       - name: integration test
         run: |
-          cd MODULE_API_PATH
+          cd $MODULE_API_PATH
           chmod +x ./gradlew
           ./gradlew integrationTest
 
       - name: unit test
         run: |
-          cd MODULE_API_PATH
+          cd $MODULE_API_PATH
           chmod +x ./gradlew
           ./gradlew unitTest
 
