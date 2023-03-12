@@ -47,6 +47,7 @@ jobs:
 
       - name: jacocoTestReport
         run: |
+          chmod +x ./gradlew
           ./gradlew jacocoTestReport
           "echo $MODULE_API_PATH$JACOCO_REPORT_INTEGRATION"
 
