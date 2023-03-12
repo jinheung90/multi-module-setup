@@ -74,12 +74,11 @@ project(":jinheung_web_common") {
 project(":jinheung_payment_api") {
     dependencies {
         implementation project(':jinheung_payment_core')
-        api project(':jinheung_web_common')
     }
 }
 project(":jinheung_mall_core") {
     dependencies {
-        api project(':jinheung_web_common')
+        implementation project(':jinheung_web_common')
     }
 }
 
@@ -87,7 +86,6 @@ project(":jinheung_mall_core") {
 project(":jinheung_mall_api") {
     dependencies {
         implementation project(':jinheung_mall_core')
-        implementation project(':jinheung_web_common')
     }
 }
 
@@ -95,8 +93,6 @@ project(":jinheung_mall_api") {
 project(":jinheung_order_api") {
     dependencies {
         implementation project(':jinheung_order_core')
-        implementation project(':jinheung_web_common')
-//        api project(':axon_base_mvc')
     }
 }
 
