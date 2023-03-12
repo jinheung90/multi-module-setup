@@ -13,6 +13,7 @@ import java.math.BigDecimal
 class ProductService(
     private val productRepository : ProductRepository
 ) {
+
     @Transactional(readOnly = true)
     fun findAllProductsByMall(mallId: Long, category: Category) : List<Product> {
         return productRepository.findAllByMallIdAndCategory(mallId,category)
