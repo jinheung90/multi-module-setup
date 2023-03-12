@@ -16,6 +16,18 @@ dependencies {
 
 }
 
+task integrationTest(type: Test, group : 'verification') {
+	useJUnitPlatform() {
+		includeTags 'integration'
+	}
+
+}
+
+task unitTest(type: Test, group: 'verification') {
+	useJUnitPlatform() {
+		includeTags 'unit'
+	}
+}
 
 tasks.withType(KotlinCompile).configureEach {
 	kotlinOptions {

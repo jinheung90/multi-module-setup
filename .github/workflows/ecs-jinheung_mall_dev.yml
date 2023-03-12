@@ -41,7 +41,7 @@ jobs:
         run: |
           cd $MODULE_CORE_PATH
           chmod +x ./gradlew
-          ./gradlew unit
+          ./gradlew unitTest
 
 
     
