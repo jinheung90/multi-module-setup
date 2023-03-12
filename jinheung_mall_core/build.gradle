@@ -26,18 +26,7 @@ tasks.withType(KotlinCompile).configureEach {
 	}
 }
 
-task integrationTest(type: Test, group : 'verification') {
-	useJUnitPlatform() {
-		includeTags 'integration'
-	}
 
-}
-
-task unitTest(type: Test, group: 'verification') {
-	useJUnitPlatform() {
-		includeTags 'unit'
-	}
-}
 
 tasks.named('test') {
 	useJUnitPlatform()

@@ -12,6 +12,7 @@ buildscript {
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.7.10'
     id 'org.jetbrains.kotlin.plugin.spring' version '1.7.10'
+    id 'jacoco'
 }
 
 allprojects {
@@ -36,6 +37,7 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
+
     group = "jinheung.project"
     version = "1.0"
     sourceCompatibility = 11
@@ -58,6 +60,50 @@ subprojects {
             mavenBom ("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
         }
     }
+
+    task integrationTest(type: Test, group : 'verification') {
+        useJUnitPlatform() {
+            includeTags 'integration'
+        }
+        finalizedBy jacocoTestReport
+    }
+
+    task unitTest(type: Test, group: 'verification') {
+        useJUnitPlatform() {
+            includeTags 'unit'
+        }
+        finalizedBy jacocoTestReport
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.required = true
+    }
+}
+
+jacocoTestReport {
+    // dependsOn : 이 작업에 지정된 종속성을 추가
+    dependsOn test // jacocoTestReport 에 test라는 종속성을 추가
+    finalizedBy 'jacocoTestCoverageVerification'
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            enabled = true;
+            element = 'CLASS'
+
+            limit {
+                counter = 'METHOD'
+                value = 'COVEREDRATIO'
+                minimum = 0.5
+            }
+        }
+
+    }
 }
 
 project(":jinheung_gateway") {
@@ -78,12 +124,12 @@ project(":jinheung_payment_api") {
         implementation project(':jinheung_payment_core')
     }
 }
+
 project(":jinheung_mall_core") {
     dependencies {
         implementation project(':jinheung_web_common')
     }
 }
-
 
 project(":jinheung_mall_api") {
     dependencies {
@@ -91,7 +137,6 @@ project(":jinheung_mall_api") {
         implementation project(':jinheung_mall_core')
     }
 }
-
 
 project(":jinheung_order_api") {
     dependencies {
