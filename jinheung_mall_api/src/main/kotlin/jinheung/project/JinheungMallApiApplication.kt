@@ -12,10 +12,5 @@ import org.springframework.context.annotation.Bean
 class JinheungMallApiApplication
 fun main(args: Array<String>) {
 
-	@Bean
-	fun awsCredentialsProvider() : AWSCredentialsProvider {
-		return DefaultAWSCredentialsProviderChain();
-	}
-
 	runApplication<JinheungMallApiApplication>(*args)
 }

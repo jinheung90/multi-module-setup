@@ -13,7 +13,7 @@ import org.springframework.test.context.ActiveProfiles
 @SpringBootTest
 @Tag("integration")
 @ActiveProfiles("test")
-class MallServiceTest  (
+class MallServiceIntegrationTest  (
     @Autowired private val mallService: MallService
 )  {
     @Test

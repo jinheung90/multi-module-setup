@@ -30,11 +30,19 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+
       - name: integration test
         run: |
           cd $MODULE_CORE_PATH
           chmod +x ./gradlew
           ./gradlew integrationTest
+
+      - name: unit test
+        run: |
+          cd $MODULE_CORE_PATH
+          chmod +x ./gradlew
+          ./gradlew unit
+
 
     
 

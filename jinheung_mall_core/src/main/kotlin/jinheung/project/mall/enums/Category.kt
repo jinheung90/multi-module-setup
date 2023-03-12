@@ -16,6 +16,7 @@ enum class Category {
                 }
             }
             throw CustomBadRequest(GlobalErrorCode.BAD_REQUEST, "not exists category");
+
         }
     }
 }

@@ -11,6 +11,20 @@ spring:
 aws:
   paramstore:
     enabled: false
+cloud:
+  aws:
+    credentials:
+      accessKey:
+      secretKey:
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+logging:
+  level:
+    # Set environment together: AWS_EC2_METADATA_DISABLED=true
+    # ref: https://lannstark.tistory.com/71
+    com.amazonaws.util.EC2MetadataUtils: error
 ---
 spring:
   config:
