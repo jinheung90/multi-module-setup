@@ -76,17 +76,14 @@ subprojects {
     }
 
     jacocoTestReport {
+        dependsOn integrationTest, unitTest
+        finalizedBy 'jacocoTestCoverageVerification'
+
         reports {
             xml.required = false
             csv.required = false
             html.required = true
         }
-    }
-
-    jacocoTestReport {
-
-        dependsOn integrationTest, unitTest
-        finalizedBy 'jacocoTestCoverageVerification'
     }
 
     jacocoTestCoverageVerification {
@@ -101,7 +98,6 @@ subprojects {
                     minimum = 0.5
                 }
             }
-
         }
     }
 }

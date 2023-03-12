@@ -16,10 +16,10 @@ import org.springframework.test.context.ActiveProfiles
 @Tag("unit")
 class MallServiceTest  (
 )  {
-//    @Test
-//    fun checkEnumSuccessTest() {
-//        Assertions.assertThrows(CustomBadRequest::class.java) { Category.findCategory("test") };
-//    }
+    @Test
+    fun checkEnumSuccessTest() {
+        Assertions.assertThrows(CustomBadRequest::class.java) { Category.findCategory("test") };
+    }
 //
 //    @Test
 //    fun saveMallFailTest() {

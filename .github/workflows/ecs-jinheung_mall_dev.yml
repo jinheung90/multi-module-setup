@@ -13,6 +13,8 @@ env:
   MODULE_API_PATH: ./jinheung_mall_api # 해당 모듈의 루트
   MODULE_CORE_PATH: ./jinheung_mall_core
   MODULE_JAR: ./jinheung_mall_api/build/libs/jinheung_mall_1.0.jar # 해당 모듈의 jar
+  JACOCO_REPORT_INTEGRATION: ./reports/tests/IntegrationTest/index.html
+  JACOCO_REPORT_UNIT: ./reports/tests/unitTest/index.html
   MODULE_DEPLOY_PATH: ./jinheung_eureka/deploy # 해당 모듈의 deploy 디렉토리
   ECS_TASK_DEFINITION: task_definition.json
   CONTAINER_NAME: test-dev-container
@@ -43,6 +45,9 @@ jobs:
           chmod +x ./gradlew
           ./gradlew unitTest
 
-
-    
+      - name: jacocoTestReport
+        run: |
+          cd $MODULE_API_PATH
+          ./gradlew jacocoTestReport
+          "echo $JACOCO_REPORT_INTEGRATION"
 
