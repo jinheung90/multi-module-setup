@@ -74,37 +74,38 @@ subprojects {
         }
         finalizedBy jacocoTestReport
     }
-}
 
-jacocoTestReport {
-    reports {
-        xml.required = false
-        csv.required = false
-        html.required = true
-    }
-}
-
-jacocoTestReport {
-
-    dependsOn integrationTest, unitTest
-    finalizedBy 'jacocoTestCoverageVerification'
-}
-
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            enabled = true;
-            element = 'CLASS'
-
-            limit {
-                counter = 'METHOD'
-                value = 'COVEREDRATIO'
-                minimum = 0.5
-            }
+    jacocoTestReport {
+        reports {
+            xml.required = false
+            csv.required = false
+            html.required = true
         }
+    }
 
+    jacocoTestReport {
+
+        dependsOn integrationTest, unitTest
+        finalizedBy 'jacocoTestCoverageVerification'
+    }
+
+    jacocoTestCoverageVerification {
+        violationRules {
+            rule {
+                enabled = true;
+                element = 'CLASS'
+
+                limit {
+                    counter = 'METHOD'
+                    value = 'COVEREDRATIO'
+                    minimum = 0.5
+                }
+            }
+
+        }
     }
 }
+
 
 project(":jinheung_gateway") {
     dependencies {
