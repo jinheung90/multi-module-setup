@@ -33,6 +33,7 @@ jobs:
       - name: integration test
         run: |
           cd $MODULE_CORE_PATH
+          chmod +x ./gradlew
           ./gradlew integrationTest
 
     
