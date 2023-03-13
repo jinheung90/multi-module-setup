@@ -17,3 +17,4 @@
 /aws_infra/eks/.terraform/
 /aws_infra/network/.terraform/
 /jinheung_common/build/
+/build/

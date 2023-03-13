@@ -15,14 +15,16 @@ import org.springframework.web.server.ServerWebExchange
 
 
 @Component
-abstract class AuthFilterFactory(
+abstract class AuthFilterFactory (
     private val tokenProvider: TokenProvider
-) : AbstractGatewayFilterFactory<AuthFilterFactory?>() {
+) : AbstractGatewayFilterFactory<AuthFilterFactory.Config>() {
 
     @Value("secure-header-value")
     private val secureHeaderValue : String = "";
 
-    class Config
+    class Config {
+
+    }
 
     private fun resolveToken(headerVal: List<String>?): String? {
         if (headerVal.isNullOrEmpty()) {
@@ -34,7 +36,7 @@ abstract class AuthFilterFactory(
         } else null
     }
 
-    override fun apply(config: AuthFilterFactory?): GatewayFilter {
+    override fun apply(config: Config): GatewayFilter {
         return GatewayFilter { exchange: ServerWebExchange, chain: GatewayFilterChain ->
             val request = exchange.request
             val headers = request.headers

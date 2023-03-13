@@ -40,17 +40,13 @@ class TokenProvider : InitializingBean {
                 .build()
                 .parseClaimsJws(token)
                 .body
-//            val authorities = Arrays.stream<String>(
-//                claims.get(AUTHORITIES_KEY).toString().split(",".toRegex()).dropLastWhile { it.isEmpty() }
-//                    .toTypedArray())
-//                .collect(Collectors.toList())
+
             JwtInfo(
                 java.lang.Long.valueOf(claims.subject),
                 claims[AUTHORITIES_KEY].toString(),
                 claims.expiration
             )
         } catch (e: SecurityException) {
-
             return JwtInfo(0, "", Date.from(Instant.now()))
         } catch (e: MalformedJwtException) {
 

@@ -13,6 +13,7 @@ enum class GlobalErrorCode(
     IO_ERROR("io error", "0013",500),
     NOT_EXISTS_USER("not exists user", "0001",401),
     NOT_VALID_TOKEN("not valid access token", "0005",403),
+    NOT_VALID_SECURE_HEADER("can not access service", "0005",403),
     ;
 
 
