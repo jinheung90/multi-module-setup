@@ -31,11 +31,11 @@ class AuthStoreFilter : GenericFilterBean() {
     @Throws(IOException::class, ServletException::class)
     override fun doFilter(servletRequest: ServletRequest, servletResponse: ServletResponse?, filterChain: FilterChain) {
         val httpServletRequest = servletRequest as HttpServletRequest
-        if (secureHeaderValue != servletRequest.getHeader(SecurityConst.getSecureHeaderName())) {
+        if (secureHeaderValue != httpServletRequest.getHeader(SecurityConst.getSecureHeaderName())) {
             throw CustomBadRequest(GlobalErrorCode.NOT_VALID_SECURE_HEADER, GlobalErrorCode.NOT_VALID_SECURE_HEADER.getMessage())
         }
-        val userId = servletRequest.getHeader(SecurityConst.getUserIdHeaderName());
-        val authorityString = servletRequest.getHeader(SecurityConst.getAuthoritiesHeaderName());
+        val userId = httpServletRequest.getHeader(SecurityConst.getUserIdHeaderName());
+        val authorityString = httpServletRequest.getHeader(SecurityConst.getAuthoritiesHeaderName());
         if(userId.isNotBlank()) {
             this.setAuthentication(userId.toLong(), authorityString)
         }
