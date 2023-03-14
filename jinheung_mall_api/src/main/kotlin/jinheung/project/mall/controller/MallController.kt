@@ -8,6 +8,7 @@ import jinheung.project.util.CustomSecuritySupport
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.actuate.endpoint.web.annotation.RestControllerEndpoint
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -29,12 +30,18 @@ class MallController(
     @PostMapping
     fun registerMall(@RequestBody @Valid mallDTO: MallDTO) : ResponseEntity<MallDTO> {
         val userId = CustomSecuritySupport.getUserId()
-        val result = mallService.registerMall(1L, mallDTO.name)
+        val result = mallService.registerMall(userId, mallDTO.name)
         return ResponseEntity.ok(result)
     }
 
-    @GetMapping("/test")
-    fun test() : ResponseEntity<String> {
-        return ResponseEntity.ok(profile)
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/test/auth")
+    fun test() : ResponseEntity<List<String>> {
+
+        return ResponseEntity.ok(CustomSecuritySupport.getUserAuthorities())
+    }
+    @GetMapping()
+    fun test2() : ResponseEntity<String> {
+        return ResponseEntity.ok("test")
     }
 }

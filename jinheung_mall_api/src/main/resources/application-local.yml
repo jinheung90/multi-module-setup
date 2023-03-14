@@ -4,7 +4,8 @@ spring:
       - application-mall-core-local.yml
 
 profile: local
+secure-header-value: aweryt
 server:
-  port: 8080
+  port: 8082
 
 

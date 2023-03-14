@@ -11,7 +11,7 @@ dependencies {
 	}
 	implementation 'org.springframework.boot:spring-boot-starter-undertow'
 	implementation 'io.awspring.cloud:spring-cloud-starter-aws'
-
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'io.awspring.cloud:spring-cloud-starter-aws-parameter-store-config'
 
 }

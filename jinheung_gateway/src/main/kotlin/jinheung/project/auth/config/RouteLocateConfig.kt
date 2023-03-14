@@ -1,8 +1,9 @@
-package jinheung.project.config
+package jinheung.project.auth.config
 
 
 
 import jinheung.project.auth.filter.AuthFilterFactory
+import jinheung.project.jwt.TokenProvider
 import org.springframework.cloud.gateway.route.RouteLocator
 import org.springframework.cloud.gateway.route.builder.*
 import org.springframework.context.annotation.Bean
@@ -23,7 +24,7 @@ class RouteLocateConfig (
                 uri("http://localhost:8080")
             }
             route(id = "order") {
-                path("/order")
+                path("/mall")
                     .filters {
                         f -> f.filter(authFilterFactory.apply(AuthFilterFactory.Config()))
                     }

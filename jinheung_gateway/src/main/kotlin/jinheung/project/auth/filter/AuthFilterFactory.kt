@@ -12,10 +12,11 @@ import org.springframework.http.HttpHeaders
 import org.springframework.stereotype.Component
 import org.springframework.util.StringUtils
 import org.springframework.web.server.ServerWebExchange
+import kotlin.math.log
 
 
 @Component
-abstract class AuthFilterFactory (
+class AuthFilterFactory (
     private val tokenProvider: TokenProvider
 ) : AbstractGatewayFilterFactory<AuthFilterFactory.Config>() {
 
@@ -41,10 +42,13 @@ abstract class AuthFilterFactory (
             val headers = request.headers
             val headerVal = headers[HttpHeaders.AUTHORIZATION]
             val token = resolveToken(headerVal)
-
+            System.out.println("Test12312451251254")
+            System.out.println(token)
             if(!token.isNullOrBlank()) {
+                System.out.println("1")
                 val tokenInfo = tokenProvider.getUserIdAndAuthorityByJwtAccessToken(token)
                 if (tokenInfo.userId != 0L) {
+                    System.out.println("2")
                     request.mutate().header(SecurityConst.getAuthoritiesHeaderName(), tokenInfo.authorities).build()
                     request.mutate().header(SecurityConst.getUserIdHeaderName(), tokenInfo.userId.toString()).build()
                     request.mutate().header(SecurityConst.getSecureHeaderName(), secureHeaderValue)
