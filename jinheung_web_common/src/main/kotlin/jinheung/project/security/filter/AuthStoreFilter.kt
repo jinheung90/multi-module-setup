@@ -36,7 +36,7 @@ class AuthStoreFilter : GenericFilterBean() {
         }
         val userId = httpServletRequest.getHeader(SecurityConst.getUserIdHeaderName());
         val authorityString = httpServletRequest.getHeader(SecurityConst.getAuthoritiesHeaderName());
-        if(userId.isNotBlank()) {
+        if(userId.isNotBlank() && authorityString.isNotBlank()) {
             this.setAuthentication(userId.toLong(), authorityString)
         }
         filterChain.doFilter(servletRequest, servletResponse)

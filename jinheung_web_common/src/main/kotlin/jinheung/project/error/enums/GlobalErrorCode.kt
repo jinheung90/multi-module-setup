@@ -4,7 +4,7 @@ enum class GlobalErrorCode(
     private val message: String,
     private val code : String,
     private val status : Int
-    ) {
+    ) : IErrorCode {
 
     BAD_REQUEST("bad request", "0000",400),
     SEND_FAIL("not connected child server","0010", 500),
@@ -17,17 +17,17 @@ enum class GlobalErrorCode(
     ;
 
 
-     fun getMessage(): String {
+    override fun getMessage(): String {
         // TODO Auto-generated method stub
         return this.message
     }
 
-     fun getCode(): String {
+    override fun getCode(): String {
         // TODO Auto-generated method stub
         return code
     }
 
-     fun getStatus(): Int {
+    override fun getStatus(): Int {
         return this.status
     }
 }

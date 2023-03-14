@@ -17,6 +17,9 @@ class RouteLocateConfig (
         return builder.routes {
             route(id = "auth") {
                 path("/user/auth/**")
+                    .filters {
+                        f -> f.filter(authFilterFactory.apply(AuthFilterFactory.Config()))
+                    }
                 uri("http://localhost:8080")
             }
             route(id = "order") {

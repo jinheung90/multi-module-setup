@@ -22,9 +22,7 @@ abstract class AuthFilterFactory (
     @Value("secure-header-value")
     private val secureHeaderValue : String = "";
 
-    class Config {
-
-    }
+    class Config {}
 
     private fun resolveToken(headerVal: List<String>?): String? {
         if (headerVal.isNullOrEmpty()) {
@@ -38,16 +36,21 @@ abstract class AuthFilterFactory (
 
     override fun apply(config: Config): GatewayFilter {
         return GatewayFilter { exchange: ServerWebExchange, chain: GatewayFilterChain ->
+
             val request = exchange.request
             val headers = request.headers
             val headerVal = headers[HttpHeaders.AUTHORIZATION]
             val token = resolveToken(headerVal)
-            val tokenInfo = tokenProvider.getUserIdAndAuthorityByJwtAccessToken(token)
-            if (tokenInfo.userId != 0L) {
-                request.mutate().header(SecurityConst.getAuthoritiesHeaderName(), tokenInfo.authorities).build()
-                request.mutate().header(SecurityConst.getUserIdHeaderName(), tokenInfo.userId.toString()).build()
-                request.mutate().header(SecurityConst.getSecureHeaderName(), secureHeaderValue)
+
+            if(!token.isNullOrBlank()) {
+                val tokenInfo = tokenProvider.getUserIdAndAuthorityByJwtAccessToken(token)
+                if (tokenInfo.userId != 0L) {
+                    request.mutate().header(SecurityConst.getAuthoritiesHeaderName(), tokenInfo.authorities).build()
+                    request.mutate().header(SecurityConst.getUserIdHeaderName(), tokenInfo.userId.toString()).build()
+                    request.mutate().header(SecurityConst.getSecureHeaderName(), secureHeaderValue)
+                }
             }
+
             chain.filter(exchange.mutate().request(request).build())
         }
     }

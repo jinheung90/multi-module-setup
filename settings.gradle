@@ -9,7 +9,6 @@ include(':jinheung_mall_api')
 include(':jinheung_mall_core')
 include(':jinheung_order_api')
 include(':jinheung_order_core')
-include(':jinheung_mall_test')
 include(':jinheung_web_common')
 include(':jinheung_common')
 
