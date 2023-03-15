@@ -35,11 +35,11 @@ class MallController(
     }
 
     @PreAuthorize("hasRole('USER')")
-    @GetMapping("/test/auth")
-    fun test() : ResponseEntity<List<String>> {
-
-        return ResponseEntity.ok(CustomSecuritySupport.getUserAuthorities())
+    @GetMapping("/test")
+    fun test() : ResponseEntity<String> {
+        return ResponseEntity.ok("CustomSecuritySupport.getUserAuthorities()")
     }
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping()
     fun test2() : ResponseEntity<String> {
         return ResponseEntity.ok("test")

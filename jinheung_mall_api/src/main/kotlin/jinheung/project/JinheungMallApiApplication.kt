@@ -11,6 +11,5 @@ import org.springframework.context.annotation.Bean
 @SpringBootApplication
 class JinheungMallApiApplication
 fun main(args: Array<String>) {
-
 	runApplication<JinheungMallApiApplication>(*args)
 }

@@ -23,7 +23,7 @@ class AuthFilterFactory (
     @Value("secure-header-value")
     private val secureHeaderValue : String = "";
 
-    class Config {}
+    class Config
 
     private fun resolveToken(headerVal: List<String>?): String? {
         if (headerVal.isNullOrEmpty()) {
@@ -42,13 +42,10 @@ class AuthFilterFactory (
             val headers = request.headers
             val headerVal = headers[HttpHeaders.AUTHORIZATION]
             val token = resolveToken(headerVal)
-            System.out.println("Test12312451251254")
-            System.out.println(token)
+
             if(!token.isNullOrBlank()) {
-                System.out.println("1")
                 val tokenInfo = tokenProvider.getUserIdAndAuthorityByJwtAccessToken(token)
                 if (tokenInfo.userId != 0L) {
-                    System.out.println("2")
                     request.mutate().header(SecurityConst.getAuthoritiesHeaderName(), tokenInfo.authorities).build()
                     request.mutate().header(SecurityConst.getUserIdHeaderName(), tokenInfo.userId.toString()).build()
                     request.mutate().header(SecurityConst.getSecureHeaderName(), secureHeaderValue)

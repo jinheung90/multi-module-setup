@@ -16,19 +16,19 @@ class RouteLocateConfig (
     @Bean
     fun customRouteLocator(builder : RouteLocatorBuilder): RouteLocator {
         return builder.routes {
-            route(id = "auth") {
+            route(id = "auth-service") {
                 path("/user/auth/**")
                     .filters {
                         f -> f.filter(authFilterFactory.apply(AuthFilterFactory.Config()))
                     }
                 uri("http://localhost:8080")
             }
-            route(id = "order") {
-                path("/mall")
+            route(id = "mall-service") {
+                path("/mall/**")
                     .filters {
                         f -> f.filter(authFilterFactory.apply(AuthFilterFactory.Config()))
                     }
-                uri("http://localhost:8082")
+                uri("http://localhost:8082/mall")
             }
         }
     }

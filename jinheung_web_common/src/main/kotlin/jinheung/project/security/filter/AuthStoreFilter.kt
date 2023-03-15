@@ -37,6 +37,7 @@ class AuthStoreFilter : GenericFilterBean() {
             throw CustomBadRequest(GlobalErrorCode.NOT_VALID_SECURE_HEADER, GlobalErrorCode.NOT_VALID_SECURE_HEADER.getMessage())
         }
         val userId = httpServletRequest.getHeader(SecurityConst.getUserIdHeaderName());
+        System.out.println(userId)
         val authorityString = httpServletRequest.getHeader(SecurityConst.getAuthoritiesHeaderName());
         if(userId.isNotBlank() && authorityString.isNotBlank()) {
             this.setAuthentication(userId.toLong(), authorityString)
