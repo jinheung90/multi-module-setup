@@ -37,3 +37,4 @@ out/
 .vscode/
 /build/libs/
 /build/tmp/
+/build/libs/
