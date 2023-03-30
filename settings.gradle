@@ -9,7 +9,10 @@ include(':jinheung_mall_api')
 include(':jinheung_mall_core')
 include(':jinheung_order_api')
 include(':jinheung_order_core')
+include(':jinheung_board_core')
 include(':jinheung_web_common')
+include(':jinheung_event_handler')
+include(':jinheung_event_client')
 include(':jinheung_common')
 
 

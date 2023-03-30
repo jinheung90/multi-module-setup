@@ -49,10 +49,8 @@ class TokenProvider : InitializingBean {
         } catch (e: SecurityException) {
             return JwtInfo(0, "", Date.from(Instant.now()))
         } catch (e: MalformedJwtException) {
-
             return JwtInfo(0, "", Date.from(Instant.now()))
         } catch (e: UnsupportedJwtException) {
-
             return JwtInfo(0, "", Date.from(Instant.now()))
         } catch (e: IllegalArgumentException) {
             return JwtInfo(0, "", Date.from(Instant.now()))

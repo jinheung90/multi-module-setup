@@ -137,7 +137,3 @@ services:
         target: /data/db
     ports:
       - "27017:27017"
-  axon:
-    image: axoniq/axonserver:latest
-    ports:
-      - 8024:8024

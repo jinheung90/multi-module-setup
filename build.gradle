@@ -141,6 +141,19 @@ project(":jinheung_order_api") {
     }
 }
 
+
+project(":jinheung_event_handler") {
+    dependencies {
+        implementation project(':jinheung_common')
+    }
+}
+
+project(":jinheung_event_client") {
+    dependencies {
+        implementation project(':jinheung_common')
+    }
+}
+
 project(":jinheung_eureka") {
     dependencies { }
 }

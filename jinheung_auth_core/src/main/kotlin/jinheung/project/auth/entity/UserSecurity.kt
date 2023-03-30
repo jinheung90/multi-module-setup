@@ -11,7 +11,6 @@ import java.time.LocalDateTime
 
 @Table("user_securities")
 data class UserSecurity(
-
     @Column("user_id")
     val userId : Long,
     @Column("email")

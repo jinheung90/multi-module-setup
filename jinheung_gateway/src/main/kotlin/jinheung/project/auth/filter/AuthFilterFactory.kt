@@ -48,7 +48,7 @@ class AuthFilterFactory (
                 if (tokenInfo.userId != 0L) {
                     request.mutate().header(SecurityConst.getAuthoritiesHeaderName(), tokenInfo.authorities).build()
                     request.mutate().header(SecurityConst.getUserIdHeaderName(), tokenInfo.userId.toString()).build()
-                    request.mutate().header(SecurityConst.getSecureHeaderName(), secureHeaderValue)
+                    request.mutate().header(SecurityConst.getSecureHeaderName(), secureHeaderValue).build()
                 }
             }
 

@@ -1,0 +1,35 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+plugins {
+
+}
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/libs-milestone-local" }
+}
+
+dependencies {
+
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'io.projectreactor.kotlin:reactor-kotlin-extensions'
+	implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-reactor'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb', version: '3.0.5'
+	implementation group: 'org.springframework.kafka', name: 'spring-kafka', version: '3.0.5'
+	testImplementation 'io.projectreactor:reactor-test'
+
+
+
+}
+
+
+tasks.withType(KotlinCompile).configureEach {
+	kotlinOptions {
+		freeCompilerArgs = ['-Xjsr305=strict']
+		jvmTarget = '11'
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
