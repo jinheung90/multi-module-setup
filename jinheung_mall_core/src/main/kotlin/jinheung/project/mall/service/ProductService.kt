@@ -30,7 +30,19 @@ class ProductService(
                 category = category
             )
         )
-        return ProductDTO.fromEntity(product);
+        return ProductDTO.fromEntity(product)
     }
+
+    @Transactional
+    fun checkPriceAndStock() {
+
+    }
+
+
+    @Transactional(readOnly = true)
+    fun findAllByIds(ids : List<Long>) : List<Product> {
+        return productRepository.findAllById(ids);
+    }
+
 
 }
