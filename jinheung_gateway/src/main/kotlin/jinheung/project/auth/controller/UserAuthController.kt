@@ -22,8 +22,8 @@ class UserAuthController(
     private val userAuthService: UserAuthService,
     private val passwordEncoder: PasswordEncoder,
     private val tokenProvider: TokenProvider
-    ) {
 
+    ) {
     @PostMapping("/signup/email")
     suspend fun signupFromEmail(@RequestBody signupRequest: SignupRequest) : UserAuthDto {
         val newPassword = passwordEncoder.encode(signupRequest.password)
@@ -35,6 +35,7 @@ class UserAuthController(
     suspend fun loginFromEmail(@RequestBody loginDto: LoginDto) : Map<String,String> {
 
         val userSecurity = userAuthService.findUserSecurityByEmail(loginDto.email)
+
         if(!passwordEncoder.matches(loginDto.password, userSecurity.password)) {
             throw RuntimeException()
         }

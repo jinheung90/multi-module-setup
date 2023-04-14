@@ -35,6 +35,7 @@ class AuthStoreFilter : GenericFilterBean() {
         if (secureHeaderValue != httpServletRequest.getHeader(SecurityConst.getSecureHeaderName())) {
             throw CustomBadRequest(GlobalErrorCode.NOT_VALID_SECURE_HEADER, GlobalErrorCode.NOT_VALID_SECURE_HEADER.getMessage())
         }
+
         val userId = httpServletRequest.getHeader(SecurityConst.getUserIdHeaderName());
         val authorityString = httpServletRequest.getHeader(SecurityConst.getAuthoritiesHeaderName());
         if(userId.isNotBlank() && authorityString.isNotBlank()) {
@@ -43,7 +44,6 @@ class AuthStoreFilter : GenericFilterBean() {
         filterChain.doFilter(servletRequest, servletResponse)
     }
     private fun setAuthentication(userId : Long, authority: String) {
-
         val authorities = Arrays.stream(
             authority.split(",".toRegex()).dropLastWhile { it.isEmpty() }
                 .toTypedArray())

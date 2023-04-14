@@ -49,6 +49,6 @@ class UserAuthService(
 
     @Transactional
     suspend fun findUserSecurityByEmail(email: String) : UserSecurity {
-        return userSecurityRepository.findByEmail(email).last()
+        return userSecurityRepository.findAllByEmail(email).first()
     }
 }

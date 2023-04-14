@@ -14,5 +14,4 @@ class TestController {
     fun testController() : ResponseEntity<String> {
         return ResponseEntity.ok(test)
     }
-
 }

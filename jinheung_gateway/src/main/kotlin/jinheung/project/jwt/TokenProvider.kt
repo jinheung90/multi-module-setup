@@ -40,7 +40,6 @@ class TokenProvider : InitializingBean {
                 .build()
                 .parseClaimsJws(token)
                 .body
-
             JwtInfo(
                 java.lang.Long.valueOf(claims.subject),
                 claims[AUTHORITIES_KEY].toString(),

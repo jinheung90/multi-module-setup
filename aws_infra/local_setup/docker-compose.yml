@@ -67,7 +67,6 @@ services:
         target: /data/kafka/kafka2
     depends_on:
       - zoo1
-
   kafka3:
     image: confluentinc/cp-kafka:6.1.1
     hostname: kafka3
@@ -125,15 +124,24 @@ services:
 #      - C:\es
 #    ports:
 #      - 9200:9200
-  mongodb:
-    image: mongo
+  dynamodb:
+    image: amazon/dynamodb-local
+    container_name: my-dynamodb
     restart: always
-    environment:
-      MONGO_HOST: localhost
-      MONGO_PORT: 27017
+    hostname: dynamodb
     volumes:
-      - type: bind
-        source: ./data/db
-        target: /data/db
+      - ./my-dynamodb-data
     ports:
-      - "27017:27017"
+      - "8000:8000"
+    command: "-jar DynamoDBLocal.jar -inmemory -dbPath ./my-dynamodb-data"
+  dynamodb-admin:
+    image: aaronshaf/dynamodb-admin
+    ports:
+      - "8001:8001"
+    environment:
+      DYNAMO_ENDPOINT: "http://localhost:8000"
+      AWS_REGION: local
+      AWS_ACCESS_KEY_ID: local
+      AWS_SECRET_ACCESS_KEY: local
+    depends_on:
+      - dynamodb

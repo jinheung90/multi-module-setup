@@ -10,5 +10,5 @@ import org.springframework.data.repository.kotlin.CoroutineCrudRepository
 
 
 interface UserSecurityRepository : CoroutineCrudRepository<UserSecurity, Long> {
-    fun findByEmail(email : String) : Flow<UserSecurity>
+    fun findAllByEmail(email : String) : Flow<UserSecurity>
 }

@@ -1,8 +1,6 @@
-package jinheung.project.event.dto.enums
+package jinheung.project.event_common.enums
 
-import jinheung.project.util.SecurityConst
-
-object KafkaCommandType {
+object EventCommandType {
     const val ID = "event-command"
     const val TRY = "k-try-command"
     const val CANCEL = "k-cancel-command"

@@ -33,15 +33,4 @@ class MallController(
         val result = mallService.registerMall(userId, mallDTO.name)
         return ResponseEntity.ok(result)
     }
-
-    @PreAuthorize("hasRole('USER')")
-    @GetMapping("/test")
-    fun test() : ResponseEntity<String> {
-        return ResponseEntity.ok("CustomSecuritySupport.getUserAuthorities()")
-    }
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping()
-    fun test2() : ResponseEntity<String> {
-        return ResponseEntity.ok("test")
-    }
 }

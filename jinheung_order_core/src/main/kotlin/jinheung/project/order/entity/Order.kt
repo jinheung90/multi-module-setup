@@ -12,6 +12,8 @@ data class Order (
     val address: Address = Address(),
     @Column(name = "request_memo")
     val requestMemo : String = "",
+    @Column(name = "is_success")
+    val success: Boolean = true,
     @OneToMany
     val orderProducts : List<OrderProduct> = listOf(),
     @Id

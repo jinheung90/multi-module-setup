@@ -10,7 +10,6 @@ import java.time.LocalDateTime
 
 @Table("users")
 data class User (
-
     @Column("is_deleted")
     val isDeleted : Boolean = false,
     @Column("created_at")
