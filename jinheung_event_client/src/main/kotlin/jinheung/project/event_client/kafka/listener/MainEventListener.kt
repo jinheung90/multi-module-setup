@@ -65,11 +65,11 @@ abstract class MainEventListener<T : EventCommonDTO>() : EventCommand<T> {
             val topic = data.topic()
             println(topic.toString())
             if (tryTopic == topic) {
-                this.tryListener(data.value())
+                tryListener(data.value())
             } else if (cancelTopic == topic) {
-                this.cancelListener(data.value())
+                cancelListener(data.value())
             } else if(recoveryTopic == topic) {
-                this.recoveryListener(data.value())
+                recoveryListener(data.value())
             } else {
                 println("error")
             }
