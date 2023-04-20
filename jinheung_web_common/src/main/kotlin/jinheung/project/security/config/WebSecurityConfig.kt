@@ -75,6 +75,8 @@ class WebSecurityConfig(
             .antMatchers("/verify/**").permitAll()
             .antMatchers("/user/**").permitAll()
             .antMatchers("/mall/**").permitAll()
+            .antMatchers("/order/**").permitAll()
+            .antMatchers("/actuator/**").permitAll()
             .and().cors().configurationSource(corsConfigurationSource())
             .and().build()
     }

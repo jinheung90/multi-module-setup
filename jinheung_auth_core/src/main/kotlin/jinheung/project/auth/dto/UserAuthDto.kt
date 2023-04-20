@@ -5,7 +5,6 @@ import jinheung.project.auth.entity.UserSecurity
 
 class UserAuthDto(val userId: Long, val userAuthorities: List<String>, email: String) {
 
-
     val userSecurity : UserSecurityDto = UserSecurityDto(email)
 
     class UserSecurityDto(val email: String) {

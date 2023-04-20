@@ -1,16 +1,20 @@
 package jinheung.project.order.dto
 
+import jinheung.project.event_common.dto.EventCommonDTO
 import jinheung.project.order.entity.Address
 import jinheung.project.order.entity.Order
 import jinheung.project.order.entity.OrderProduct
 import java.math.BigDecimal
 import kotlin.streams.toList
 
-data class OrderDTO(
+class OrderDTO(
     val orderProducts : List<OrderProductDTO>,
     val address: Address = Address(),
-    val requestMemo : String = ""
-) {
+    val requestMemo : String = "",
+    override val eventId :String = "",
+    override val listenerId: String = "",
+    override val eventType: String = ""
+) : EventCommonDTO() {
     data class OrderProductDTO(
         val productId : Long = 0L,
         val quantity : Int = 1,

@@ -3,10 +3,10 @@ package jinheung.project.auth.service
 
 import jinheung.project.auth.dto.UserAuthDto
 import jinheung.project.auth.entity.*
-import jinheung.project.auth.repository.AuthorityRepository
-import jinheung.project.auth.repository.UserAuthorityRepository
-import jinheung.project.auth.repository.UserRepository
-import jinheung.project.auth.repository.UserSecurityRepository
+import jinheung.project.auth.entity.repository.AuthorityRepository
+import jinheung.project.auth.entity.repository.UserAuthorityRepository
+import jinheung.project.auth.entity.repository.UserRepository
+import jinheung.project.auth.entity.repository.UserSecurityRepository
 
 
 import kotlinx.coroutines.flow.*

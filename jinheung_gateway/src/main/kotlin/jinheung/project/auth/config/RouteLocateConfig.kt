@@ -30,6 +30,13 @@ class RouteLocateConfig (
                     }
                 uri("http://localhost:8082/mall")
             }
+            route(id = "order-service") {
+                path("/order/**")
+                    .filters {
+                            f -> f.filter(authFilterFactory.apply(AuthFilterFactory.Config()))
+                    }
+                uri("http://localhost:8084/order")
+            }
         }
     }
 }

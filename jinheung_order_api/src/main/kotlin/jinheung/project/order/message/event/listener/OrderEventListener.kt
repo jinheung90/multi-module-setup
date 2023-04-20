@@ -11,15 +11,8 @@ import javax.annotation.PostConstruct
 
 abstract class OrderEventListener : MainEventListener<OrderDTO> (EventTopicType.ORDER) {
 
-    override fun tryCommand(t: OrderDTO): OrderDTO {
-        TODO("Not yet implemented")
-    }
-
     override fun cancelCommand(t: OrderDTO) {
-
-    }
-
-    override fun recoveryCommand(t: OrderDTO): OrderDTO {
         TODO("Not yet implemented")
+        println("test cancelCommand")
     }
 }

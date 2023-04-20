@@ -12,6 +12,7 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.30'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'mysql:mysql-connector-java'
+	implementation project(':jinheung_common')
 }
 
 

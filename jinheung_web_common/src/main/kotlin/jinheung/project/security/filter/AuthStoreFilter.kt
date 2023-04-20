@@ -31,10 +31,11 @@ class AuthStoreFilter : GenericFilterBean() {
     @Throws(IOException::class, ServletException::class)
     override fun doFilter(servletRequest: ServletRequest, servletResponse: ServletResponse?, filterChain: FilterChain) {
         val httpServletRequest = servletRequest as HttpServletRequest
-
-        if (secureHeaderValue != httpServletRequest.getHeader(SecurityConst.getSecureHeaderName())) {
-            throw CustomBadRequest(GlobalErrorCode.NOT_VALID_SECURE_HEADER, GlobalErrorCode.NOT_VALID_SECURE_HEADER.getMessage())
-        }
+//        println(httpServletRequest.getHeader(SecurityConst.getSecureHeaderName()))
+//        println(secureHeaderValue)
+//        if (secureHeaderValue != httpServletRequest.getHeader(SecurityConst.getSecureHeaderName())) {
+//            throw CustomBadRequest(GlobalErrorCode.NOT_VALID_SECURE_HEADER, GlobalErrorCode.NOT_VALID_SECURE_HEADER.getMessage())
+//        }
 
         val userId = httpServletRequest.getHeader(SecurityConst.getUserIdHeaderName());
         val authorityString = httpServletRequest.getHeader(SecurityConst.getAuthoritiesHeaderName());

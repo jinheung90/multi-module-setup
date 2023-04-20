@@ -6,7 +6,7 @@ import org.springframework.boot.runApplication
 
 
 @SpringBootApplication
-class JinheungMallApiApplication
+class JinheungOrderApiApplication
 fun main(args: Array<String>) {
-	runApplication<JinheungMallApiApplication>(*args)
+	runApplication<JinheungOrderApiApplication>(*args)
 }
