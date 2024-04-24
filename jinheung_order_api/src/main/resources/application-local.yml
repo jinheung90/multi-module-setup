@@ -17,8 +17,12 @@ spring:
     bootstrap-servers: 127.0.0.1:9092,127.0.0.1:9093,127.0.0.1:9094
     consumer:
       group-id: orderServiceGroup
-
+    template:
+      default-topic: ORDER
+  application:
+    name: order
 server:
   port: 8084
+
 
 

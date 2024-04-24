@@ -1,4 +1,4 @@
-package jinheung.project.auth.entity.repository;
+package jinheung.project.auth.repository;
 
 import jinheung.project.auth.entity.Authority
 import kotlinx.coroutines.flow.Flow

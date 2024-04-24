@@ -13,7 +13,7 @@ data class Order (
     @Column(name = "request_memo")
     val requestMemo : String = "",
     @Column(name = "is_success")
-    val success: Boolean = true,
+    var success: Boolean = true,
     @OneToMany
     val orderProducts : List<OrderProduct> = listOf(),
     @Id

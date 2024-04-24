@@ -13,7 +13,8 @@ class OrderDTO(
     val requestMemo : String = "",
     override val eventId :String = "",
     override val listenerId: String = "",
-    override val eventType: String = ""
+    override val eventType: String = "",
+    val orderId: Long = 0
 ) : EventCommonDTO() {
     data class OrderProductDTO(
         val productId : Long = 0L,
@@ -35,5 +36,15 @@ class OrderDTO(
                 order.requestMemo
             )
         }
+        fun emptyObject() : OrderDTO {
+            return OrderDTO(
+                orderId = 1,
+                requestMemo = "testMemo",
+                address = Address(city = "city", district = "distrct"),
+                orderProducts = listOf()
+            )
+        }
     }
+
+
 }

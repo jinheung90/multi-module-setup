@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional
 import kotlin.streams.toList
 
 @Service
-class OrderService(
+class OrderService (
     private val orderProductRepository: OrderProductRepository,
     private val orderRepository: OrderRepository
     ){
@@ -36,8 +36,15 @@ class OrderService(
             }.toList()
         )
     }
+
     @Transactional
     fun cancelOrder(orderId: Long) {
+        val order = findFirstById(orderId)
+        order.success = false
+    }
 
+    @Transactional
+    fun findFirstById(orderId: Long) : Order {
+        return orderRepository.findById(orderId).get()
     }
 }

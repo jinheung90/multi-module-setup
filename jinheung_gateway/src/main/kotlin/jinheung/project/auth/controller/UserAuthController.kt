@@ -18,32 +18,32 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/user/auth")
-class UserAuthController(
-    private val userAuthService: UserAuthService,
-    private val passwordEncoder: PasswordEncoder,
-    private val tokenProvider: TokenProvider
-
-    ) {
-    @PostMapping("/signup/email")
-    suspend fun signupFromEmail(@RequestBody signupRequest: SignupRequest) : UserAuthDto {
-        val newPassword = passwordEncoder.encode(signupRequest.password)
-        val dto = userAuthService.signup(signupRequest.email, newPassword)
-        return dto
-    }
-
-    @PostMapping("/login/email")
-    suspend fun loginFromEmail(@RequestBody loginDto: LoginDto) : Map<String,String> {
-
-        val userSecurity = userAuthService.findUserSecurityByEmail(loginDto.email)
-
-        if(!passwordEncoder.matches(loginDto.password, userSecurity.password)) {
-            throw RuntimeException()
-        }
-
-        val authorities = userAuthService.findUserAuthoritiesByUserSecurity(userSecurity);
-        val token = tokenProvider.createJwtAccessTokenByUser(userSecurity.userId, authorities.toList().map { a -> a.name })
-        val response = HashMap<String, String>()
-        response["access_token"] = token
-        return response
-    }
+class UserAuthController() {
+//    private val userAuthService: UserAuthService,
+//    private val passwordEncoder: PasswordEncoder,
+//    private val tokenProvider: TokenProvider
+//
+//    ) {
+//    @PostMapping("/signup/email")
+//    suspend fun signupFromEmail(@RequestBody signupRequest: SignupRequest) : UserAuthDto {
+//        val newPassword = passwordEncoder.encode(signupRequest.password)
+//        val dto = userAuthService.signup(signupRequest.email, newPassword)
+//        return dto
+//    }
+//
+//    @PostMapping("/login/email")
+//    suspend fun loginFromEmail(@RequestBody loginDto: LoginDto) : Map<String,String> {
+//
+//        val userSecurity = userAuthService.findUserSecurityByEmail(loginDto.email)
+//
+//        if(!passwordEncoder.matches(loginDto.password, userSecurity.password)) {
+//            throw RuntimeException()
+//        }
+//
+//        val authorities = userAuthService.findUserAuthoritiesByUserSecurity(userSecurity);
+//        val token = tokenProvider.createJwtAccessTokenByUser(userSecurity.userId, authorities.toList().map { a -> a.name })
+//        val response = HashMap<String, String>()
+//        response["access_token"] = token
+//        return response
+//    }
 }

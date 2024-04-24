@@ -110,7 +110,8 @@ subprojects {
 project(":jinheung_gateway") {
     dependencies {
         implementation project(':jinheung_common')
-        implementation project(':jinheung_auth_core')
+//        implementation project(':jinheung_auth_core')
+        implementation project(':jinheung_auth_core_hibernate_reactive')
     }
 }
 

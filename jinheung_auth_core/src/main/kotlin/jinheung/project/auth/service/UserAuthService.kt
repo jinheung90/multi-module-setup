@@ -3,16 +3,16 @@ package jinheung.project.auth.service
 
 import jinheung.project.auth.dto.UserAuthDto
 import jinheung.project.auth.entity.*
-import jinheung.project.auth.entity.repository.AuthorityRepository
-import jinheung.project.auth.entity.repository.UserAuthorityRepository
-import jinheung.project.auth.entity.repository.UserRepository
-import jinheung.project.auth.entity.repository.UserSecurityRepository
-
-
-import kotlinx.coroutines.flow.*
+import jinheung.project.auth.repository.AuthorityRepository
+import jinheung.project.auth.repository.UserAuthorityRepository
+import jinheung.project.auth.repository.UserRepository
+import jinheung.project.auth.repository.UserSecurityRepository
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.toList
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.util.concurrent.Flow
 
 
 @Service
@@ -42,13 +42,5 @@ class UserAuthService(
         return UserAuthDto.of(userSecurity.userId, userSecurity, authorities.toList())
     }
 
-    @Transactional
-    suspend fun findUserAuthoritiesByUserSecurity(userSecurity: UserSecurity) : Flow<Authority> {
-        return authorityRepository.findAllByUserId(userSecurity.userId)
-    }
-
-    @Transactional
-    suspend fun findUserSecurityByEmail(email: String) : UserSecurity {
-        return userSecurityRepository.findAllByEmail(email).first()
-    }
+    
 }

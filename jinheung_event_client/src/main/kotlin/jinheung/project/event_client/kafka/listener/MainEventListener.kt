@@ -95,9 +95,9 @@ abstract class MainEventListener<T : EventCommonDTO>() : EventCommand<T> {
         //TODO save commit
         val eventTopicType = EventTopicType.find(t.eventType)
         val data = tryCommand(t)
+        System.out.println("test1")
         kafkaTemplateForEvent?.send(eventTopicType.topicName, t)
     }
-
 
     fun cancelListener(t: T) {
         //TODO findByEventIdsAndSendCancelMessage
