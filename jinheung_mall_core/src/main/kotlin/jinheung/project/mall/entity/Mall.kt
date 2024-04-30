@@ -5,7 +5,7 @@ import jakarta.persistence.*
 
 
 
-
+@Table(name = "malls")
 @Entity
 data class Mall (
     @Column

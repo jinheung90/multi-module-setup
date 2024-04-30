@@ -22,7 +22,7 @@ class ProductService(
     @Transactional
     fun registerProduct(mall: Mall, price: BigDecimal, quantity: Long, name: String): ProductDTO {
         val product = productRepository.save(
-            Product(
+            Product.of(
                 mall = mall,
                 price = price,
                 quantity = quantity,
@@ -31,6 +31,12 @@ class ProductService(
         )
         return ProductDTO.fromEntity(product)
     }
+
+    @Transactional
+    fun checkPriceAndStock() {
+
+    }
+
 
     @Transactional(readOnly = true)
     fun findAllByIds(ids : List<Long>) : List<Product> {
