@@ -1,8 +1,0 @@
-spring:
-  r2dbc:
-    username: root
-    password: admin
-    url: r2dbc:mariadb://127.0.0.1:3307/auth
-    pool:
-      max-size: 100
-    initialization-mode: always

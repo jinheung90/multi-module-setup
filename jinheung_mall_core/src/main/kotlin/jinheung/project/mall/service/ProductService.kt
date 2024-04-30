@@ -3,7 +3,7 @@ package jinheung.project.mall.service
 import jinheung.project.mall.dto.ProductDTO
 import jinheung.project.mall.entity.Mall
 import jinheung.project.mall.entity.Product
-import jinheung.project.mall.enums.Category
+
 import jinheung.project.mall.repository.ProductRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -15,19 +15,18 @@ class ProductService(
 ) {
 
     @Transactional(readOnly = true)
-    fun findAllProductsByMall(mallId: Long, category: Category) : List<Product> {
-        return productRepository.findAllByMallIdAndCategory(mallId,category)
+    fun findAllProductsByMall(mallId: Long) : List<Product> {
+        return productRepository.findAllByMallId(mallId)
     }
 
     @Transactional
-    fun registerProduct(mall: Mall, price: BigDecimal, quantity: Long, name: String, category: Category): ProductDTO {
+    fun registerProduct(mall: Mall, price: BigDecimal, quantity: Long, name: String): ProductDTO {
         val product = productRepository.save(
             Product.of(
                 mall = mall,
                 price = price,
                 quantity = quantity,
-                name = name,
-                category = category
+                name = name
             )
         )
         return ProductDTO.fromEntity(product)

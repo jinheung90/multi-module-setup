@@ -12,14 +12,14 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.30'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'mysql:mysql-connector-java'
-	implementation project(':jinheung_common')
+
 }
 
 
-tasks.withType(KotlinCompile).configureEach {
+tasks.withType(KotlinCompile) {
 	kotlinOptions {
-		freeCompilerArgs = ['-Xjsr305=strict']
-		jvmTarget = '11'
+		freeCompilerArgs += '-Xjsr305=strict'
+		jvmTarget = '17'
 	}
 }
 

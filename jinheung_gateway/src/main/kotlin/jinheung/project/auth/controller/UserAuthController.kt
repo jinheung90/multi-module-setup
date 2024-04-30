@@ -11,6 +11,7 @@ import jinheung.project.auth.service.UserAuthService
 import jinheung.project.jwt.TokenProvider
 import kotlinx.coroutines.flow.toList
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -18,12 +19,12 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/user/auth")
-class UserAuthController() {
-//    private val userAuthService: UserAuthService,
+class UserAuthController(
+    private val userAuthService: UserAuthService
 //    private val passwordEncoder: PasswordEncoder,
 //    private val tokenProvider: TokenProvider
 //
-//    ) {
+    ) {
 //    @PostMapping("/signup/email")
 //    suspend fun signupFromEmail(@RequestBody signupRequest: SignupRequest) : UserAuthDto {
 //        val newPassword = passwordEncoder.encode(signupRequest.password)
@@ -46,4 +47,10 @@ class UserAuthController() {
 //        response["access_token"] = token
 //        return response
 //    }
+
+    @GetMapping("/test")
+    suspend fun test() : Long {
+        userAuthService.signup("","","");
+        return 1;
+    }
 }

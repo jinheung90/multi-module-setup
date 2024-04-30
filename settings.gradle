@@ -3,7 +3,7 @@ rootProject.name = 'jinheung'
 include(':jinheung_gateway')
 include(':jinheung_eureka')
 include(':jinheung_auth_core')
-include(':jinheung_auth_core_hibernate_reactive')
+include(':jinheung_auth_core2')
 include(':jinheung_payment_core')
 include(':jinheung_payment_api')
 include(':jinheung_mall_api')

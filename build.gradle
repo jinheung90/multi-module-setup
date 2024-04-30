@@ -1,35 +1,37 @@
 buildscript {
     ext {
-        springBootVersion = '2.7.6'
-        kotlinJvmVersion = '1.7.10'
+        springBootVersion = '3.2.5'
+        kotlinJvmVersion = '1.9.0'
     }
 
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath "io.spring.gradle:dependency-management-plugin:1.1.0"
+        classpath "io.spring.gradle:dependency-management-plugin:1.1.4"
     }
 }
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.7.10'
-    id 'org.jetbrains.kotlin.plugin.spring' version '1.7.10'
+    id 'org.jetbrains.kotlin.jvm' version '1.9.23'
+    id 'org.jetbrains.kotlin.plugin.spring' version '1.9.23'
+    id 'org.jetbrains.kotlin.plugin.jpa' version '1.9.23'
     id 'jacoco'
+    id 'org.jetbrains.kotlin.plugin.noarg' version '1.9.0'
+//    id 'org.jetbrains.kotlin.plugin.allopen' version '1.9.0'
 }
 
 allprojects {
     repositories {
         mavenCentral()
-        maven { url 'https://repo.spring.io/release/' }
-        maven { url "https://repo.spring.io/libs-snapshot-local" }
-        maven { url "https://repo.spring.io/libs-milestone-local" }
-        maven { url "https://repo.spring.io/libs-release-local" }
-        maven { url 'https://jitpack.io' }
+        maven { url 'https://jitpack.io' } // import
     }
+
 }
 
 ext {
-    set('springCloudVersion', "2021.0.3") // 2.7.6 버젼 트레인
+    set('springCloudVersion', "2021.0.0") // 2.7.6 버젼 트레인
 }
+
+
 
 subprojects {
 
@@ -38,24 +40,30 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'org.jetbrains.kotlin.plugin.noarg'
+    apply plugin: 'org.jetbrains.kotlin.plugin.allopen'
 
     group = "jinheung.project"
     version = "1.0"
-    sourceCompatibility = 11
+    sourceCompatibility = '17'
 
     dependencies {
         implementation 'org.springframework.boot:spring-boot-devtools'
         implementation 'org.springframework.boot:spring-boot-starter'
         implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+        implementation 'io.smallrye.reactive:mutiny-reactor:2.1.0'
+//        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
-        implementation 'com.google.code.gson:gson:2.10.1'
+//        implementation 'com.google.code.gson:gson:2.10.1'
         implementation 'org.springframework.boot:spring-boot-starter-validation'
         implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.7.7'
 
-
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.1.9'
+    }
+
+    dependencies {
+
     }
 
     dependencyManagement {
@@ -104,28 +112,35 @@ subprojects {
             }
         }
     }
-}
+//    allOpen {
+//        annotation("javax.persistence.Entity")
+//        annotation("javax.persistence.MappedSuperclass")
+//        annotation("javax.persistence.Embeddable")
+//    }
 
-
-project(":jinheung_gateway") {
-    dependencies {
-        implementation project(':jinheung_common')
-//        implementation project(':jinheung_auth_core')
-        implementation project(':jinheung_auth_core_hibernate_reactive')
+    noArg {
+        annotation("javax.persistence.Entity")// jpa
+        annotation("jakarta.persistence.Entity")// hibernate-reactive
+        annotation("javax.persistence.MappedSuperclass")
+        annotation("javax.persistence.Embeddable")
+        invokeInitializers = true
     }
 }
 
-project(":jinheung_web_common") {
-    dependencies {
-        implementation project(':jinheung_common')
-    }
-}
 
 project(":jinheung_payment_api") {
     dependencies {
         implementation project(':jinheung_payment_core')
     }
 }
+
+project(":jinheung_gateway") {
+    dependencies {
+        implementation project(':jinheung_common')
+        implementation project(':jinheung_auth_core2')
+    }
+}
+
 
 project(":jinheung_mall_core") {
     dependencies {
@@ -136,14 +151,14 @@ project(":jinheung_mall_core") {
 project(":jinheung_mall_api") {
     dependencies {
         implementation project(':jinheung_web_common')
-        implementation project(':jinheung_mall_core')
+        api project(':jinheung_mall_core')
     }
 }
 
 project(":jinheung_order_api") {
     dependencies {
-        implementation project(':jinheung_web_common')
-        implementation project(':jinheung_common')
+
+
         implementation project(':jinheung_order_core')
         implementation project(':jinheung_event_client')
     }
@@ -152,13 +167,13 @@ project(":jinheung_order_api") {
 
 project(":jinheung_event_handler") {
     dependencies {
-        implementation project(':jinheung_common')
+
     }
 }
 
 project(":jinheung_event_client") {
     dependencies {
-        implementation project(':jinheung_common')
+
     }
 }
 

@@ -1,11 +1,11 @@
 package jinheung.project.order.entity
 
 import java.math.BigDecimal
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Table(name = "orders")
 @Entity
-data class Order (
+class Order (
     @Column(name = "user_id")
     val userId : Long = 0L,
     @Embedded
@@ -19,10 +19,4 @@ data class Order (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id : Long = 0L
-) {
-    companion object {
-        fun of(userId: Long, address: Address, requestMemo: String): Order {
-            return Order(userId = userId, address = address, requestMemo = requestMemo)
-        }
-    }
-}
+)

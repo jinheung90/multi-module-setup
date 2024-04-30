@@ -1,9 +1,9 @@
 package jinheung.project.mall.entity
 
-import jinheung.project.mall.enums.Category
+
 import org.hibernate.Hibernate
 import java.math.BigDecimal
-import javax.persistence.*
+import jakarta.persistence.*
 
 
 
@@ -16,9 +16,9 @@ data class Product(
     val quantity : Long = 0,
     @Column
     val name: String = "",
-    @Column
-    @Enumerated(EnumType.STRING)
-    val category: Category = Category.BOOK,
+//    @Column
+//    @Enumerated(EnumType.STRING)
+//    val category: Category = Category.BOOK,
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="mall_id")
     val mall: Mall = Mall(),
@@ -42,8 +42,8 @@ data class Product(
     }
 
     companion object {
-        fun of(mall: Mall, price: BigDecimal, quantity: Long, name : String, category: Category) : Product {
-            return Product(mall = mall, price = price, name = name, category = category, quantity = quantity)
+        fun of(mall: Mall, price: BigDecimal, quantity: Long, name : String) : Product {
+            return Product(mall = mall, price = price, name = name, quantity = quantity)
         }
     }
 }

@@ -2,7 +2,8 @@ package jinheung.project.payment.entity
 
 import jinheung.project.payment.enums.PayErrorCode
 import java.math.BigDecimal
-import javax.persistence.*
+import jakarta.persistence.*
+
 
 @Table(name = "canceled_logs")
 data class CanceledLog (
