@@ -5,6 +5,7 @@ plugins {
 
 
 dependencies {
+    implementation project(':jinheung_common')
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation group: 'io.awspring.cloud', name: 'spring-cloud-aws-parameter-store', version: '3.0.0-RC1'

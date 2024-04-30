@@ -32,23 +32,23 @@ class WebSecurityConfig(
         return BCryptPasswordEncoder()
     }
 
-    @Bean
-    fun configure(): WebSecurityCustomizer? {
-        return WebSecurityCustomizer { web: WebSecurity ->
-            web.ignoring()
-                .antMatchers(
-                    "/v2/api-docs",
-                    "/h2-console/**",
-                    "/favicon.ico",
-                    "/configuration/ui",
-                    "/swagger-resources/**",
-                    "/configuration/security",
-                    "/swagger-ui.html",
-                    "/webjars/**",
-                    "/actuator/**"
-                )
-        }
-    }
+//    @Bean
+//    fun configure(): WebSecurityCustomizer? {
+//        return WebSecurityCustomizer { web: WebSecurity ->
+//            web.ignoring()
+//                .antMatchers(
+//                    "/v2/api-docs",
+//                    "/h2-console/**",
+//                    "/favicon.ico",
+//                    "/configuration/ui",
+//                    "/swagger-resources/**",
+//                    "/configuration/security",
+//                    "/swagger-ui.html",
+//                    "/webjars/**",
+//                    "/actuator/**"
+//                )
+//        }
+//    }
 
     @Bean
     @Throws(Exception::class)
@@ -70,14 +70,14 @@ class WebSecurityConfig(
             .and()
             .addFilterBefore(authStoreFilter,UsernamePasswordAuthenticationFilter::class.java)
             .authorizeRequests()
-            .antMatchers(HttpMethod.OPTIONS).permitAll()
-            .antMatchers("/auth/**").permitAll()
-            .antMatchers("/verify/**").permitAll()
-            .antMatchers("/user/**").permitAll()
-            .antMatchers("/mall/**").permitAll()
-            .antMatchers("/order/**").permitAll()
-            .antMatchers("/actuator/**").permitAll()
-            .and().cors().configurationSource(corsConfigurationSource())
+//            .antMatchers(HttpMethod.OPTIONS).permitAll()
+//            .antMatchers("/auth/**").permitAll()
+//            .antMatchers("/verify/**").permitAll()
+//            .antMatchers("/user/**").permitAll()
+//            .antMatchers("/mall/**").permitAll()
+//            .antMatchers("/order/**").permitAll()
+//            .antMatchers("/actuator/**").permitAll()
+//            .and().cors().configurationSource(corsConfigurationSource())
             .and().build()
     }
 

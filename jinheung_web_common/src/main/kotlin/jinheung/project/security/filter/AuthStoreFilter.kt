@@ -1,13 +1,12 @@
 package jinheung.project.security.filter
 
-import jinheung.project.error.enums.GlobalErrorCode
-import jinheung.project.error.exception.CustomBadRequest
-import jinheung.project.util.CustomSecuritySupport
-import jinheung.project.util.SecurityConst
+import jakarta.servlet.ServletException
+
+
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
-import org.springframework.security.core.GrantedAuthority
+
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.User
@@ -16,11 +15,12 @@ import org.springframework.web.filter.GenericFilterBean
 import java.io.IOException
 import java.util.*
 import java.util.stream.Collectors
-import javax.servlet.FilterChain
-import javax.servlet.ServletException
-import javax.servlet.ServletRequest
-import javax.servlet.ServletResponse
-import javax.servlet.http.HttpServletRequest
+import jakarta.servlet.FilterChain
+
+import jakarta.servlet.ServletRequest
+import jakarta.servlet.ServletResponse
+import jakarta.servlet.http.HttpServletRequest
+import jinheung.project.util.SecurityConst
 
 @Component
 class AuthStoreFilter : GenericFilterBean() {

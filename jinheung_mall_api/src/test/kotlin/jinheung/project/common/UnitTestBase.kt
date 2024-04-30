@@ -21,7 +21,7 @@ class UnitTestBase(
     @Mock val mallHasUserRepository: MallHasUserRepository
 ) {
     @Test
-    fun registoerMall() {
+    fun registerMall() {
 
     }
 }
