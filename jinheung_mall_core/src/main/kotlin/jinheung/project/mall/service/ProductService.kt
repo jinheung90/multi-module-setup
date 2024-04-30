@@ -34,8 +34,6 @@ class ProductService(
 
     @Transactional(readOnly = true)
     fun findAllByIds(ids : List<Long>) : List<Product> {
-        return productRepository.findAllById(ids);
+        return productRepository.findAllById(ids)
     }
-
-
 }
