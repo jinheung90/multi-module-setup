@@ -4,7 +4,6 @@ package jinheung.project.payment.service
 import com.siot.IamportRestClient.IamportClient
 import com.siot.IamportRestClient.exception.IamportResponseException
 import com.siot.IamportRestClient.request.CancelData
-import com.siot.IamportRestClient.response.IamportResponse
 import com.siot.IamportRestClient.response.Payment
 import jinheung.project.payment.entity.CanceledLog
 import jinheung.project.payment.entity.IamportLog
@@ -14,8 +13,8 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.io.IOException
 import java.math.BigDecimal
-import javax.annotation.PostConstruct
-import javax.transaction.Transactional
+import jakarta.annotation.PostConstruct
+import jakarta.transaction.Transactional
 
 @Service
 class PaymentService(
@@ -34,6 +33,7 @@ class PaymentService(
     fun initImportClient() {
         iamportClient = IamportClient(restKey, secretKey)
     }
+
     @Transactional
     fun saveIamportLog(
         userId: Long,
@@ -43,9 +43,9 @@ class PaymentService(
         canceledLog: CanceledLog?
     ): IamportLog {
         return iamportLogRepository.save(
-            IamportLog.of(
+            IamportLog(
                 impUid = impUid,
-                price = price,
+
                 canceledLog = canceledLog,
                 merchantUid = merchantUid,
                 userId = userId
@@ -54,7 +54,7 @@ class PaymentService(
     }
     @Transactional
     fun saveCanceledLog(statusCode : Int, message : String, refundMoney : BigDecimal) :CanceledLog {
-        return canceledLogRepository.save(CanceledLog.of(statusCode, message, refundMoney))
+        return canceledLogRepository.save(CanceledLog(statusCode, message, refundMoney))
     }
 
     @Transactional
@@ -65,7 +65,7 @@ class PaymentService(
             if (paymentResponse != null) {
                 val payment = paymentResponse.response
                 if(payment.amount != productPrice) {
-                    canceledLog = CanceledLog.of(statusCode = 400, message = "productPrice not equal payPrice", refundMoney = payment.amount) //
+                    canceledLog = CanceledLog(statusCode = 400, message = "productPrice not equal payPrice", refundMoney = payment.amount) //
                     this.payCancel(impUid, payment.amount)
                     throw RuntimeException("productPrice not equal payPrice")
                 }
@@ -87,7 +87,7 @@ class PaymentService(
                 }
             }
             val payment = this.payCancel(impUid, productPrice)
-            canceledLog = CanceledLog.of(statusCode = statusCode, message = e.localizedMessage, productPrice)
+            canceledLog = CanceledLog(statusCode = statusCode, message = e.localizedMessage, productPrice)
         } finally {
             saveIamportLog(userId = userId, merchantUid = merchantUid, impUid = impUid, price = productPrice, canceledLog = canceledLog)
         }

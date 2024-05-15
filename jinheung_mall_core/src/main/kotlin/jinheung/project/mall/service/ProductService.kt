@@ -22,7 +22,7 @@ class ProductService(
     @Transactional
     fun registerProduct(mall: Mall, price: BigDecimal, quantity: Long, name: String): ProductDTO {
         val product = productRepository.save(
-            Product.of(
+            Product(
                 mall = mall,
                 price = price,
                 quantity = quantity,

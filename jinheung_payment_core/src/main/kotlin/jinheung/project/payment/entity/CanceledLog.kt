@@ -6,22 +6,17 @@ import jakarta.persistence.*
 
 
 @Table(name = "canceled_logs")
-data class CanceledLog (
+class CanceledLog(
     @Column(name = "status_code")
-    val statusCode :  Int,
+    var statusCode: Int = 0,
     @Column(length = 2048)
-    val message : String,
+    var message: String = "",
     @Column(name = "refund_money")
-    val refundMoney : BigDecimal,
+    var refundMoney: BigDecimal = BigDecimal.valueOf(0)
+) {
     @Column
-    var isCanceled : Boolean = false,
+    var isCanceled: Boolean = true
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id : Long = 0L
-) {
-    companion object {
-        fun of(statusCode: Int, message: String, refundMoney: BigDecimal) : CanceledLog {
-            return CanceledLog(statusCode, message, refundMoney)
-        }
-    }
+    var id : Long = 0L
 }

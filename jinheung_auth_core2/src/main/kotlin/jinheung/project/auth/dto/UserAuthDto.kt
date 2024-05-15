@@ -3,7 +3,10 @@ package jinheung.project.auth.dto
 import jinheung.project.auth.entity.Authority
 import jinheung.project.auth.entity.UserSecurity
 
-class UserAuthDto(val userId: Long, val userAuthorities: List<String>, email: String) {
+//import jinheung.project.auth.entity.Authority
+//import jinheung.project.auth.entity.UserSecurity
+
+class UserAuthDto(val id: Long, val userAuthorities: List<String>, email: String) {
 
 
 
@@ -16,11 +19,9 @@ class UserAuthDto(val userId: Long, val userAuthorities: List<String>, email: St
 //   }
 //
    companion object  {
-//      fun of(userSecurity: UserSecurity, authorities: List<Authority>) : UserAuthDto {
-//         return UserAuthDto(userSecurity.user.id, authorities.map {  a -> a.name }, userSecurity.email)
-//      }
-      fun empty():UserAuthDto {
-         return UserAuthDto(0, listOf(),"");
+      fun of(userSecurity: UserSecurity, authorities: List<Authority>) : UserAuthDto {
+         return UserAuthDto(userSecurity.user.id, authorities.map {  a -> a.name }, userSecurity.email)
       }
+
    }
 }

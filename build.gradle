@@ -16,7 +16,7 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.jpa' version '1.9.23'
     id 'jacoco'
     id 'org.jetbrains.kotlin.plugin.noarg' version '1.9.0'
-//    id 'org.jetbrains.kotlin.plugin.allopen' version '1.9.0'
+    id 'checkstyle'
 }
 
 allprojects {
@@ -48,16 +48,15 @@ subprojects {
     sourceCompatibility = '17'
 
     dependencies {
-        implementation 'org.springframework.boot:spring-boot-devtools'
+//        implementation 'org.springframework.boot:spring-boot-devtools' // hibernate reactive error
         implementation 'org.springframework.boot:spring-boot-starter'
         implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
         implementation 'io.smallrye.reactive:mutiny-reactor:2.1.0'
-//        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+
         implementation("org.jetbrains.kotlin:kotlin-reflect")
-//        implementation 'com.google.code.gson:gson:2.10.1'
+
         implementation 'org.springframework.boot:spring-boot-starter-validation'
         implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.7.7'
-
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.1.9'
     }
@@ -112,17 +111,17 @@ subprojects {
             }
         }
     }
-//    allOpen {
-//        annotation("javax.persistence.Entity")
-//        annotation("javax.persistence.MappedSuperclass")
-//        annotation("javax.persistence.Embeddable")
-//    }
+
+    allOpen {
+        annotation("jakarta.persistence.Entity")
+        annotation("jakarta.persistence.MappedSuperclass")
+        annotation("jakarta.persistence.Embeddable")
+    }
 
     noArg {
-        annotation("javax.persistence.Entity")// jpa
-        annotation("jakarta.persistence.Entity")// hibernate-reactive
-        annotation("javax.persistence.MappedSuperclass")
-        annotation("javax.persistence.Embeddable")
+        annotation("jakarta.persistence.Entity")
+        annotation("jakarta.persistence.MappedSuperclass")
+        annotation("jakarta.persistence.Embeddable")
         invokeInitializers = true
     }
 }
@@ -157,8 +156,6 @@ project(":jinheung_mall_api") {
 
 project(":jinheung_order_api") {
     dependencies {
-
-
         implementation project(':jinheung_order_core')
         implementation project(':jinheung_event_client')
     }

@@ -11,5 +11,4 @@ import org.springframework.boot.runApplication
 class JinheungAuthApplication
 fun main(args: Array<String>) {
 	runApplication<JinheungAuthApplication>(*args)
-
 }

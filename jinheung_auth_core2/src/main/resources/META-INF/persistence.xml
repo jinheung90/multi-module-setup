@@ -27,8 +27,6 @@
             <!-- Automatic schema export -->
             <property name="jakarta.persistence.schema-generation.database.action"
                       value="drop-and-create"/>
-            <property name="jakarta.persistence.create-database-schemas"
-                      value="true"/>
             <!-- SQL statement logging -->
             <property name="hibernate.format_sql" value="true"/>
         </properties>

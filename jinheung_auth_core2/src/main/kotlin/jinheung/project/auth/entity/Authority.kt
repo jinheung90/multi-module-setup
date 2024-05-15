@@ -9,12 +9,12 @@ import jakarta.persistence.*
 
 
 @Entity
-class Authority  {
-
+class Authority(
+)  {
     val name: String = ""
     @OneToMany
     val userAuthorities: List<UserAuthority> = listOf()
     @Id
-     @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L
 }

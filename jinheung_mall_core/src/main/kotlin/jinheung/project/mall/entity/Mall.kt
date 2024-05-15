@@ -7,7 +7,7 @@ import jakarta.persistence.*
 
 @Table(name = "malls")
 @Entity
-data class Mall (
+class Mall (
     @Column
     val name : String = "",
     @Id

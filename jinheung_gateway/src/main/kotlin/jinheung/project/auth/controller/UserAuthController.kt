@@ -50,7 +50,7 @@ class UserAuthController(
 
     @GetMapping("/test")
     suspend fun test() : Long {
-        userAuthService.signup("","","");
+
         return 1;
     }
 }

@@ -4,7 +4,6 @@ plugins {
 
 }
 
-
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-web') {
 		exclude group: 'org.springframework.boot', module:'spring-boot-starter-tomcat'
@@ -15,8 +14,6 @@ dependencies {
 	implementation 'io.awspring.cloud:spring-cloud-starter-aws-parameter-store-config'
 
 }
-
-
 
 tasks.withType(KotlinCompile) {
 	kotlinOptions {
